@@ -1,7 +1,10 @@
 class UsersSignupTest < IntegrationWebkitTest
 
-  def test_invalid_signup_information
+  def setup
     visit signup_path
+  end
+
+  def test_invalid_signup_information
     assert_no_difference 'User.count' do
       fill_in("user_name", :with => "")
       fill_in("user_email", :with => "user@invalid")
@@ -12,7 +15,6 @@ class UsersSignupTest < IntegrationWebkitTest
   end
 
   def test_valid_signup_information
-    visit signup_path
     assert_difference 'User.count', 0 do
       fill_in("user_name", :with => "Vasiliy Pupkin")
       fill_in("user_email", :with => "Pupkin@valid.com")

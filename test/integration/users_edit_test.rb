@@ -1,8 +1,8 @@
 class UsersEditTest < IntegrationWebkitTest
 
   def setup
-    @user = User.create(name: "Example User", email: "user@example.com",
-                     password: "password", password_confirmation: "password")
+    @user = users(:Valid_user)
+    login(@user)
     visit edit_user_path(@user.id)
   end
 

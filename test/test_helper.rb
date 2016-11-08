@@ -24,4 +24,5 @@ class IntegrationWebkitTest < ActiveSupport::TestCase
   include Capybara::DSL
   Capybara.default_wait_time = 5
   Capybara.current_driver = :webkit
+  self.use_transactional_fixtures = false
 end

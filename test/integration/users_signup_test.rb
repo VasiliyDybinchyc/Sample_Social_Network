@@ -9,8 +9,6 @@ class UsersSignupTest < IntegrationWebkitTest
       fill_in("user_password_confirmation", :with => "word")
       click_button "Create me!"
     end
-    assert page.has_text?("The form contains 4 errors.")
-    assert page.has_text?("Name can't be blank")
   end
 
   def test_valid_signup_information
@@ -22,6 +20,6 @@ class UsersSignupTest < IntegrationWebkitTest
       fill_in("user_password_confirmation", :with => "password")
       click_button "Create me!"
     end
-    assert page.has_text?("Welcome to the Sample Social Network!")
+    assert page.has_text?("pupkin@valid.com")
   end
 end

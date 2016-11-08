@@ -1,0 +1,31 @@
+<div id="navbar">
+  <% if logged_in? %>
+    <ul>
+      <div><a id="Lible" href="/">SampleSN</a></div>
+      <div id="flip" style="float:right"> Account &#9660;</div>
+    </ul>
+    <div id="panel" style="float:right">
+      <ul>
+        <li style="float:right"><%= link_to "Profile", current_user %></li>
+        <li style="float:right"><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li style="float:right"><%= link_to "Sign out", logout_path, method: "delete" %></li>
+      <ul>
+    </div>
+
+  <% else %>
+    <ul>
+      <div><a id="Lible" href="/">SampleSN</a></div>
+      <li style="float:right"><%= link_to "log in", login_path %></li>
+      <li style="float:right"><%= link_to "Sign up", signup_path %></li>
+    </ul>
+  <% end %>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+    });
+});
+</script>

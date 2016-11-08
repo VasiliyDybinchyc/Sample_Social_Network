@@ -1,0 +1,55 @@
+/* navbar */
+ul {
+    list-style-type: none;
+    margin: -10px;
+    padding-left: 0px;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #4682B4;
+    border-radius: 5px
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color: white;
+}
+
+#Lible {
+  position: fixed;
+  float: left;
+  color: white;
+  margin-top: -10px;
+  padding: 14px 16px;
+  padding-left: 2cm;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 200%
+}
+
+#flip {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  padding-right: 2cm;
+  cursor: pointer
+}
+
+#panel {
+  display: none;
+  color: white;
+  width: 70px;
+  margin-top: 30px;
+  margin-right: 1.5cm;
+  padding: 14px 16px;
+  text-decoration: none;
+}

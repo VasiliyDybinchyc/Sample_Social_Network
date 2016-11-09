@@ -1,8 +1,11 @@
 <div class="form">
   <%= form_for @user do |f| %>
 
-    <%= f.label :name %><br/>
-    <%= f.text_field :name, class: 'filed_form_user' %><br/>
+    <%= f.label :first_name %><br/>
+    <%= f.text_field :first_name, class: 'filed_form_user' %><br/>
+
+    <%= f.label :last_name %><br/>
+    <%= f.text_field :last_name, class: 'filed_form_user' %><br/>
 
     <%= f.label :email %><br/>
     <%= f.email_field :email, class: 'filed_form_user' %><br/>

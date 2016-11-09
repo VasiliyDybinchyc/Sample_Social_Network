@@ -25,8 +25,14 @@ class UsersEditTest < IntegrationWebkitTest
       fill_in("user_email", :with => "email@example.com")
       fill_in("user_password", :with => "password")
       fill_in("user_password_confirmation", :with => "password")
+      fill_in("user_phone_number", :with => "some phone")
+      fill_in("user_favorite_book", :with => "some book")
+      fill_in("user_favorite_film", :with => "some film")
       click_button "To change yourself"
     end
     assert page.has_text?("email@example.com")
+    assert page.has_text?("some phone")
+    assert page.has_text?("some book")
+    assert page.has_text?("some film")
   end
 end

@@ -1,3 +1,33 @@
 <h1>Edit user</h1>
+<div class=form>
+  <%= form_for @user do |f| %>
 
-<%=render 'form'%>
+    <%= f.label :first_name %><br/>
+    <%= f.text_field :first_name, class: 'filed_form_user' %><br/>
+
+    <%= f.label :last_name %><br/>
+    <%= f.text_field :last_name, class: 'filed_form_user' %><br/>
+
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, class: 'filed_form_user' %><br/>
+
+    <%= f.label :password %><br/>
+    <%= f.password_field :password, class: 'filed_form_user' %><br/>
+
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, class: 'filed_form_user' %><br/>
+
+    <%= f.label :phone_number %><br/>
+    <%= f.text_field :phone_number, class: 'filed_form_user' %><br/>
+
+    <%= f.label :favorite_book %><br/>
+    <%= f.text_field :favorite_book, class: 'filed_form_user' %><br/>
+
+    <%= f.label :favorite_film %><br/>
+    <%= f.text_field :favorite_film, class: 'filed_form_user' %><br/>
+
+    <%= button_tag(type: 'submit', id: "button-form") do %>
+      <span><%= current_page?(signup_path) ? "Create me!" : "To change yourself" %></span>
+    <% end %>
+  <% end %>
+</div>

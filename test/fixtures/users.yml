@@ -3,6 +3,9 @@ Valid_user:
   last_name: User
   email: user@valid.com
   password_digest: <%= User.digest('password') %>
+  phone_number: 4588756717.to_s
+  favorite_book: some book
+  favorite_film: some film
 
 Invalid_user:
   first_name: Invalid User

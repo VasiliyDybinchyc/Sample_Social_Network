@@ -7,6 +7,7 @@ require 'database_cleaner'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+  self.use_transactional_fixtures = false
 
   DatabaseCleaner.strategy = :truncation
 
@@ -30,6 +31,7 @@ class IntegrationWebkitTest < ActiveSupport::TestCase
   include Rails.application.routes.url_helpers
   include Capybara::DSL
   Capybara.default_wait_time = 5
-  Capybara.current_driver = :webkit
-  self.use_transactional_fixtures = false
+  def run_webkit
+    Capybara.current_driver = :webkit
+  end
 end

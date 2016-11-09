@@ -16,7 +16,7 @@ class UsersSignupTest < IntegrationWebkitTest
   end
 
   def test_valid_signup_information
-    assert_difference 'User.count', 0 do
+    assert_difference 'User.count', 1 do
       fill_in("user_first_name", :with => "Vasiliy")
       fill_in("user_last_name", :with => "Pupkin")
       fill_in("user_email", :with => "Pupkin@valid.com")

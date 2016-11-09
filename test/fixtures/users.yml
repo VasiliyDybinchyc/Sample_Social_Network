@@ -1,9 +1,10 @@
 Valid_user:
-  name: Valid User
+  first_name: Valid
+  last_name: User
   email: user@valid.com
   password_digest: <%= User.digest('password') %>
 
 Invalid_user:
-  name: Invalid User
+  first_name: Invalid User
   email: user.invalid.com
   password_digest: <%= User.digest('password') %>

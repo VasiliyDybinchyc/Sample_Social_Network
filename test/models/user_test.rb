@@ -1,21 +1,31 @@
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com",
+    @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com",
                      password: "password", password_confirmation: "password")
   end
 
-  def test_name_should_be_present
-    @user.name = ""
+  def test_first_name_should_be_present
+    @user.first_name = ""
+    assert_not @user.valid?
+  end
+
+  def test_first_name_not_too_long
+    @user.first_name = "a"*60
+    assert_not @user.valid?
+  end
+
+  def test_last_name_should_be_present
+    @user.last_name = ""
+    assert_not @user.valid?
+  end
+
+  def test_last_name_not_too_long
+    @user.last_name = "a"*60
     assert_not @user.valid?
   end
 
   def test_email_should_be_present
     @user.email = ""
-    assert_not @user.valid?
-  end
-
-  def test_name_not_too_long
-    @user.name = "a"*60
     assert_not @user.valid?
   end
 

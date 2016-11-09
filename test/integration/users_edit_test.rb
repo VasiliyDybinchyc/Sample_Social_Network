@@ -8,7 +8,8 @@ class UsersEditTest < IntegrationWebkitTest
 
   def test_invalid_edit_information
     assert_no_difference 'User.count' do
-      fill_in("user_name", :with => "")
+      fill_in("user_first_name", :with => "")
+      fill_in("user_last_name", :with => "")
       fill_in("user_email", :with => "user@invalid")
       fill_in("user_password", :with => "pass")
       fill_in("user_password_confirmation", :with => "word")
@@ -19,7 +20,8 @@ class UsersEditTest < IntegrationWebkitTest
 
   def test_valid_edit_information
     assert_difference 'User.count', 0 do
-      fill_in("user_name", :with => "Name")
+      fill_in("user_first_name", :with => "Name")
+      fill_in("user_last_name", :with => "User")
       fill_in("user_email", :with => "email@example.com")
       fill_in("user_password", :with => "password")
       fill_in("user_password_confirmation", :with => "password")

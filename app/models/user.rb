@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }
 
+  mount_uploader :avatar, AvatarUploader
+
   class << self
 
     def digest(string)

@@ -16,6 +16,9 @@
     <%= f.label :password_confirmation %><br/>
     <%= f.password_field :password_confirmation, class: 'filed_form_user' %><br/>
 
+    <%= f.label :avatar %><br/>
+    <%= f.file_field :avatar%><br/>
+
     <%= button_tag(type: 'submit', id: "button-form") do %>
       <span><%= current_page?(signup_path) ? "Create me!" : "To change yourself" %></span>
     <% end %>

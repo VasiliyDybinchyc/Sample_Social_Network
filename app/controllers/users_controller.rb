@@ -38,13 +38,13 @@ class UsersController < ApplicationController
 
    def user_params
      params.require(:user).permit(:first_name,:last_name, :email, :password,
-                                  :password_confirmation)
+                                  :password_confirmation, :avatar)
    end
 
    def edit_user_params
      params.require(:user).permit(:first_name,:last_name, :email, :password,
                                   :password_confirmation, :phone_number,
-                                  :favorite_book, :favorite_film)
+                                  :favorite_book, :favorite_film, :avatar)
    end
 
    def logged_in_user

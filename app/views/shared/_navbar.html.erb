@@ -2,30 +2,38 @@
   <% if logged_in? %>
     <ul>
       <div><a id="Lible" href="/">SampleSN</a></div>
-      <div id="flip" style="float:right"> Account &#9660;</div>
+      <div id="flip" style="float:right"><span> Account &#9658;</span></div>
     </ul>
     <div id="panel" style="float:right">
       <ul>
-        <li style="float:right"><%= link_to "Profile", current_user %></li>
-        <li style="float:right"><%= link_to "Settings", edit_user_path(current_user) %></li>
-        <li style="float:right"><%= link_to "Sign out", logout_path, method: "delete" %></li>
+        <li id="panel-li"><%= link_to "Profile", current_user %></li>
+        <li id="panel-li"><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li id="panel-li-last"><%= link_to "Sign out", logout_path, method: "delete" %></li>
       <ul>
     </div>
 
   <% else %>
     <ul>
       <div><a id="Lible" href="/">SampleSN</a></div>
-      <li style="float:right"><%= link_to "log in", login_path %></li>
-      <li style="float:right"><%= link_to "Sign up", signup_path %></li>
+      <li style="float:right" id="ul-li"><%= link_to "log in", login_path %></li>
+      <li style="float:right" id="ul-li"><%= link_to "Sign up", signup_path %></li>
     </ul>
   <% end %>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <script>
 $(document).ready(function(){
     $("#flip").click(function(){
-        $("#panel").slideToggle("slow");
+      var right = $('#flip').css('right');
+      if (right == '380px') {
+        $('#flip').css('right','-=380px');
+      }
+      else {
+        $('#flip').css('right','380px');
+      }
+      $("#panel").toggle("slide", { direction: "right" });
     });
 });
 </script>

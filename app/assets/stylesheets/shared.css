@@ -13,15 +13,44 @@ li {
     float: left;
 }
 
-li a {
+#panel-li a {
     display: block;
+    width: 70px;
+    color: white;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#panel-li-last a {
+    display: block;
+    width: 70px;
     color: white;
     text-align: left;
     padding: 14px 16px;
     text-decoration: none;
     border-width:1px;
-    border-bottom-style:solid;
-    border-bottom-color: white;
+    border-left-style:solid;
+    border-left-color: white;
+}
+
+#panel-li:hover {
+    background-color: #356389;
+}
+
+#panel-li-last:hover {
+    background-color: #356389;
+}
+
+#ul-li a {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#ul-li:hover {
+    background-color: #356389;
 }
 
 #Lible {
@@ -37,19 +66,29 @@ li a {
 }
 
 #flip {
+  position: relative;
+  transition: 0.5s;
   display: block;
   color: white;
   padding: 14px 16px;
-  padding-right: 2cm;
-  cursor: pointer
+  cursor: pointer;
+
+}
+
+#flip:after {
+  transition: 0.5s;
+  opacity: 1;
+  right: 0;
+}
+
+#flip:hover {
+  background-color: #356389;
 }
 
 #panel {
   display: none;
-  color: white;
-  width: 70px;
-  margin-top: 30px;
+  width: 290px;
+  margin-top: -28px;
   margin-right: 1.5cm;
-  padding: 14px 16px;
   text-decoration: none;
 }

@@ -1,18 +1,20 @@
-<%= form_for @user do |f| %>
+<div class="form">
+  <%= form_for @user do |f| %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name, class: 'filed_form_user' %><br/>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, class: 'filed_form_user' %><br/>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <%= f.label :password %><br/>
+    <%= f.password_field :password, class: 'filed_form_user' %><br/>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, class: 'filed_form_user' %><br/>
 
-  <%= button_tag(type: 'submit') do %>
-    <%= current_page?(signup_path) ? "Create me!" : "To change yourself" %>
+    <%= button_tag(type: 'submit', id: "button-form") do %>
+      <span><%= current_page?(signup_path) ? "Create me!" : "To change yourself" %></span>
+    <% end %>
   <% end %>
-<% end %>
+</div>

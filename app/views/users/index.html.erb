@@ -1,1 +1,5 @@
-<h1>Please <%= link_to "Sign up", signup_path %> or <%= link_to "Log in", login_path %> </h1>
+<% if logged_in? %>
+  <%=render 'logged_index'%>
+<% else %>
+  <%=render 'unlogged_index'%>
+<% end %>

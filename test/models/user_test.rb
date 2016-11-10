@@ -70,4 +70,12 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  def test_associated_messages_should_be_destroyed
+    @user.save
+    @user.messages.create!(content: "Lorem ipsum")
+    assert_difference 'Message.count', -1 do
+      @user.destroy
+    end
+  end
 end

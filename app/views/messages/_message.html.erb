@@ -1,0 +1,14 @@
+<div class="col-md-8">
+  <% if @user.messages.any? %>
+    <h3> Messages (<%= @user.messages.count %>)</h3>
+    <ol class="messages">
+      <% @user.messages.each do |messages| %>
+        <li id=<%= "messages-#{messages.id}" %> >
+          <%= messages.content %>
+          <%= link_to "delete", messages, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+        </li><br/>
+      <% end %>
+    </ol>
+  <% end %>
+</div>

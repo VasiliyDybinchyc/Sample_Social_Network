@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :messages, dependent: :destroy
+
   class << self
 
     def digest(string)

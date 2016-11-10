@@ -32,6 +32,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @message  = current_user.messages.build
+    @messages  = current_user.messages
   end
 
   private
@@ -46,12 +48,6 @@ class UsersController < ApplicationController
                                   :password_confirmation, :phone_number,
                                   :favorite_book, :favorite_film, :avatar)
    end
-
-   def logged_in_user
-      unless logged_in?
-        redirect_to root_path
-      end
-    end
 
     def correct_user
       @user = User.find(params[:id])

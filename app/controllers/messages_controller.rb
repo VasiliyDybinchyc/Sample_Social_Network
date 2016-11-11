@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to request.referrer || root_url
     else
-      render 'static_pages/home'
+      render root_path
     end
   end
 
@@ -20,6 +20,6 @@ class MessagesController < ApplicationController
   private
 
     def message_params
-      params.require(:message).permit(:content)
+      params.require(:message).permit(:content, :picture)
     end
 end

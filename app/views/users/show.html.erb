@@ -11,3 +11,11 @@
 <%= render 'shared/message_form' %>
 
 <%= render 'messages/message' %>
+
+<script>
+$(document).ready(function(){
+    $(".message-picture, #avatar").click(function(){
+      window.open($(this).attr("src"));
+    });
+});
+</script>

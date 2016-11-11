@@ -54,7 +54,7 @@ li {
 }
 
 #Lible {
-  position: fixed;
+  position: absolute;
   float: left;
   color: white;
   margin-top: -10px;
@@ -72,7 +72,6 @@ li {
   color: white;
   padding: 14px 16px;
   cursor: pointer;
-
 }
 
 #flip:after {

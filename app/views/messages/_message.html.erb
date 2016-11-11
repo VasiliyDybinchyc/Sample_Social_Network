@@ -5,7 +5,11 @@
       <% @user.messages.each do |messages| %>
         <li id=<%= "messages-#{messages.id}" %> >
           <div id="messages-content">
-            <%= messages.content %>
+            <% if link_youtube?(messages.content) %>
+              <%= youtube_embed(messages.content) %>
+            <% else %>
+              <%= messages.content %>
+            <% end %>
             <% if messages.picture? %>
               <br/ >
             <% end %>

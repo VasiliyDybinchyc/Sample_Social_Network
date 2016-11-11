@@ -9,7 +9,8 @@
             <% if messages.picture? %>
               <br/ >
             <% end %>
-            <%= image_tag messages.picture.url, :class => "message-picture" if messages.picture? %>
+            <%= image_tag messages.picture.url, :id => "message-picture-#{messages.id}", :class => "message-picture" if messages.picture? %>
+
             <%= link_to "delete", messages, method: :delete,
                                          data: { confirm: "You sure?" } %>
           </div>

@@ -1,0 +1,21 @@
+img {
+  cursor: pointer;
+  max-height: 400px;
+  max-width: 400px
+}
+.message-filed {
+  display: inline-block
+}
+
+.messages {
+  display:inline-block
+}
+
+#messages-content {
+  width: 500px;
+}
+
+#cavans {
+  position: absolute;
+  border: 1px solid #ccc;
+}

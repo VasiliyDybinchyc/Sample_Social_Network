@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     def new_token
       SecureRandom.urlsafe_base64
     end
+
+    def latest_ten
+      order(id: :desc).limit(10)
+    end
   end
 
   def remember

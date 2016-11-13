@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, except: [:new, :create, :index]
   before_action :correct_user,   only: [:edit, :update]
 
   def new
@@ -34,6 +34,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @message  = current_user.messages.build
     @messages  = current_user.messages
+    @ten_frends = @user.following.latest_ten
+  end
+
+  def all_frends
+    @user = User.find(params[:id])
+    @ten_frends = @user.following.latest_ten
+    @all_frends = @user.following
   end
 
   private

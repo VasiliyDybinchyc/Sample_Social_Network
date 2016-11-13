@@ -2,11 +2,11 @@
 
 <%= image_tag @user.avatar.url, :id => "avatar" if !@user.avatar.url.nil? %><br/>
 
-<%= link_to "Edit me", edit_user_path if current_user?(@user) %>
+<%= render 'personal_info' %>
 
-<p><%= @user.phone_number %></p>
-<p><%= @user.favorite_book %></p>
-<p><%= @user.favorite_film %></p>
+<%= render 'only_ten_frend' %>
+
+<%= render 'follow_form' if logged_in? %>
 
 <%= render 'shared/message_form' %>
 

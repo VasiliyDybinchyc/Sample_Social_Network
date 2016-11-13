@@ -1,0 +1,11 @@
+<section id="frends-filed">
+  <% if @ten_frends.any? %>
+  <h3 id="title-frends-filed">My frend</h3>
+    <div id="frends_avatars">
+      <% @ten_frends.shuffle.each do |user| %>
+        <%= link_to image_tag(user.avatar.url, size: 35), user %>
+      <% end %>
+    </div>
+    <%= link_to "All frend", all_frends_user_path, remote: true %>
+  <% end %>
+</section>

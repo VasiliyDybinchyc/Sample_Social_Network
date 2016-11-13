@@ -10,5 +10,11 @@ Rails.application.routes.draw do
 
   resources :messages,          only: [:create, :destroy]
 
-  resources :users
+  resources :relationships,       only: [:create, :destroy]
+
+  resources :users do
+    member do
+      get :all_frends
+    end
+  end
 end

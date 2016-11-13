@@ -1,0 +1,100 @@
+#avatar {
+  cursor: pointer;
+  max-height: 275px;
+  max-width: 200px
+}
+
+.personal-info-filed {
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  height: 210px;
+  width: 200px
+}
+
+.personal-info-filed p {
+  font-size: 11pt;
+}
+
+#personal-info {
+  position: relative;
+  float: right;
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  text-align: right;
+  height: 100px;
+  width: 130px
+}
+
+#personal-info-title {
+  position: relative;
+  float: left;
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  height: 100px;
+  width: 70px
+}
+
+#frends-filed {
+  text-align: center;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 200px;
+  width: 200px
+}
+
+#frends_avatars {
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  height: 85px;
+  width: 200px
+}
+
+#all-frends-filed {
+  text-align: center;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  height: 150px;
+  width: 200px
+}
+
+#all-frends_avatars {
+  overflow: scroll;
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  height: 85px;
+  width: 200px
+}
+
+#items {
+  display:block-inline
+  height: 40px;
+  width: 40px
+}
+
+.item {
+  display:block-inline
+  height: 40px;
+  width: 100px
+}
+
+#new-news-filed {
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  height: 210px;
+  width: 200px
+}
+
+#news-text-filed {
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  height: 85px;
+  width: 200px
+}

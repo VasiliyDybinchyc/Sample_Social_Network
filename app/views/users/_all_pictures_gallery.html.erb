@@ -1,23 +1,21 @@
 <section id="all-frends-filed">
-  <% if @user.following.any? %>
-  <h3 id="title-frends-filed">My all frend</h3>
-    <div id="all-frends_avatars">
-      <% @user.following.each do |user| %>
+  <% if @user.messages.any? %>
+  <h3 id="title-gallery">My all picture</h3>
+    <div id="all_pictures">
+      <% @user.messages.each do |messages| %>
         <div id="items">
           <div class="item">
-            <%= link_to image_tag(user.avatar.url, size: 35), user %>
-            <%= user.first_name %>
-            <%= user.last_name %>
+            <%= image_tag messages.picture, :id => "item-gallery", :size => 35 %>
           </div>
         </div>
       <% end %>
     </div>
-    <%= link_to "Only ten frend", all_frends_user_path, remote: true %>
+    <%= link_to "Only ten pictures", all_pictures_user_path, remote: true %>
   <% end %>
 </section>
 
 <script>
-  $('#all-frends_avatars').on('scroll', function (e) {
+  $('#all_pictures').on('scroll', function (e) {
       var $this = $(this),
           $items = $("#items"),
           scrollPosition = $this.scrollTop();

@@ -1,0 +1,8 @@
+var title = $("#title-gallery").text();
+
+if (title=="My galerey"){
+  $('#gallery-filed').html("<%= j render(partial: 'all_pictures_gallery') %>")
+}
+else{
+  $('#gallery-filed').html("<%= j render(partial: 'only_ten_picture') %>")
+}

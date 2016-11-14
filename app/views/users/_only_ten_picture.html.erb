@@ -3,7 +3,7 @@
   <% if @user.messages.any? %>
     <div id="picture-gallery">
       <% @user.messages.each do |messages| %>
-        <%= image_tag messages.picture, :id => "item-gallery" %>
+        <%= image_tag messages.picture, :id => "item-gallery" if messages.picture? %>
       <% end %>
     </div>
     <%= link_to "All pictures", all_pictures_user_path, remote: true %>

@@ -77,4 +77,11 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Message.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
+
 end

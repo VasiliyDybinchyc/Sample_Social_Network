@@ -1,0 +1,19 @@
+<li id=<%= "messages-#{feed_item.id}" %> >
+  <div id="messages-content">
+    <% if link_youtube?(feed_item.content) %>
+      <%= youtube_embed(feed_item.content) %>
+    <% elsif feed_item.picture? %>
+      <% unless feed_item.content.empty? %>
+        <%= feed_item.content %>
+      <% end %>
+      <br/ >
+    <% else %>
+      <%= feed_item.content %>
+    <% end %>
+
+    <%= image_tag feed_item.picture.url, :id => "message-picture-#{feed_item.id}", :class => "message-picture" if feed_item.picture? %>
+
+    <%= link_to "delete", feed_item, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+  </div>
+</li><br/>

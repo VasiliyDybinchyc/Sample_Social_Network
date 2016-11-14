@@ -1,6 +1,6 @@
 <section id="frends-filed">
   <h3 id="title-frends-filed">My frend</h3>
-  <% if @ten_frends.any? %>
+  <% if @user.following.any? %>
     <div id="frends_avatars">
       <% @user.following.latest_ten.shuffle.each do |user| %>
         <%= link_to image_tag(user.avatar.url, size: 35), user %>

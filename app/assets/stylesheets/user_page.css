@@ -71,6 +71,10 @@
   width: 200px
 }
 
+.avatar-frend {
+  padding: 1px;
+}
+
 #items {
   height: 40px;
   width: 40px
@@ -118,4 +122,10 @@
 #item-gallery {
   height: 40px;
   width: 40px
+}
+
+.Feed {
+  position: absolute;;
+  top: 100px;
+  left :500px
 }

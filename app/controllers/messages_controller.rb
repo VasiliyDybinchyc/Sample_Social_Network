@@ -5,9 +5,9 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.build(message_params)
     if @message.save
-      redirect_to request.referrer || root_url
+      redirect_to current_user
     else
-      render root_path
+      redirect_to root_url
     end
   end
 

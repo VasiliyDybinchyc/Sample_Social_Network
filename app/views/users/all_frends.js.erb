@@ -1,8 +1,0 @@
-var title = $("#title-frends-filed").text();
-
-if (title=="My frend"){
-  $('#frends-filed').html("<%= j render(partial: 'all_frends') %>")
-}
-else{
-  $('#frends-filed').html("<%= j render(partial: 'only_ten_frend') %>")
-}

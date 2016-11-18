@@ -32,16 +32,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_frends = @user.following
     @message  = current_user.messages.build
+    @user_messages = @user.messages
     @feed_items = @user.feed
-  end
-
-  def all_frends
-    @user = User.find(params[:id])
-  end
-
-  def all_pictures
-    @user = User.find(params[:id])
   end
 
   private

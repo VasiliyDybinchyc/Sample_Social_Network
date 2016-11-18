@@ -36,3 +36,4 @@ function initialClick(e) {
 
   document.addEventListener("mousemove", move, false);
 }
+*/

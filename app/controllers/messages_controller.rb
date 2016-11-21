@@ -2,6 +2,8 @@ class MessagesController < ApplicationController
 
   before_action :logged_in_user
 
+  skip_before_filter :verify_authenticity_token
+
   def create
     @message = current_user.messages.build(message_params)
     if @message.save

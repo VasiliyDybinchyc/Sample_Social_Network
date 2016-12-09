@@ -1,3 +1,3 @@
 # README
 
-* Create bundle command webpack --config ./frontend/webpack.config.js
+* Create bundle.js command webpack --config ./frontend/webpack.config.js

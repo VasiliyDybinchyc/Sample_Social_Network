@@ -1,16 +1,20 @@
 class MessagesController < ApplicationController
+  include MessagesHelper
 
-  before_action :logged_in_user
+  skip_before_filter :verify_authenticity_token, only: [:create]
 
-  skip_before_filter :verify_authenticity_token
+  def index
+    @user = User.find(params[:user_id])
+    @posts = @user.feed
+    render json: @posts.to_json
+  end
 
   def create
-    @message = current_user.messages.build(message_params)
-    if @message.save
-      redirect_to current_user
-    else
-      redirect_to root_url
+    @message = current_user.messages.new(message_params)
+    if link_youtube?(@message.content)
+      @message.content = youtube_embed(@message.content)
     end
+    @message.save
   end
 
   def destroy

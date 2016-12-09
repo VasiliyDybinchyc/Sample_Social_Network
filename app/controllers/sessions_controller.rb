@@ -1,30 +1,24 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token, only: [:create]
+  protect_from_forgery with: :exception
+
+  skip_before_filter :verify_authenticity_token
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    @user = user
-    @user_frends = @user.following.limit(10).order("RANDOM()")
-    @feed_items = @user.feed
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      render component: "UserPage", props: { user: @user,
-                                             user_frends: @user_frends,
-                                             feed_items: @feed_items}
+    @user = User.find_by(email: user_params[:email].downcase)
+    if @user && @user.authenticate(user_params[:password])
+      log_in @user
+      render json: @user.to_json
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render component: "LogIn"
+      render json: @user.to_json
     end
-  end
-
-  def new
-    render component: "LogIn"
   end
 
   def destroy
     log_out if logged_in?
-    redirect_to root_url
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :password)
   end
 end

@@ -11,11 +11,10 @@ class Message < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
 
-  private
-
-    def content_or_picture_presence
-      if content.blank? && picture.blank?
-        errors[:base] << "Content or picture must presence."
-      end
+  def content_or_picture_presence
+    if content.blank? && picture.blank?
+      errors[:base] << "Content or picture must presence."
     end
+  end
+  
 end

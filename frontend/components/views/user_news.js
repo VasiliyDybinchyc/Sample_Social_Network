@@ -1,11 +1,12 @@
-var News = React.createClass({
+import React from 'react';
 
-  getInitialState: function() {
-    return {
-      message: "not at bottom",
-      end: 10,
-    };
-  },
+export default class Messages extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { end: 10};
+
+  }
 
   handleScroll() {
     const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
@@ -14,43 +15,40 @@ var News = React.createClass({
     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
     const windowBottom = windowHeight + window.pageYOffset;
     if (windowBottom >= docHeight) {
-      this.setState({
-        message:'bottom reached',
-        end: end + 10
-      })
-
-    } else {
-      this.setState({
-        message:'not at bottom'
-      });
+        this.setState({
+          message:'bottom reached',
+          end: this.state.end + 10
+        })
     }
-  },
+  }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
+    window.addEventListener("scroll", this.handleScroll.bind(this));
+  }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
+    window.removeEventListener("scroll", this.handleScroll.bind(this));
+  }
 
-  render: function() {
+  render() {
 
-  FeedItemsLength = this.props.feed_items.length;
 
-  end = this.state.end
+  var FeedItems,
+      FeedItemsLength = this.props.feed_items.length,
+      end = this.state.end;
 
   if (FeedItemsLength > 0) {
     FeedItems = this.props.feed_items.slice(0, end).map( function(feed_item, index) {
         return (
-          <div key={index} onScroll={this.handleScroll}>
+          <div key={index}>
             <p>message id {feed_item.id} :</p>
-            <p>{feed_item.content}</p>
+            <p dangerouslySetInnerHTML={{__html: feed_item.content}} />
+            {feed_item.picture.url == null ? null : <img src={feed_item.picture.url} alt="lorem" />}
           </div>
         );
       });
     } else {
-      FeedItems = <p>К сожалению новостей нет</p>
+      FeedItems = <p>"You don't have news"</p>
     }
 
     return (
@@ -63,4 +61,4 @@ var News = React.createClass({
       </div>
     );
   }
-});
+}

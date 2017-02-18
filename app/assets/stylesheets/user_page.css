@@ -81,7 +81,7 @@
 }
 
 .item {
-  display:block-inline
+  display: block-inline;
   height: 40px;
   width: 100px
 }

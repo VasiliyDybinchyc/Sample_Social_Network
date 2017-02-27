@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import router from './router';
+import 'bootstrap/dist/css/bootstrap.css'
 require('es6-promise').polyfill();
 
 // Provider is a top-level component that wrapps our entire application, including

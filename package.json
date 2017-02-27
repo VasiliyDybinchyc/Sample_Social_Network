@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/VasiliyDybinchyc/Sample_Social_Network.git"
+    "url": "git+https://github.com/VasiliyDybinchyc/Sample_Social_Network.git"
   },
   "keywords": [
     "keyword"
@@ -23,42 +23,51 @@
     "url": "https://github.com/VasiliyDybinchyc/Sample_Social_Network/issues"
   },
   "devDependencies": {
-    "webpack": "~1.13.3",
+    "axios": "~0.15.3",
     "babel-cli": "~6.18.0",
     "babel-core": "~6.18.2",
-    "babel-preset-es2015": "~6.18.0",
-    "chai": "~3.5.0",
-    "mocha": "~3.1.2",
-    "chai-immutable": "~1.6.0",
-    "babel-loader": "~6.2.8",
-    "babel-preset-react": "~6.16.0",
-    "react-dom": "~15.4.1",
-    "redux": "~3.6.0",
-    "react": "~15.4.1",
-    "react-redux": "~4.4.6",
-    "axios": "~0.15.3",
-    "es6-promise": "~4.0.5",
     "babel-jest": "~17.0.2",
-    "d3": "~4.4.0",
-    "expect": "~1.20.2",
-    "jest": "~17.0.3",
+    "babel-loader": "~6.2.8",
     "babel-polyfill": "~6.16.0",
+    "babel-preset-es2015": "~6.18.0",
+    "babel-preset-react": "~6.16.0",
     "babel-preset-react-hmre": "~1.1.1",
     "babel-preset-stage-0": "~6.16.0",
+    "chai": "~3.5.0",
+    "chai-immutable": "~1.6.0",
+    "css-loader": "^0.26.2",
+    "d3": "~4.4.0",
+    "es6-promise": "~4.0.5",
+    "expect": "~1.20.2",
+    "jest": "~17.0.3",
+    "mocha": "~3.1.2",
+    "react": "~15.4.1",
+    "react-dom": "~15.4.1",
+    "react-redux": "~4.4.6",
+    "redux": "~3.6.0",
+    "webpack": "^2.2.1",
     "webpack-dev-server": "~1.16.2"
   },
   "dependencies": {
-    "lodash": "~4.17.2",
+    "bootstrap": "^4.0.0-alpha.6",
     "immutable": "~3.8.1",
-    "react": "~15.4.1",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "normalize.css": "^5.0.0",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-dropzone": "~3.7.3",
     "react-router": "~3.0.0",
-    "redux": "~3.6.0",
-    "react-dropzone": "~3.7.3"
+    "reactstrap": "^4.2.0",
+    "redux": "~3.6.0"
   },
   "babel": {
     "presets": [
       "es2015",
       "react"
     ]
-  }
+  },
+  "homepage": "https://github.com/VasiliyDybinchyc/Sample_Social_Network#readme"
 }

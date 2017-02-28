@@ -1,15 +1,15 @@
-import React                from 'react';
-import { connect }          from 'react-redux';
-import  { Link }            from 'react-router';
-import PersonalInfoViews    from '../views/personal_info';
-import FriendsViews         from '../views/user_friends';
-import GalereyViews         from '../views/mini_galerey';
-import NewsViews            from '../views/user_news';
-import FriendButton         from '../views/friend_button';
-import NotFriendButton      from '../views/not_friend_button';
-import   * as axiosUser     from '../../axios/axios-user';
-import    * as axiosNews    from '../../axios/axios-news';
-import    * as axiosFriend  from '../../axios/axios-friend';
+import React                  from 'react';
+import { connect }            from 'react-redux';
+import  { Link }              from 'react-router';
+import PersonalInfoViews      from '../views/personal_info';
+import FriendsViews           from '../views/user_friends';
+import GalereyViews           from '../views/mini_galerey';
+import NewsViews              from '../views/user_news';
+import FriendButton           from '../views/friend_button';
+import NotFriendButton        from '../views/not_friend_button';
+import   * as axiosUser       from '../../axios/axios-user';
+import    * as axiosNews      from '../../axios/axios-news';
+import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
 const AnotherUserProfile = React.createClass({

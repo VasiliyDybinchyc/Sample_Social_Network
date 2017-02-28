@@ -1,13 +1,13 @@
 import axios from 'axios';
 import store from '../store';
-import { getGallereySuccess } from '../actions/actions-gallerey';
+import { getGallereySuccess, postGallereySuccess } from '../actions/actions-gallerey';
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../../helper/helperAxios';
 
 export function postGallerey(userId, gallerey) {
-  return axios.post('http://localhost:3000/users/' + userId + '/messages', gallerey, CONFIG_MULTIPART_FORM_DATA)
+  return axios.post('http://localhost:3000/users/' + userId + '/galleries', gallerey, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
-      store.dispatch(postNewsSuccess(response.data));
+      store.dispatch(postGallereySuccess(response.data));
       return response;
     });
 }

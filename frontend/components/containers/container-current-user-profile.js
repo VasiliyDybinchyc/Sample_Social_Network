@@ -23,6 +23,20 @@ const CurrentUserProfile = React.createClass({
     axiosNews.getNews(Id);
   },
 
+  onSubmit: function(event) {
+    event.preventDefault();
+    let userId = this.props.user.id;
+
+    let data = new FormData()
+
+    data.append('message[content]', this.refs.news.getNewsText())
+    data.append('message[picture]', this.refs.news.getNewsFile())
+
+    axiosNews.postNews(userId, data).then(function () {
+      axiosNews.getNews(userId);
+    });
+  },
+
   render: function() {
     return(
       <div>
@@ -30,7 +44,7 @@ const CurrentUserProfile = React.createClass({
         <FriendsViews       user_friends={this.props.userFriends} />
         <FormGalletey       userId={this.props.user.id}  />
         <GalereyViews       user_galerey={this.props.userGalerey} />
-        <FormPost           userId={this.props.user.id}  />
+        <FormPost           userId={this.props.user.id} onSubmit={this.onSubmit} ref="news" />
         <NewsViews          feed_items={this.props.newsList} />
       </div>
     );

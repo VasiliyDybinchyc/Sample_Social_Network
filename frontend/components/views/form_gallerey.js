@@ -6,6 +6,7 @@ export default React.createClass({
 
   updateGalerey: function() {
     let userId = this.props.userId;
+    console.log(this.refs.Magick.files[0])
     setTimeout(function(){axiosGallerey.getGallerey(userId)}, 1000);
   },
 

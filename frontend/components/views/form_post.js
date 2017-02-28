@@ -2,26 +2,44 @@ import React from 'react';
 
 import    * as axiosNews    from '../../axios/axios-news';
 
+import {  Button,
+          Form,
+          FormGroup,
+          Label,
+          Input,
+          Col}         from 'reactstrap';
+
 export default React.createClass({
 
-  updateNews: function() {
-    let userId = this.props.userId;
-    setTimeout(function(){axiosNews.getNews(userId)}, 2000);
+  getNewsText: function() {
+    return this.newsText.value;
   },
 
+  getNewsFile: function() {
+    return this.newsFile.files[0];
+  },
 
   render: function() {
     return (
-      <div className="user-profile" >
+      <div>
         <h3>Add news</h3>
-        <form className="new_message" onSubmit={this.updateNews} id="new_message" encType="multipart/form-data" action="/users/2/messages" acceptCharset="UTF-8" method="post">
-          <input name="utf8" type="hidden" value="✓"/>
-          <div id="news-text-filed">
-            <textarea placeholder="Compose new messages..." name="message[content]" id="message_content" ></textarea>
-          </div>
-          <input type="file" name="message[picture]" id="message_picture" ref="Magick" /><br/>
-          <input type="submit" name="commit" value="Post" className="btn btn-primary" data-disable-with="Post" />
-        </form>
+        <Form id="newMessage">
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="TextMessage">Text Message</Label>
+              <Input type="textarea" name="TextMessage" getRef={(ref) => (this.newsText = ref)} id="TextMessage" placeholder="Text Message" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+              <Label for="NewsFile">News File</Label>
+              <Input type="file" name="NewsFile" getRef={(ref) => (this.newsFile = ref)} id="NewsFile" />
+          </FormGroup>
+
+          <Button color="primary" onClick={this.props.onSubmit}>
+            Post
+          </Button>
+        </Form>
       </div>
     );
   }

@@ -2,8 +2,10 @@ import axios from 'axios';
 import store from '../store';
 import { postNewsSuccess, getNewsSuccess, getOnlyUserNewsSuccess } from '../actions/news-actions';
 
+const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+
 export function postNews(userId, news) {
-  return axios.post('http://localhost:3000/users/' + userId + '/messages', {message: news})
+  return axios.post('http://localhost:3000/users/' + userId + '/messages', news, config)
     .then(response => {
       store.dispatch(postNewsSuccess(response.data));
       return response;

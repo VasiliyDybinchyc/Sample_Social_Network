@@ -1,40 +1,77 @@
 import React from 'react';
+import {  Button,
+          Form,
+          FormGroup,
+          Label,
+          Input,
+          Col}         from 'reactstrap';
 
 export default React.createClass({
 
   getFirstName: function() {
-    return this.refs.name.value;
+    return this.name.value;
   },
 
   getLastName: function() {
-    return this.refs.surname.value;
+    return this.surname.value;
   },
 
   getEmail: function() {
-    return this.refs.email.value;
+    return this.email.value;
   },
 
   getPassword: function() {
-    return this.refs.password.value;
+    return this.password.value;
   },
 
   getPasswordConf: function() {
-    return this.refs.password_confirmation.value;
+    return this.password_confirmation.value;
   },
 
   render: function() {
     return (
-      <div className="user-profile">
-        <form onSubmit={this.props.onSubmit} >
-          <input type="text" ref="name" placeholder="Name" />
-          <input type="text" ref="surname" placeholder="Surname" />
-          <input type="text" ref="email" placeholder="Email" />
-          <input type="text" ref="password" placeholder="Password" />
-          <input type="text" ref="password_confirmation" placeholder="Password confirmation" />
-          <button>Sign Up</button>
-        </form>
+      <div>
+        <h1>Sign Up</h1>
+        <Form>
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="SignUpName">Name</Label>
+              <Input type="text" name="SignUpName" getRef={(ref) => (this.name = ref)} id="SignUpName" placeholder="Name" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="SignUpSurname">Surname</Label>
+              <Input type="text" name="SignUpSurname" getRef={(ref) => (this.surname = ref)} id="SignUpSurname" placeholder="Surname" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="SignUpEmail">Email</Label>
+              <Input type="email" name="SignUpEmail" getRef={(ref) => (this.email = ref)} id="SignUpEmail" placeholder="Email" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="SignUpPassword">Password</Label>
+              <Input type="password" name="SignUpPassword" getRef={(ref) => (this.password = ref)} id="SignUpPassword" placeholder="Password" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="SignUpPasswordConfirmation">Password Confirmation</Label>
+              <Input type="password" name="SignUpPasswordConfirmation" getRef={(ref) => (this.password_confirmation = ref)} id="SignUpPasswordConfirmation" placeholder="Password Confirmation" />
+            </Col>
+          </FormGroup>
+          <Button color="success" onClick={this.props.onSubmit}>
+            Sign Up
+          </Button>
+        </Form>
       </div>
     );
   }
-
 });

@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   root "application#shit"
 
-  get  '/signup',  to: 'users#new'
+  get  '/signup',  to: 'application#shit'
   post '/signup',  to: 'users#create'
 
-  get    '/login',   to: 'sessions#new'
+  get    '/login',   to: 'application#shit'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-
   resources :sessions, only: [:new, :create, :destroy]
 
 
@@ -17,7 +16,6 @@ Rails.application.routes.draw do
       get :get_all_friends, :get_friends, :check_is_this_user_is_friend
     end
   end
-
 
   resources :users do
 

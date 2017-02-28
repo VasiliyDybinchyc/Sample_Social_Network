@@ -1,23 +1,68 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React              from 'react';
+import { browserHistory } from 'react-router';
+import { fourSpaces }     from '../../helper/helperFrontend';
+import {  Navbar,
+          Nav,
+          NavbarBrand,
+          NavItem,
+          NavLink,
+          Collapse,
+          Button }        from 'reactstrap';
+
 
 export default class LoginNav extends React.Component{
 
+  handleClickProfile() {
+    browserHistory.push('/profile')
+  }
+  handleClickEditProfile() {
+    browserHistory.push('/editProfile')
+  }
+  handleClickAllUser() {
+    browserHistory.push('/AllUser')
+  }
+  handleClickGalerey(userId) {
+    browserHistory.push('/Galerey/' + userId)
+  }
+  handleClickAllFrend(userId) {
+    browserHistory.push('/allFrend/' + userId)
+  }
+
   render() {
     var userId = this.props.userId
+
     return (
-    <div className='nav'>
-    <ul>
-      <li><Link to="/profile" activeClassName="active">profile</Link></li>
-      <li><Link to="/editProfile" activeClassName="active">Edit Profile</Link></li>
-      <li><Link to="/AllUser" activeClassName="active">All user</Link></li>
-      <li><Link to={"/Galerey/" + userId} activeClassName="active">My Galerey</Link></li>
-      <li><Link to={"/allFrend/" + userId} activeClassName="active">My friend</Link></li>
-    </ul>
-      <form onSubmit={this.props.onSubmit} className="LogOut-button">
-           <button>LogOut</button>
-      </form>
-    </div>
+
+      <div>
+        <Navbar color="faded" light toggleable >
+
+          <NavbarBrand> Sample Social Network </NavbarBrand>
+
+          <Nav className="ml-auto" navbar >
+
+            <NavItem>
+              <NavLink onClick={this.handleClickProfile}> My profile </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={this.handleClickEditProfile}> Edit my Profile </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={this.handleClickAllUser}> All user </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={() => {this.handleClickGalerey(userId)} }> My Galerey </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={() => {this.handleClickAllFrend(userId)} }> My Friend </NavLink>
+            </NavItem>
+            <NavItem>
+              <Button color="danger" onClick={this.props.onSubmit}>
+                Log Out
+              </Button>
+            </NavItem>
+          </Nav>
+        </Navbar>
+      </div>
     );
   }
 };

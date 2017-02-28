@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../store';
 import { postNewsSuccess, getNewsSuccess, getOnlyUserNewsSuccess } from '../actions/news-actions';
 
-import { CONFIG_MULTIPART_FORM_DATA }     from '../../helper/helperAxios';
+import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
 export function postNews(userId, news) {
   return axios.post('http://localhost:3000/users/' + userId + '/messages', news, CONFIG_MULTIPART_FORM_DATA)

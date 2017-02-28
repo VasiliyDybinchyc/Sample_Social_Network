@@ -1,5 +1,6 @@
 import React              from 'react';
 import { browserHistory } from 'react-router';
+import { fourSpaces }     from '../../helper/helperFrontend';
 import {  Navbar,
           Nav,
           NavbarBrand,
@@ -28,7 +29,7 @@ export default class NotLoginNav extends React.Component{
             <Button color="primary" onClick={this.handleClickSignUp}>
               Sign up
             </Button>
-          </NavItem>{'\u200b \u200b \u200b \u200b'} // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
+          </NavItem>{fourSpaces}
 
           <NavItem>
             <Button color="success" onClick={this.handleClickLogin}>

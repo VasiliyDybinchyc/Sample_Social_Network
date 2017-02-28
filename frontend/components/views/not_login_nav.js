@@ -1,6 +1,11 @@
-import React from 'react';
+import React              from 'react';
 import { browserHistory } from 'react-router';
-import { Navbar, Nav, NavbarBrand, NavItem, Collapse, Button } from 'reactstrap';
+import {  Navbar,
+          Nav,
+          NavbarBrand,
+          NavItem,
+          Collapse,
+          Button }  from 'reactstrap';
 
 export default class NotLoginNav extends React.Component{
 
@@ -19,13 +24,13 @@ export default class NotLoginNav extends React.Component{
         <NavbarBrand> Sample Social Network </NavbarBrand>
 
         <Nav className="ml-auto" navbar>
-          <NavItem className="col-8">
+          <NavItem>
             <Button color="primary" onClick={this.handleClickSignUp}>
               Sign up
             </Button>
-          </NavItem>
+          </NavItem>{'\u200b \u200b \u200b \u200b'} // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
 
-          <NavItem className="col-9">
+          <NavItem>
             <Button color="success" onClick={this.handleClickLogin}>
               Log in
             </Button>

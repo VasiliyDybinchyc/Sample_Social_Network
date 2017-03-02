@@ -44,8 +44,6 @@ export default class Messages extends React.Component {
         return (
           <div key={index}>
             {galerey.picture.url == null ? null : <img src={galerey.picture.url} alt="lorem" />}
-
-
           </div>
         );
       });

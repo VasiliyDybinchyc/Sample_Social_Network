@@ -31,10 +31,8 @@ export default React.createClass({
         <h3>Add news</h3>
         <Form id="newMessage">
           <FormGroup>
-            <Col xs='4'>
               <Label for="TextMessage">Text Message</Label>
               <Input type="textarea" name="TextMessage" getRef={(ref) => (this.newsText = ref)} id="TextMessage" placeholder="Text Message" />
-            </Col>
           </FormGroup>
 
           <FormGroup>

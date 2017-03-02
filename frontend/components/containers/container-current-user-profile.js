@@ -11,6 +11,7 @@ import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosUser      from '../../axios/axios-user';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 const CurrentUserProfile = React.createClass({
 
@@ -26,12 +27,14 @@ const CurrentUserProfile = React.createClass({
   render: function() {
     return(
       <div>
-        <PersonalInfoViews  user={this.props.user} />
-        <FriendsViews       user_friends={this.props.userFriends} />
-        <FormGalletey       userId={this.props.user.id}  />
-        <GalereyViews       user_galerey={this.props.userGalerey} />
-        <FormPost           userId={this.props.user.id} />
-        <NewsViews          feed_items={this.props.newsList} />
+        <ListGroup>
+          <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
+          <ListGroupItem> <FriendsViews       user_friends={this.props.userFriends} />  </ListGroupItem>
+          <ListGroupItem> <GalereyViews       user_galerey={this.props.userGalerey} />  </ListGroupItem>
+          <ListGroupItem> <FormGalletey       userId={this.props.user.id}  />           </ListGroupItem>
+          <ListGroupItem> <FormPost           userId={this.props.user.id} />            </ListGroupItem>
+          <ListGroupItem> <NewsViews          feed_items={this.props.newsList} />       </ListGroupItem>
+        </ListGroup>
       </div>
     );
   }

@@ -40,7 +40,7 @@ export default class AllUsers extends React.Component {
     Users = this.props.list.slice(0, end).map( function(user, index) {
         return (
           <div key={index}>
-            <Link to={"/users/" + user.id} activeClassName="active">{user.email}</Link>
+            <Link to={"/users/" + user.id} activeClassName="active"><img src={user.avatar.url} id="mini-avatar" width="35" height="35"></img> { + " " + user.first_name + " " + user.last_name}</Link>
           </div>
         );
       });
@@ -49,12 +49,9 @@ export default class AllUsers extends React.Component {
     }
 
     return (
-      <div className="Feed">
-        <h1>News</h1>
-        <div id="News">
-          <strong className={UsersLength > 0 ? 'All-news-title':'none'}>All users: {UsersLength}</strong>
-          {Users}
-        </div>
+      <div id="News">
+        <strong className={UsersLength > 0 ? 'All-news-title':'none'}>All users: {UsersLength}</strong>
+        {Users}
       </div>
     );
   }

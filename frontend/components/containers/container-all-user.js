@@ -6,14 +6,13 @@ import   AllUserViews   from '../views/all_user';
 
 const AllUser = React.createClass({
 
-  componentDidMount: function() {
+  componentWillMount: function() {
     axiosUser.getUsers()
   },
 
   render: function() {
     return(
       <div className="All-user">
-        <h1>All User</h1>
         <AllUserViews list={this.props.users} />
       </div>
     );

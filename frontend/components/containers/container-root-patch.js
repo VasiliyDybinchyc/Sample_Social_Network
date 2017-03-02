@@ -5,6 +5,7 @@ import    * as axiosUser          from '../../axios/axios-user';
 import    * as axiosSessions      from '../../axios/axios-sessions';
 import    NotLoginNav             from '../views/not_login_nav';
 import    LoginNav                from '../views/login_nav';
+import { Container }         from 'reactstrap';
 
 const RootPath = React.createClass({
 
@@ -23,19 +24,27 @@ const RootPath = React.createClass({
 
   render: function() {
     return (
+
       <div className="app">
+        <Container>
+          <div className="navbar">
+            {this.props.authentication == false ?
+            <NotLoginNav /> :
+            <LoginNav onSubmit={this.onSubmit} userId={this.props.userId} /> }
+          </div>
 
-        <div className="navbar">
-          {this.props.authentication == false ?
-          <NotLoginNav /> :
-          <LoginNav onSubmit={this.onSubmit} userId={this.props.userId} /> }
-        </div>
+          <div>
 
-        <div className="yield">
-          {this.props.children}
-        </div>
+          </div>
 
+          <div className="yield">
+            <h2></h2>
+            {this.props.children ? this.props.children : <h2>Plese Log In or Sign Up</h2>}
+          </div>
+        </Container>
       </div>
+
+
     );
   }
 });

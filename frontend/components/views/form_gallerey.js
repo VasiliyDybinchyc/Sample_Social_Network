@@ -10,16 +10,17 @@ import {  Button,
           Col}         from 'reactstrap';
 
 export default React.createClass({
-  
-  postGalerey: function() {
-    let userId = this.props.user.id;
+
+  postGalerey: function(event) {
+    event.preventDefault();
+    let userId = this.props.userId;
 
     let data = new FormData()
 
     data.append('gallery[picture]', this.gelereyFile.files[0])
 
-    axiosNews.postGallerey(userId, data).then(function () {
-      axiosNews.getGallerey(userId);
+    axiosGallerey.postGallerey(userId, data).then(function () {
+      axiosGallerey.getGallerey(userId);
     });
   },
 
@@ -27,16 +28,16 @@ export default React.createClass({
     return (
 
       <div>
-        <h3>Add news</h3>
+        <h3>Add picture in galerey</h3>
         <Form id="newGelerey">
 
           <FormGroup>
-              <Label for="GelereyFile">News File</Label>
+              <Label for="GelereyFile">Galerey File</Label>
               <Input type="file" name="GelereyFile" getRef={(ref) => (this.gelereyFile = ref)} id="GelereyFile" />
           </FormGroup>
 
           <Button color="primary" onClick={this.postGalerey}>
-            Post Galerey
+            Post picture
           </Button>
         </Form>
       </div>

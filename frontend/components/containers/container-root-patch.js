@@ -5,12 +5,26 @@ import    * as axiosUser          from '../../axios/axios-user';
 import    * as axiosSessions      from '../../axios/axios-sessions';
 import    NotLoginNav             from '../views/not_login_nav';
 import    LoginNav                from '../views/login_nav';
-import { Container }         from 'reactstrap';
+import    NProgress               from 'react-nprogress';
+import { Container }              from 'reactstrap';
 
 const RootPath = React.createClass({
 
+  getInitialState: function() {
+    return {
+      render: false
+    };
+  },
+
+  updateProps: function() {
+    axiosUser.authentication().then(function() {
+      NProgress.done()
+      this.setState({render: true}); }.bind(this));
+  },
+
   componentWillMount: function() {
-    axiosUser.authentication()
+    NProgress.start();
+    this.updateProps();
   },
 
   onSubmit: function(event) {
@@ -23,30 +37,27 @@ const RootPath = React.createClass({
   },
 
   render: function() {
-    return (
-
-      <div className="app">
-        <Container>
-          <div className="navbar">
-            {this.props.authentication == false ?
-            <NotLoginNav /> :
-            <LoginNav onSubmit={this.onSubmit} userId={this.props.userId} /> }
-          </div>
-
-          <div>
-
-          </div>
-
-          <div className="yield">
-            <h2></h2>
-            {this.props.children ? this.props.children : <h2>Plese Log In or Sign Up</h2>}
-          </div>
-        </Container>
-      </div>
-
-
-    );
+      return (
+        <div className="app">
+          <script src='nprogress.js'></script>
+          <link rel='stylesheet' href='nprogress.css'/>
+          {this.state.render = false ? null:
+            <Container>
+              <div className="navbar">
+                {this.props.authentication == false ? <NotLoginNav /> :
+                <LoginNav onSubmit={this.onSubmit} userId={this.props.userId} /> }
+              </div>
+              <div>
+              </div>
+                <div className="yield">
+                   {this.props.children}
+                </div>
+            </Container>
+          }
+        </div>
+      );
   }
+
 });
 
 const mapStateToProps = function(store) {

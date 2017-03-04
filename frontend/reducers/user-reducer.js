@@ -4,7 +4,7 @@ import _ from 'lodash';
 const initialState = {
   users: [],
   userProfile: [],
-  authentication: [],
+  authentication: undefined,
   currentUser: []
 };
 

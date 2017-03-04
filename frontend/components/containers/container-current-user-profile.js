@@ -13,37 +13,57 @@ import    * as axiosUser      from '../../axios/axios-user';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
 
+import NProgress from 'react-nprogress';
+
 const CurrentUserProfile = React.createClass({
 
-  componentWillMount: function() {
+  updateProps: function() {
     var Id = this.props.user.id;
+    axiosUser.getCurrentUser().then(function () {
+      NProgress.set(0.3);
+      axiosGallerey.getGallerey(Id);
+    }).then(function () {
+      axiosFriend.getFriends(Id);
+    }).then(function () {
+      NProgress.set(0.7);
+      axiosNews.getNews(Id);
+    }).then(function() {
+      NProgress.done()
+      this.setState({render: true}); }.bind(this));
+  },
 
-    axiosGallerey.getGallerey(Id);
-    axiosUser.getCurrentUser();
-    axiosFriend.getFriends(Id);
-    axiosNews.getNews(Id);
+  getInitialState: function() {
+    return {
+      render: false,
+      getNews: false
+    };
+  },
+
+  componentWillMount: function() {
+    NProgress.start();
+    this.updateProps();
   },
 
   render: function() {
     return(
-      <div>
-        <ListGroup>
-            <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
-          <Row>
-            <Col xs='4'>
-              <ListGroupItem > <FriendsViews       user_friends={this.props.userFriends} />  </ListGroupItem>
-              <ListGroupItem > <GalereyViews       user_galerey={this.props.userGalerey} />  </ListGroupItem>
-              <ListGroupItem > <FormGalletey       userId={this.props.user.id}  />           </ListGroupItem>
-              <ListGroupItem > <FormPost           userId={this.props.user.id} />            </ListGroupItem>
-            </Col>
-            <Col xs='8'>
-              <ListGroupItem > <NewsViews          feed_items={this.props.newsList} /> </ListGroupItem>
-            </Col>
-          </Row>
-        </ListGroup>
-
-
-      </div>
+        <div>
+        {this.state.render = false ? null :
+          <ListGroup>
+              <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
+            <Row>
+              <Col xs='4'>
+                <ListGroupItem > <FriendsViews       user_friends={this.props.userFriends} />  </ListGroupItem>
+                <ListGroupItem > <GalereyViews       user_galerey={this.props.userGalerey} />  </ListGroupItem>
+                <ListGroupItem > <FormGalletey       userId={this.props.user.id}  />           </ListGroupItem>
+                <ListGroupItem > <FormPost           userId={this.props.user.id} />            </ListGroupItem>
+              </Col>
+              <Col xs='8'>
+              {this.props.newsList.length !== 0 ? <ListGroupItem > <NewsViews userId={this.props.user.id} feed_items={this.props.newsList} /> </ListGroupItem> : null }
+              </Col>
+            </Row>
+          </ListGroup>
+          }
+        </div>
     );
   }
 });

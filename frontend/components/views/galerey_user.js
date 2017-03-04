@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 export default class Messages extends React.Component {
 
@@ -43,7 +44,7 @@ export default class Messages extends React.Component {
     fullGalerey = fullGalerey.slice(0, end).map( function(galerey, index) {
         return (
           <div key={index}>
-            {galerey.picture.url == null ? null : <img src={galerey.picture.url} alt="lorem" />}
+            {galerey.picture.url == null ? null : <ListGroupItem> <img src={galerey.picture.url} alt="lorem" /> </ListGroupItem>}
           </div>
         );
       });
@@ -55,7 +56,9 @@ export default class Messages extends React.Component {
       <div className="Feed">
         <h1>Galerey</h1>
         <div id="Galerey">
-          {fullGalerey}
+          <ListGroup>
+            {fullGalerey}
+          </ListGroup>
         </div>
       </div>
     );

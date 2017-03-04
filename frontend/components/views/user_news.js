@@ -32,7 +32,6 @@ export default class Messages extends React.Component {
 
   render() {
 
-
   var FeedItems,
       FeedItemsLength = this.props.feed_items.length,
       end = this.state.end;

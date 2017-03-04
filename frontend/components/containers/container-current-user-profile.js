@@ -34,8 +34,7 @@ const CurrentUserProfile = React.createClass({
 
   getInitialState: function() {
     return {
-      render: false,
-      getNews: false
+      render: false
     };
   },
 
@@ -57,8 +56,12 @@ const CurrentUserProfile = React.createClass({
                 <ListGroupItem > <FormGalletey       userId={this.props.user.id}  />           </ListGroupItem>
                 <ListGroupItem > <FormPost           userId={this.props.user.id} />            </ListGroupItem>
               </Col>
+
               <Col xs='8'>
-              {this.props.newsList.length !== 0 ? <ListGroupItem > <NewsViews userId={this.props.user.id} feed_items={this.props.newsList} /> </ListGroupItem> : null }
+              {this.props.newsList !== undefined ? <ListGroupItem >
+                                                    <NewsViews  userId={this.props.user.id}
+                                                                feed_items={this.props.newsList} />
+                                                  </ListGroupItem> : null } /* this will be loaders bar */
               </Col>
             </Row>
           </ListGroup>

@@ -14,6 +14,7 @@ import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
 import { checkReadyToRender } from '../../helper/helperFrontend';
+import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
 
@@ -48,16 +49,25 @@ const AnotherUserProfile = React.createClass({
       <div>
         {this.props.render == false ? null:
           <div id='Another_User_Profile'>
-            {this.props.checkIsThisUserIsFriend == true ?
-              <NotFriendButton onSubmit={this.onSubmitNotFrend} userId={this.props.params.userId} /> :
-              <FriendButton    onSubmit={this.onSubmitFrend}    userId={this.props.params.userId} />
-            }
-            <PersonalInfoViews    user={this.props.profile} />
-            <FriendsViews         user_friends={this.props.userFriends} />
-            <Link to={"/allFrend/" + this.props.profile.id} activeClassName="active">All {this.props.profile.first_name} friend</Link>
-            <GalereyViews         user_galerey={this.props.userGalerey} />
-            <Link to={"/Galerey/" + this.props.profile.id} activeClassName="active">Full {this.props.profile.first_name} Galerey</Link>
-            <NewsViews            feed_items={this.props.newsList} />
+            <ListGroup>
+              <ListGroupItem> <PersonalInfoViews    user={this.props.profile} />                 </ListGroupItem>
+              <Row>
+                <Col xs='4'>
+                  <ListGroupItem> <FriendsViews         user_friends={this.props.userFriends} />      </ListGroupItem>
+                  <ListGroupItem> <GalereyViews         user_galerey={this.props.userGalerey} />      </ListGroupItem>
+                  {this.props.checkIsThisUserIsFriend == true ?
+                    <NotFriendButton onSubmit={this.onSubmitNotFrend} userId={this.props.params.userId} /> :
+                    <FriendButton    onSubmit={this.onSubmitFrend}    userId={this.props.params.userId} />
+                  }
+                  <Link to={"/allFrend/" + this.props.profile.id} activeClassName="active">All {this.props.profile.first_name} friend</Link>
+
+                  <Link to={"/Galerey/" + this.props.profile.id} activeClassName="active">Full {this.props.profile.first_name} Galerey</Link>
+                </Col>
+                <Col xs='8'>
+                  <ListGroupItem> <NewsViews            feed_items={this.props.newsList} />      </ListGroupItem>
+                </Col>
+              </Row>
+            </ListGroup>
           </div>
         }
       </div>

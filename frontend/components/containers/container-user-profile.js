@@ -82,6 +82,11 @@ const mapStateToProps = function(store) {
     userFriends: store.friendsState.userFriends,
     checkIsThisUserIsFriend: store.friendsState.checkIsThisUserIsFriend,
     newsList: store.newsState.news,
+    render: store.sessionState.render = checkReadyToRender( store.userState.userProfile,
+                                                            store.gallereyState.gallerey,
+                                                            store.friendsState.userFriends,
+                                                            store.friendsState.checkIsThisUserIsFriend,
+                                                            store.newsState.news)
   };
 };
 

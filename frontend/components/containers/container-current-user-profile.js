@@ -27,9 +27,7 @@ const CurrentUserProfile = React.createClass({
     }).then(function () {
       NProgress.set(0.7);
       axiosNews.getNews(Id);
-    }).then(function() {
-      NProgress.done()
-      this.setState({render: true}); }.bind(this));
+    })
   },
 
   getInitialState: function() {
@@ -43,10 +41,21 @@ const CurrentUserProfile = React.createClass({
     this.updateProps();
   },
 
+  checkReadyToRender: function() {
+    if (this.props.userFriends !== undefined &&
+        this.props.userGalerey !== undefined &&
+        this.props.newsList !== undefined) {
+          NProgress.done()
+          this.setState({render: true})
+        }
+  },
+  
   render: function() {
+
+    console.log("test")
     return(
         <div>
-        {this.state.render = false ? null :
+        {this.state.render == false ? this.checkReadyToRender() :
           <ListGroup>
               <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
             <Row>
@@ -58,10 +67,9 @@ const CurrentUserProfile = React.createClass({
               </Col>
 
               <Col xs='8'>
-              {this.props.newsList !== undefined ? <ListGroupItem >
-                                                    <NewsViews  userId={this.props.user.id}
-                                                                feed_items={this.props.newsList} />
-                                                  </ListGroupItem> : null } /* this will be loaders bar */
+                <ListGroupItem >
+                  <NewsViews userId={this.props.user.id} feed_items={this.props.newsList} />
+                </ListGroupItem>
               </Col>
             </Row>
           </ListGroup>

@@ -1,13 +1,22 @@
-import React                from 'react';
-import { connect }          from 'react-redux';
-import  { browserHistory }  from 'react-router';
+import    React              from 'react';
+import  { connect }          from 'react-redux';
+import  { browserHistory }   from 'react-router';
+import    CreateUserViews    from '../views/create_user';
+import    * as axiosUser     from '../../axios/axios-user';
+import   NProgress           from 'react-nprogress';
 
-import CreateUserViews           from '../views/create_user';
-
-import   * as axiosUser     from '../../axios/axios-user';
-
+import { checkReadyToRender } from '../../helper/helperFrontend';
 
 const EditUser = React.createClass({
+
+  componentWillMount: function() {
+      NProgress.start();
+    },
+
+  componentDidMount: function() {
+      NProgress.done()
+    },
+
 
   onSubmit: function(event) {
     event.preventDefault();
@@ -30,7 +39,9 @@ const EditUser = React.createClass({
   render: function() {
     return (
       <div>
-        <CreateUserViews onSubmit={this.onSubmit} ref="child" />
+        {this.props.render == false ? null :
+          <CreateUserViews onSubmit={this.onSubmit} ref="child" />
+        }
       </div>
     );
   },
@@ -38,7 +49,8 @@ const EditUser = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    userId: store.userState.currentUser.id
+    userId: store.userState.currentUser.id,
+    render: store.sessionState.render = checkReadyToRender(store.userState.currentUser)
   };
 };
 

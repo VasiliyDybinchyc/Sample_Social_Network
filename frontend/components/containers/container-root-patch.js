@@ -6,25 +6,19 @@ import    * as axiosSessions      from '../../axios/axios-sessions';
 import    NotLoginNav             from '../views/not_login_nav';
 import    LoginNav                from '../views/login_nav';
 import    NProgress               from 'react-nprogress';
-import { Container }              from 'reactstrap';
+import {  Container }             from 'reactstrap';
+import {  checkReadyToRender }    from '../../helper/helperFrontend';
 
 const RootPath = React.createClass({
-
-  getInitialState: function() {
-    return {
-      render: false
-    };
-  },
-
-  updateProps: function() {
-    axiosUser.authentication().then(function() {
-      NProgress.done()
-      this.setState({render: true}); }.bind(this));
-  },
 
   componentWillMount: function() {
     NProgress.start();
     this.updateProps();
+  },
+
+  updateProps: function() {
+    axiosUser.authentication().then(function() {
+      NProgress.done() })
   },
 
   onSubmit: function(event) {
@@ -41,7 +35,7 @@ const RootPath = React.createClass({
         <div className="app">
           <script src='nprogress.js'></script>
           <link rel='stylesheet' href='nprogress.css'/>
-          {this.state.render = false ? null:
+          {this.props.render == false ? null:
             <Container>
               <div className="navbar">
                 {this.props.authentication == false ? <NotLoginNav /> :
@@ -64,7 +58,9 @@ const mapStateToProps = function(store) {
   return {
     store: store,
     authentication: store.userState.authentication,
-    userId: store.userState.currentUser.id
+    userId: store.userState.currentUser.id,
+    render: store.sessionState.render = checkReadyToRender( store.userState.authentication,
+                                                            store.userState.currentUser)
   };
 };
 

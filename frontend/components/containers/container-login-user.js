@@ -1,11 +1,20 @@
 import React                  from 'react';
 
 import CreateSession          from '../views/create_session';
+import NProgress              from 'react-nprogress';
 
 import    * as axiosUser      from '../../axios/axios-user';
 import    * as axiosSessions  from '../../axios/axios-sessions';
 
 const LogIn = React.createClass({
+
+  componentWillMount: function() {
+      NProgress.start();
+    },
+
+  componentDidMount: function() {
+      NProgress.done()
+    },
 
   onSubmit: function(event) {
     event.preventDefault();

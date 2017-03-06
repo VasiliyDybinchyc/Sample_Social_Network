@@ -1,10 +1,20 @@
 import React              from 'react';
 
 import CreateUser         from '../views/create_user';
+import NProgress          from 'react-nprogress';
+
 import   * as axiosUser   from '../../axios/axios-user';
 
 
 const SignUp = React.createClass({
+
+  componentWillMount: function() {
+      NProgress.start();
+    },
+
+  componentDidMount: function() {
+      NProgress.done()
+    },
 
   onSubmit: function(event) {
     event.preventDefault();

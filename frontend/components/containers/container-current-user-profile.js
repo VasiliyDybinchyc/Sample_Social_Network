@@ -13,9 +13,16 @@ import    * as axiosUser      from '../../axios/axios-user';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
 
+import { CheckReadyToRender }     from '../../helper/helperFrontend';
+
 import NProgress from 'react-nprogress';
 
 const CurrentUserProfile = React.createClass({
+
+  componentWillMount: function() {
+    NProgress.start();
+    this.updateProps();
+  },
 
   updateProps: function() {
     var Id = this.props.user.id;
@@ -27,34 +34,15 @@ const CurrentUserProfile = React.createClass({
     }).then(function () {
       NProgress.set(0.7);
       axiosNews.getNews(Id);
+      NProgress.done()
     })
-  },
-
-  getInitialState: function() {
-    return {
-      render: false
-    };
-  },
-
-  componentWillMount: function() {
-    NProgress.start();
-    this.updateProps();
-  },
-
-  checkReadyToRender: function() {
-    if (this.props.userFriends !== undefined &&
-        this.props.userGalerey !== undefined &&
-        this.props.newsList !== undefined) {
-          NProgress.done()
-          this.setState({render: true})
-        }
   },
 
   render: function() {
 
     return(
         <div>
-        {this.state.render == false ? this.checkReadyToRender() :
+        {this.props.render == false ? null :
           <ListGroup>
               <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
             <Row>
@@ -79,11 +67,16 @@ const CurrentUserProfile = React.createClass({
 });
 
 const mapStateToProps = function(store) {
+
   return {
     user: store.userState.currentUser,
     userFriends: store.friendsState.userFriends,
     userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
+    render: store.sessionState.render = CheckReadyToRender( store.userState.currentUser,
+                                                                store.friendsState.userFriends,
+                                                                store.gallereyState.gallerey,
+                                                                store.newsState.news)
   };
 };
 

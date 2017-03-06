@@ -49,10 +49,9 @@ const CurrentUserProfile = React.createClass({
           this.setState({render: true})
         }
   },
-  
+
   render: function() {
 
-    console.log("test")
     return(
         <div>
         {this.state.render == false ? this.checkReadyToRender() :

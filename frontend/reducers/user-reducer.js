@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const initialState = {
   users: [],
-  userProfile: [],
+  userProfile: undefined,
   authentication: undefined,
   currentUser: []
 };

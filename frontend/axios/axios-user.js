@@ -1,6 +1,8 @@
 import axios from 'axios';
 import store from '../store';
 
+import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
+
 import { browserHistory } from 'react-router';
 
 import { getUsersSuccess,
@@ -28,7 +30,7 @@ export function createUser(createdUser) {
 }
 
 export function editUser(editedUser , userId) {
-  return axios.patch('http://localhost:3000/users/' + userId, {user: editedUser})
+  return axios.patch('http://localhost:3000/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
       store.dispatch(editUserSuccess(response.data));
       return response;

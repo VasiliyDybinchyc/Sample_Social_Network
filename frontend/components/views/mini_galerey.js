@@ -17,7 +17,7 @@ export default class Galerey extends React.Component{
       <div>
         <div className='Galerey'>
           <section id="Galerey-filed">
-            <h3 id="title-Galerey-filed">My Galerey</h3>
+            <Link to={'/allFrend/' + this.props.userId}>Galerey</Link>
             { GalereyLength > 0 ?
             <div id="Galerey_avatars">
               {UserGalereyMap}

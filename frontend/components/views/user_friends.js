@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Button } from 'reactstrap';
 
 export default class Frends extends React.Component{
   render() {
@@ -16,16 +17,16 @@ export default class Frends extends React.Component{
       });
 
     return (
-      <div>
-        <div className='Frend'>
-          <section id="frends-filed">
-            <h3 id="title-frends-filed">My frend</h3>
-            { FrendsLength > 0 ?
-            <div id="frends_avatars">
-              {UserFrendMap}
-            </div>
-            : 'You not have frend' }
-          </section>
+      <div className='Frend'>
+        <div className="title-frends-filed">
+          <Link to={'/allFrend/' + this.props.userId}>Frend</Link>
+        </div>
+        <div id="frends-filed">
+          { FrendsLength > 0 ?
+          <div id="frends_avatars">
+            {UserFrendMap}
+          </div>
+          : 'You not have frend' }
         </div>
       </div>
     );

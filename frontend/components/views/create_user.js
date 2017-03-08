@@ -28,6 +28,11 @@ export default React.createClass({
     return this.password_confirmation.value;
   },
 
+  getAvatar: function() {
+    return this.avatar.files[0];
+  },
+
+
   render: function() {
     return (
       <div>
@@ -67,6 +72,14 @@ export default React.createClass({
               <Input type="password" name="SignUpPasswordConfirmation" getRef={(ref) => (this.password_confirmation = ref)} id="SignUpPasswordConfirmation" placeholder="Password Confirmation" />
             </Col>
           </FormGroup>
+
+          <FormGroup>
+            <Col xs='4'>
+              <Label for="Avatar">Avatar</Label>
+              <Input type="file" name="Avatar" getRef={(ref) => (this.avatar = ref)} id="Avatar" />
+            </Col>
+          </FormGroup>
+
           <Button color="success" onClick={this.props.onSubmit}>
             Sign Up
           </Button>

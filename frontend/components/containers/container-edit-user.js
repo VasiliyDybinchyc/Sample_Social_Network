@@ -20,17 +20,18 @@ const EditUser = React.createClass({
 
   onSubmit: function(event) {
     event.preventDefault();
-
-    let user = {};
     let userId = this.props.userId;
 
-    user.first_name            = this.refs.child.getFirstName();
-    user.last_name             = this.refs.child.getLastName();
-    user.email                 = this.refs.child.getEmail();
-    user.password              = this.refs.child.getPassword();
-    user.password_confirmation = this.refs.child.getPasswordConf();
+    let dataUser = new FormData()
 
-    axiosUser.editUser(user, userId).then(function () {
+    dataUser.append('user[first_name]',             this.refs.child.getFirstName())
+    dataUser.append('user[last_name]',              this.refs.child.getLastName())
+    dataUser.append('user[email]',                  this.refs.child.getEmail())
+    dataUser.append('user[password]',               this.refs.child.getPassword())
+    dataUser.append('user[password_confirmation]',  this.refs.child.getPasswordConf())
+    dataUser.append('user[avatar]',                 this.refs.child.getAvatar())
+
+    axiosUser.editUser(dataUser, userId).then(function () {
       axiosUser.getCurrentUser();
       browserHistory.push('/profile');
     });

@@ -1,4 +1,6 @@
 import React from 'react';
+import Cropper from 'react-cropper'
+import ReactCrop from 'react-image-crop'
 import {  Button,
           Form,
           FormGroup,
@@ -7,6 +9,10 @@ import {  Button,
           Col}         from 'reactstrap';
 
 export default React.createClass({
+
+  getInitialState: function() {
+    return({test: ''})
+  },
 
   getFirstName: function() {
     return this.name.value;
@@ -32,6 +38,21 @@ export default React.createClass({
     return this.avatar.files[0];
   },
 
+  getCroppersAvatar: function() {
+    return this.refs.cropper.getCroppedCanvas().toDataURL();
+  },
+
+  changeCropp: function() {
+    var file = this.avatar.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file)
+
+    reader.onloadend = function (e) {
+      this.setState({
+        test: reader.result,
+      })
+    }.bind(this);
+  },
 
   render: function() {
     return (
@@ -76,7 +97,12 @@ export default React.createClass({
           <FormGroup>
             <Col xs='4'>
               <Label for="Avatar">Avatar</Label>
-              <Input type="file" name="Avatar" getRef={(ref) => (this.avatar = ref)} id="Avatar" />
+              <Input type="file" name="Avatar" getRef={(ref) => (this.avatar = ref)} id="Avatar" onChange={this.changeCropp} />
+              <Cropper src={this.state.test} guides={false} preview=".img-preview" ref="cropper" style={{height: 400, width: '100%'}} />
+              <div className="box" style={{ width: '50%', float: 'right' }}>
+                <h1>Preview</h1>
+                <div className="img-preview" style={{ width: '100%', float: 'left', height: 300, overflow: 'hidden' }} />
+              </div>
             </Col>
           </FormGroup>
 

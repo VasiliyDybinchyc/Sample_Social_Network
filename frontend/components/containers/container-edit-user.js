@@ -30,6 +30,7 @@ const EditUser = React.createClass({
     dataUser.append('user[password]',               this.refs.child.getPassword())
     dataUser.append('user[password_confirmation]',  this.refs.child.getPasswordConf())
     dataUser.append('user[avatar]',                 this.refs.child.getAvatar())
+    dataUser.append('user[croppersAvatar]',         this.refs.child.getCroppersAvatar())
 
     axiosUser.editUser(dataUser, userId).then(function () {
       axiosUser.getCurrentUser();

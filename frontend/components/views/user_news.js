@@ -18,11 +18,12 @@ export default class Messages extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll.bind(this));
+    this.Scroll = this.handleScroll.bind(this)
+    window.addEventListener("scroll", this.Scroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll.bind(this));
+    window.removeEventListener("scroll", this.Scroll);
   }
 
   render() {

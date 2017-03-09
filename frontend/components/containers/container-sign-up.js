@@ -1,5 +1,6 @@
 import React              from 'react';
-
+import  { connect }       from 'react-redux';
+import ErrorViews         from '../views/error';
 import CreateUser         from '../views/create_user';
 import NProgress          from 'react-nprogress';
 
@@ -34,10 +35,17 @@ const SignUp = React.createClass({
   render: function() {
     return (
       <div>
+        {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
         <CreateUser onSubmit={this.onSubmit} ref="child" />
       </div>
     );
   },
 });
+const mapStateToProps = function(store) {
 
-export default ( SignUp );
+  return {
+    error: store.userState.error
+  };
+};
+
+export default connect(mapStateToProps)(SignUp);

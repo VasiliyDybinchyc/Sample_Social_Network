@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 
 import { getUsersSuccess,
          createUserSuccess,
+         createUserError,
          editUserSuccess,
          getProfileSuccess,
          authenticationSuccess,
@@ -24,8 +25,14 @@ export function getUsers() {
 export function createUser(createdUser) {
   return axios.post('http://localhost:3000/users', {user: createdUser})
     .then(response => {
-      store.dispatch(createUserSuccess(response.data));
-      return response;
+      console.log(response.data)
+      if (Array.isArray(response.data)) {
+        store.dispatch(createUserError(response.data));
+        return response;
+      }else {
+        store.dispatch(createUserSuccess(response.data));
+        return response;
+      }
     });
 }
 

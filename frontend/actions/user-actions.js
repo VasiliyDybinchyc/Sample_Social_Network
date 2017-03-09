@@ -14,6 +14,13 @@ export function createUserSuccess(user) {
   };
 }
 
+export function createUserError(error) {
+  return {
+    type: types.CREATE_USER_ERROR,
+    error
+  };
+}
+
 export function editUserSuccess(user) {
   return {
     type: types.EDIT_USER_SUCCESS,

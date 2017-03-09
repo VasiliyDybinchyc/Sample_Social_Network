@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
     render json: User.find(params[:id]).to_json
   end
 
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
       render json: @user.to_json
     else
       p @user.errors.full_messages
-      render json: @user.to_json
+      render json: @user.errors.full_messages
     end
   end
 

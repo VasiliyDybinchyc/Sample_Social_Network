@@ -52,13 +52,13 @@ class UsersController < ApplicationController
 
    def user_params
      params.require(:user).permit(:first_name,:last_name, :email, :password,
-                                  :password_confirmation, :avatar)
+                                  :password_confirmation, :avatar, :croppersAvatar)
    end
 
    def edit_user_params
      params.require(:user).permit(:first_name,:last_name, :email, :password,
                                   :password_confirmation, :phone_number,
-                                  :favorite_book, :favorite_film, :avatar)
+                                  :favorite_book, :favorite_film, :avatar, :croppersAvatar)
    end
 
     def correct_user

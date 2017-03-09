@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  mount_base64_uploader :croppersAvatar, CroppersAvatarUploader
+
   has_many :messages, dependent: :destroy
 
   has_many :galleries, dependent: :destroy

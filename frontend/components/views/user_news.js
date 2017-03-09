@@ -1,24 +1,19 @@
 import React from 'react';
+import { checkIfYourOnBottomPage } from '../../helper/helperFrontend';
 
 export default class Messages extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = { end: 10};
-
   }
 
   handleScroll() {
-    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight) {
-        this.setState({
-          message:'bottom reached',
-          end: this.state.end + 10
-        })
+    var stateEnd = this.state.end;
+    if (checkIfYourOnBottomPage()) {
+      this.setState({
+        end: stateEnd + 10
+      })
     }
   }
 

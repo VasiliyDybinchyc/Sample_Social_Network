@@ -28,6 +28,13 @@ export function editUserSuccess(user) {
   };
 }
 
+export function editUserError(error) {
+  return {
+    type: types.EDIT_USER_ERROR,
+    error
+  };
+}
+
 export function getProfileSuccess(userProfile) {
   return {
     type: types.GET_PROFILE_SUCCESS,
@@ -46,5 +53,12 @@ export function getCurrentUserSuccess(currentUser) {
   return {
     type: types.GET_CURRENT_USER_SUCCESS,
     currentUser
+  };
+}
+
+export function resetErrorProps() {
+  return {
+    type: types.EDIT_USER_ERROR,
+    undefined
   };
 }

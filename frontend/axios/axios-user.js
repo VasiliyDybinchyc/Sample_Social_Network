@@ -9,6 +9,7 @@ import { getUsersSuccess,
          createUserSuccess,
          createUserError,
          editUserSuccess,
+         editUserError,
          getProfileSuccess,
          authenticationSuccess,
          getCurrentUserSuccess } from '../actions/user-actions';
@@ -25,7 +26,6 @@ export function getUsers() {
 export function createUser(createdUser) {
   return axios.post('http://localhost:3000/users', {user: createdUser})
     .then(response => {
-      console.log(response.data)
       if (Array.isArray(response.data)) {
         store.dispatch(createUserError(response.data));
         return response;
@@ -39,8 +39,14 @@ export function createUser(createdUser) {
 export function editUser(editedUser , userId) {
   return axios.patch('http://localhost:3000/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
-      store.dispatch(editUserSuccess(response.data));
-      return response;
+      console.log(response.data)
+      if (Array.isArray(response.data)) {
+        store.dispatch(editUserError(response.data));
+        return response;
+      }else {
+        store.dispatch(editUserSuccess(response.data));
+        return response;
+      }
     });
 }
 

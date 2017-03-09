@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       render json: @user.to_json
     else
-      render json: @user.to_json
+      render json: @user.errors.full_messages
     end
   end
 

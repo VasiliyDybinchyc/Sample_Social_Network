@@ -1,3 +1,6 @@
+import store from '../store';
+import { resetErrorProps } from '../actions/user-actions';
+
 // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
 export var fourSpaces = '\u200b \u200b \u200b \u200b';
 
@@ -14,3 +17,7 @@ export function checkReadyToRender() {
     }
   }
 };
+
+export function resetError() {
+  store.dispatch(resetErrorProps());
+}

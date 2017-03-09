@@ -2,14 +2,16 @@ import    React              from 'react';
 import  { connect }          from 'react-redux';
 import  { browserHistory }   from 'react-router';
 import    CreateUserViews    from '../views/create_user';
+import    ErrorViews         from '../views/error';
 import    * as axiosUser     from '../../axios/axios-user';
 import   NProgress           from 'react-nprogress';
 
-import { checkReadyToRender } from '../../helper/helperFrontend';
+import { checkReadyToRender, resetError } from '../../helper/helperFrontend';
 
 const EditUser = React.createClass({
 
   componentWillMount: function() {
+      resetError();
       NProgress.start();
     },
 
@@ -34,13 +36,14 @@ const EditUser = React.createClass({
 
     axiosUser.editUser(dataUser, userId).then(function () {
       axiosUser.getCurrentUser();
-      browserHistory.push('/profile');
+
     });
   },
 
   render: function() {
     return (
       <div>
+        {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
         {this.props.render == false ? null :
           <CreateUserViews onSubmit={this.onSubmit} ref="child" />
         }
@@ -50,8 +53,11 @@ const EditUser = React.createClass({
 });
 
 const mapStateToProps = function(store) {
+  console.log('map')
+  console.log(store.userState.error)
   return {
     userId: store.userState.currentUser.id,
+    error: store.userState.error,
     render: store.sessionState.render = checkReadyToRender(store.userState.currentUser)
   };
 };

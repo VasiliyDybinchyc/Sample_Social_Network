@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { checkIfYourOnBottomPage } from '../../helper/helperFrontend';
 
 export default class AllUsers extends React.Component {
 
@@ -9,25 +10,21 @@ export default class AllUsers extends React.Component {
   }
 
   handleScroll() {
-    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset;
-
-    if (windowBottom >= docHeight) {
+    var stateEnd = this.state.end;
+    if (checkIfYourOnBottomPage()) {
       this.setState({
-        end: this.state.end + 10
+        end: stateEnd + 10
       })
     }
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll.bind(this));
+    this.Scroll = this.handleScroll.bind(this)
+    window.addEventListener("scroll", this.Scroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll.bind(this));
+    window.removeEventListener("scroll", this.Scroll);
   }
 
   render() {

@@ -48,10 +48,23 @@ const CurrentUserProfile = React.createClass({
                 <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
               <Row>
                 <Col xs='4'>
-                  <ListGroupItem > <FriendsViews       user_friends={this.props.userFriends} />  </ListGroupItem>
-                  <ListGroupItem > <GalereyViews       user_galerey={this.props.userGalerey} />  </ListGroupItem>
-                  <ListGroupItem > <FormGalletey       userId={this.props.user.id}  />           </ListGroupItem>
-                  <ListGroupItem > <FormPost           userId={this.props.user.id} />            </ListGroupItem>
+                  <ListGroupItem >
+                    <FriendsViews      user_friends={this.props.userFriends}
+                                       userId={this.props.user.id} />
+                  </ListGroupItem>
+
+                  <ListGroupItem >
+                    <GalereyViews      user_galerey={this.props.userGalerey}
+                                       userId={this.props.user.id}/>
+                  </ListGroupItem>
+
+                  <ListGroupItem >
+                    <FormGalletey      userId={this.props.user.id}  />
+                  </ListGroupItem>
+
+                  <ListGroupItem >
+                    <FormPost          userId={this.props.user.id} />
+                  </ListGroupItem>
                 </Col>
 
                 <Col xs='8'>

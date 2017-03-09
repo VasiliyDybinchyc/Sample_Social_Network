@@ -35,6 +35,7 @@ const RootPath = React.createClass({
         <div className="app">
           <script src='nprogress.js'></script>
           <link rel='stylesheet' href='nprogress.css'/>
+          <link rel='stylesheet' href='cropper.css'/>
           {this.props.render == false ? null:
             <Container>
               <div className="navbar">

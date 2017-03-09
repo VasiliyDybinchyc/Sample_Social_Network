@@ -1,6 +1,6 @@
 import React                  from 'react';
 import { connect }            from 'react-redux';
-import  { Link }              from 'react-router';
+import  { browserHistory, Link }    from 'react-router';
 import NProgress              from 'react-nprogress';
 import PersonalInfoViews      from '../views/personal_info';
 import FriendsViews           from '../views/user_friends';
@@ -14,7 +14,7 @@ import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
 import { checkReadyToRender } from '../../helper/helperFrontend';
-import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
+import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
 
@@ -53,15 +53,20 @@ const AnotherUserProfile = React.createClass({
               <ListGroupItem> <PersonalInfoViews    user={this.props.profile} />                 </ListGroupItem>
               <Row>
                 <Col xs='4'>
-                  <ListGroupItem> <FriendsViews         user_friends={this.props.userFriends} />      </ListGroupItem>
-                  <ListGroupItem> <GalereyViews         user_galerey={this.props.userGalerey} />      </ListGroupItem>
+                  <ListGroupItem>
+                    <FriendsViews         user_friends={this.props.userFriends} />
+                  </ListGroupItem>
+
+                  <ListGroupItem>
+                    <GalereyViews         user_galerey={this.props.userGalerey} />
+                    <Link to={"/Galerey/" + this.props.profile.id} activeClassName="active">Full {this.props.profile.first_name} Galerey</Link>
+                  </ListGroupItem>
+
                   {this.props.checkIsThisUserIsFriend == true ?
                     <NotFriendButton onSubmit={this.onSubmitNotFrend} userId={this.props.params.userId} /> :
                     <FriendButton    onSubmit={this.onSubmitFrend}    userId={this.props.params.userId} />
                   }
-                  <Link to={"/allFrend/" + this.props.profile.id} activeClassName="active">All {this.props.profile.first_name} friend</Link>
 
-                  <Link to={"/Galerey/" + this.props.profile.id} activeClassName="active">Full {this.props.profile.first_name} Galerey</Link>
                 </Col>
                 <Col xs='8'>
                   <ListGroupItem> <NewsViews            feed_items={this.props.newsList} />      </ListGroupItem>

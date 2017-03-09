@@ -18,6 +18,13 @@ export function checkReadyToRender() {
   }
 };
 
+// this function reset error props in userReducer in order to don`t see error from previous page
 export function resetError() {
   store.dispatch(resetErrorProps());
+}
+
+export function checkIsNotThisMyProfile(curentID, profileID) {
+  if (curentID == profileID) {
+    return true
+  }
 }

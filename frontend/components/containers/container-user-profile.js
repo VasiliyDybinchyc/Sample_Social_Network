@@ -13,12 +13,15 @@ import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
-import { checkReadyToRender } from '../../helper/helperFrontend';
+import { checkReadyToRender, checkIsNotThisMyProfile } from '../../helper/helperFrontend';
 import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
 
   componentWillMount: function() {
+    if (checkIsNotThisMyProfile(this.props.userId, this.props.params.userId)) {
+      browserHistory.push('/profile')
+    }
     let userId = this.props.params.userId
     NProgress.start();
     axiosUser.getProfile(userId)
@@ -33,8 +36,10 @@ const AnotherUserProfile = React.createClass({
     },
 
   componentWillReceiveProps(nextProps) {
-
     if (nextProps.params != this.props.params) {
+      if (checkIsNotThisMyProfile(this.props.userId, nextProps.params.userId)) {
+        browserHistory.push('/profile')
+      }
       let userId = nextProps.params.userId;
       axiosUser.getProfile(userId)
       axiosGallerey.getGallerey(userId)
@@ -82,6 +87,7 @@ const AnotherUserProfile = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
+    userId: store.userState.currentUser.id,
     profile: store.userState.userProfile,
     userGalerey: store.gallereyState.gallerey,
     userFriends: store.friendsState.userFriends,

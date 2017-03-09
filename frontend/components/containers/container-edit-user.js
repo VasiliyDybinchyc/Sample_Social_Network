@@ -53,8 +53,6 @@ const EditUser = React.createClass({
 });
 
 const mapStateToProps = function(store) {
-  console.log('map')
-  console.log(store.userState.error)
   return {
     userId: store.userState.currentUser.id,
     error: store.userState.error,

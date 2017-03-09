@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209071831) do
+ActiveRecord::Schema.define(version: 20170309071734) do
 
   create_table "galleries", force: :cascade do |t|
     t.string   "picture"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20161209071831) do
     t.string   "favorite_book"
     t.string   "favorite_film"
     t.string   "avatar"
+    t.string   "croppersAvatar"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

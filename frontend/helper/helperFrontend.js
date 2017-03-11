@@ -1,5 +1,6 @@
 import store from '../store';
 import { resetErrorProps } from '../actions/user-actions';
+import { changeOpenModal } from '../actions/sessions-actions';
 
 // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
 export var fourSpaces = '\u200b \u200b \u200b \u200b';
@@ -21,13 +22,17 @@ export function checkReadyToRender() {
 // this function reset error props in userReducer in order to don`t see error from previous page
 export function resetError() {
   store.dispatch(resetErrorProps());
-}
+};
+
+export function changeStatusModal(openModal) {
+  store.dispatch(changeOpenModal(openModal));
+};
 
 export function checkIsNotThisMyProfile(curentID, profileID) {
   if (curentID == profileID) {
     return true
   }
-}
+};
 
 export function checkIfYourOnBottomPage() {
   const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
@@ -38,4 +43,4 @@ export function checkIfYourOnBottomPage() {
   if (windowBottom >= docHeight) {
       return true
   }
-}
+};

@@ -3,7 +3,8 @@ import _ from 'lodash';
 
 const initialState = {
   sessions: [],
-  render: false
+  render: false,
+  openModal: false
 };
 
 const sessionReducer = function(state = initialState, action) {
@@ -15,6 +16,9 @@ const sessionReducer = function(state = initialState, action) {
 
     case types.DELETE_SESSION_SUCCESS:
       return Object.assign({}, state, { sessions: action.session });
+
+    case types.CHANGE_OPEN_MODAL:
+      return Object.assign({}, state, { openModal: action.openModal });
 
     }
 

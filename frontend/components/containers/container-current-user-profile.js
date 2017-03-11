@@ -7,6 +7,7 @@ import    GalereyViews        from '../views/mini_galerey';
 import    NewsViews           from '../views/user_news';
 import    FormPost            from '../views/form_post';
 import    FormGalletey        from '../views/form_gallerey';
+import    FullSize            from '../views/FullSizeImage';
 import    NProgress           from 'react-nprogress';
 import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosFriend    from '../../axios/axios-friend';
@@ -15,7 +16,7 @@ import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
 
 import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
-import { checkReadyToRender }                 from '../../helper/helperFrontend';
+import { checkReadyToRender, changeStatusModal }                 from '../../helper/helperFrontend';
 
 
 
@@ -45,7 +46,9 @@ const CurrentUserProfile = React.createClass({
         <div>
           {this.props.render == false ? null :
             <ListGroup>
-                <ListGroupItem> <PersonalInfoViews  user={this.props.user} />                 </ListGroupItem>
+                <ListGroupItem>
+                  <PersonalInfoViews  user={this.props.user} status={this.props.statusModal} />
+                </ListGroupItem>
               <Row>
                 <Col xs='4'>
                   <ListGroupItem >
@@ -73,7 +76,9 @@ const CurrentUserProfile = React.createClass({
                   </ListGroupItem>
                 </Col>
               </Row>
+              {this.props.statusModal == false ? null : <FullSize url={this.props.user.avatar.url} status={this.props.statusModal} />}
             </ListGroup>
+
           }
         </div>
     );
@@ -87,6 +92,7 @@ const mapStateToProps = function(store) {
     userFriends: store.friendsState.userFriends,
     userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
+    statusModal: store.sessionState.openModal,
     render: store.sessionState.render = checkReadyToRender( store.userState.currentUser,
                                                             store.friendsState.userFriends,
                                                             store.gallereyState.gallerey,

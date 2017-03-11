@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkIfYourOnBottomPage } from '../../helper/helperFrontend';
+import { checkIfYourOnBottomPage, FullSize } from '../../helper/helperFrontend';
 
 export default class Messages extends React.Component {
 
@@ -38,7 +38,7 @@ export default class Messages extends React.Component {
           <div key={index}>
             <p>message id {feed_item.id} :</p>
             <p dangerouslySetInnerHTML={{__html: feed_item.content}} />
-            {feed_item.picture.url == null ? null : <img src={feed_item.picture.url} alt="lorem" />}
+            {feed_item.picture.url == null ? null : <img src={feed_item.picture.url} alt="lorem" />} 
           </div>
         );
       });

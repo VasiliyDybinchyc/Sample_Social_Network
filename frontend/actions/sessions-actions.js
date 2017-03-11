@@ -13,3 +13,10 @@ export function deleteSessionSuccess(session) {
     session
   };
 }
+
+export function changeOpenModal(openModal) {
+  return {
+    type: types.CHANGE_OPEN_MODAL,
+    openModal
+  };
+}

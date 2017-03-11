@@ -72,11 +72,11 @@ const CurrentUserProfile = React.createClass({
 
                 <Col xs='8'>
                   <ListGroupItem >
-                    <NewsViews userId={this.props.user.id} feed_items={this.props.newsList} />
+                    <NewsViews userId={this.props.user.id} feed_items={this.props.newsList} ref='child' />
                   </ListGroupItem>
                 </Col>
               </Row>
-              {this.props.statusModal == false ? null : <FullSize url={this.props.user.avatar.url} status={this.props.statusModal} />}
+              {this.props.statusModal == false ? null : <FullSize url={this.refs.child.getImageUrl()} status={this.props.statusModal} />}
             </ListGroup>
 
           }

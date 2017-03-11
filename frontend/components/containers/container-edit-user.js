@@ -19,7 +19,6 @@ const EditUser = React.createClass({
       NProgress.done()
     },
 
-
   onSubmit: function(event) {
     event.preventDefault();
     let userId = this.props.userId;

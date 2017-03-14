@@ -22,7 +22,7 @@ export default class PaginationView extends React.Component {
     }
   }
 
-  render() {
+  changePostion(){
     this.position = [,,,,,]
     let defaultPosition = [1, 2, 3, 4, 5];
     if (this.props.pageNumber <= 3) {
@@ -30,7 +30,7 @@ export default class PaginationView extends React.Component {
     }else if (Math.round(this.amountPagination) - Math.round(this.props.pageNumber) <= 2){
       if (this.position[4] !== this.amountPagination){
         for (let i = 0; i < this.position.length; i++) {
-          this.position[i] = this.amountPagination - 4 + i
+          this.position[i] = this.amountPagination - 3 + i
         }
       }
     }else {
@@ -38,6 +38,10 @@ export default class PaginationView extends React.Component {
         this.position[i] = Number(this.props.pageNumber) - 2 + i
       }
     }
+  }
+
+  render() {
+    this.changePostion()
 
     var nextPage = Number(this.props.pageNumber) + 1,
         previousPage = Number(this.props.pageNumber) - 1;

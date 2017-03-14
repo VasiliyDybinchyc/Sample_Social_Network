@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def shit
-    render :file => 'layouts/application', :layout => false
+    render :file => 'layouts/application'
   end
 
 

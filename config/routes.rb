@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/signup',  to: 'users#create'
 
   get    '/login',   to: 'application#shit'
+  get    'Galerey/:userId/page/:pageNumber', to: 'application#shit'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get    '/profile',   to: 'application#shit'

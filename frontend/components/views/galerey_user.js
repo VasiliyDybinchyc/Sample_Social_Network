@@ -1,46 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import { checkIfYourOnBottomPage } from '../../helper/helperFrontend';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { browserHistory } from 'react-router';
 
 export default class GalereyUser extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { end: 20};
-  }
-
-  handleScroll() {
-    var stateEnd = this.state.end;
-    if (checkIfYourOnBottomPage()) {
-      this.setState({
-        end: stateEnd + 10
-      })
-    }
-  }
-
-  componentDidMount() {
-    this.Scroll = this.handleScroll.bind(this)
-    window.addEventListener("scroll", this.Scroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.Scroll);
-  }
-
   render() {
+  var fullGalerey = [];
 
-  var newsItems = this.props.news_items,
-      galereyItems = this.props.galerey_items,
-      fullGalerey = newsItems.concat(galereyItems),
+  var start = 0,
+      stop = 7
 
-      end = this.state.end;
+  for (var i = 1; i < this.props.pageNumber; i++) {
+    start = start + 7;
+    stop = stop + 7;
+  }
 
-  if (1 > 0) {
-    fullGalerey = fullGalerey.slice(0, end).map( function(galerey, index) {
+  this.props.galerey_items.forEach( function(galerey, index) {
+      return (
+          galerey.picture.url == null ? null : fullGalerey.push(galerey)
+      );
+    });
+
+  if (fullGalerey.length !== 0) {
+
+    var viewGalerey = fullGalerey.slice(start, stop).map( function(galerey, index) {
         return (
           <div key={index}>
-            {galerey.picture.url == null ? null : <ListGroupItem> <img src={galerey.picture.url} alt="lorem" /> </ListGroupItem>}
+            <ListGroupItem> <img src={galerey.picture.url} alt="lorem" style={{maxWidth: 1070}} /> </ListGroupItem>
           </div>
         );
       });
@@ -53,7 +41,7 @@ export default class GalereyUser extends React.Component {
         <h1>Galerey</h1>
         <div id="Galerey">
           <ListGroup>
-            {fullGalerey}
+            {viewGalerey}
           </ListGroup>
         </div>
       </div>

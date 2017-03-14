@@ -28,7 +28,7 @@ export default (
       <Route path="users/:userId" component={UserProfile} />
       <Route path="editProfile" component={UserEdit} />
       <Route path="AllUser" component={AllUser} />
-      <Route path="Galerey/:userId" component={Galerey} />
+      <Route path="Galerey/:userId/page/:pageNumber" component={Galerey} />
       <Route path="allFrend/:userId" component={allFrend} />
     </ Route >
   </Router>

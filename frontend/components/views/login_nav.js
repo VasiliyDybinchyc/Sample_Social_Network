@@ -22,7 +22,7 @@ export default class LoginNav extends React.Component{
     browserHistory.push('/AllUser')
   }
   handleClickGalerey(userId) {
-    browserHistory.push('/Galerey/' + userId)
+    browserHistory.push('/Galerey/' + userId + '/page/1')
   }
   handleClickAllFrend(userId) {
     browserHistory.push('/allFrend/' + userId)

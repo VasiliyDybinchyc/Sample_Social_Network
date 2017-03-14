@@ -4,6 +4,7 @@ import { Link }               from 'react-router';
 import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 import   FullGalereyViews     from '../views/galerey_user';
+import   PaginationView           from '../views/pagination';
 import   NProgress            from 'react-nprogress';
 
 import { checkReadyToRender } from '../../helper/helperFrontend';
@@ -26,8 +27,9 @@ const Galerey = React.createClass({
       <div>
         {this.props.render &&
           <div className="Full galerey">
+            <PaginationView pageNumber={this.props.params.pageNumber} paginationFor={'galerey'} amountElement={this.props.galere.concat(this.props.newsList)} />
             <h1>Full Galerey</h1>
-            <FullGalereyViews news_items={this.props.newsList} galerey_items={this.props.galere} />
+            <FullGalereyViews galerey_items={this.props.galere.concat(this.props.newsList)} pageNumber={this.props.params.pageNumber} />
           </div>
         }
       </div>

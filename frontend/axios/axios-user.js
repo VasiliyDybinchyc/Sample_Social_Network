@@ -68,7 +68,7 @@ export function authentication() {
             store.dispatch(getCurrentUserSuccess(response.data))
             return response;
           }).then(function () {
-            browserHistory.push('/profile')
+            
           });
       }
       return response;

@@ -43,7 +43,7 @@ const EditUser = React.createClass({
     return (
       <div>
         {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
-        {this.props.render == false ? null :
+        {this.props.render &&
           <CreateUserViews onSubmit={this.onSubmit} ref="child" />
         }
       </div>

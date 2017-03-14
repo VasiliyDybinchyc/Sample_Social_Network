@@ -52,7 +52,7 @@ const AnotherUserProfile = React.createClass({
   render: function() {
     return (
       <div>
-        {this.props.render == false ? null:
+        {this.props.render &&
           <div id='Another_User_Profile'>
             <ListGroup>
               <ListGroupItem> <PersonalInfoViews    user={this.props.profile} />                 </ListGroupItem>

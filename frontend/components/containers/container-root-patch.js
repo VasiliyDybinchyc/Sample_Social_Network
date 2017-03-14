@@ -33,7 +33,7 @@ const RootPath = React.createClass({
   render: function() {
       return (
         <div className="app">
-          {this.props.render == false ? null:
+          {this.props.render &&
             <Container>
               <div className="navbar">
                 {this.props.authentication == false ? <NotLoginNav /> :

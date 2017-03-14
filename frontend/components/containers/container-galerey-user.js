@@ -16,7 +16,7 @@ const Galerey = React.createClass({
     axiosGallerey.getGallerey(Id);
     axiosNews.getOnlyUserNews(Id);
   },
-  
+
   componentDidMount: function() {
     NProgress.done()
   },
@@ -24,7 +24,7 @@ const Galerey = React.createClass({
   render: function() {
     return(
       <div>
-        {this.props.render == false ? null :
+        {this.props.render &&
           <div className="Full galerey">
             <h1>Full Galerey</h1>
             <FullGalereyViews news_items={this.props.newsList} galerey_items={this.props.galere} />

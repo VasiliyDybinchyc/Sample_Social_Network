@@ -7,7 +7,6 @@ import    GalereyViews        from '../views/mini_galerey';
 import    NewsViews           from '../views/user_news';
 import    FormPost            from '../views/form_post';
 import    FormGalletey        from '../views/form_gallerey';
-import    FullSize            from '../views/FullSizeImage';
 import    NProgress           from 'react-nprogress';
 import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosFriend    from '../../axios/axios-friend';
@@ -44,10 +43,10 @@ const CurrentUserProfile = React.createClass({
   render: function() {
     return(
         <div>
-          {this.props.render == false ? null :
+          {this.props.render &&
             <ListGroup>
                 <ListGroupItem>
-                  <PersonalInfoViews  user={this.props.user} status={this.props.statusModal} />
+                  <PersonalInfoViews  user={this.props.user} />
                 </ListGroupItem>
               <Row>
                 <Col xs='4'>
@@ -72,11 +71,10 @@ const CurrentUserProfile = React.createClass({
 
                 <Col xs='8'>
                   <ListGroupItem >
-                    <NewsViews userId={this.props.user.id} feed_items={this.props.newsList} ref='child' />
+                    <NewsViews userId={this.props.user.id} feed_items={this.props.newsList}  />
                   </ListGroupItem>
                 </Col>
               </Row>
-              {this.props.statusModal == false ? null : <FullSize url={this.refs.child.getImageUrl()} status={this.props.statusModal} />}
             </ListGroup>
 
           }
@@ -92,7 +90,6 @@ const mapStateToProps = function(store) {
     userFriends: store.friendsState.userFriends,
     userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
-    statusModal: store.sessionState.openModal,
     render: store.sessionState.render = checkReadyToRender( store.userState.currentUser,
                                                             store.friendsState.userFriends,
                                                             store.gallereyState.gallerey,

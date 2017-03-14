@@ -21,7 +21,7 @@ const AllFrendUser = React.createClass({
   render: function() {
     return(
       <div>
-        {this.props.render == false ? null :
+        {this.props.render &&
           <div className="All-friends">
               <h1>All friends</h1>
               <AllFriendUserViews list={this.props.allUserFriends} />

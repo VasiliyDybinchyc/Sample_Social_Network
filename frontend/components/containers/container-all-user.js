@@ -21,7 +21,7 @@ const AllUser = React.createClass({
   render: function() {
     return(
       <div>
-        {this.props.render == false ? null :
+        {this.props.render &&
           <div className="All-user">
             <AllUserViews list={this.props.users} />
           </div>

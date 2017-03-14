@@ -48,7 +48,7 @@ export default class Messages extends React.Component {
       start = this.state.start,
       end = this.state.end,
       that = this;
-
+730
   if (FeedItemsLength > 0) {
     FeedItems = this.props.feed_items.slice(0, end).map( function(feed_item, index) {
         return (
@@ -57,6 +57,7 @@ export default class Messages extends React.Component {
             <p dangerouslySetInnerHTML={{__html: feed_item.content}} />
             {feed_item.picture.url == null ? null : < img src={feed_item.picture.url}
                                                       alt="lorem"
+                                                      style={{maxWidth: 690}}
                                                       onClick={() => {that.images.push(feed_item.picture.url, null), that.setState({ isOpen: true }) } } /> }
           </div>
         );

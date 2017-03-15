@@ -6,8 +6,17 @@ import { browserHistory } from 'react-router';
 
 export default class GalereyUser extends React.Component {
 
+  componentWillMount(){
+    this.fullGalerey = [];
+    let them = this
+    this.props.galerey_items.forEach( function(galerey, index) {
+      return (
+          galerey.picture.url == null ? null : them.fullGalerey.push(galerey)
+      );
+    });
+  }
+
   render() {
-  var fullGalerey = [];
 
   var start = 0,
       stop = 7
@@ -17,15 +26,9 @@ export default class GalereyUser extends React.Component {
     stop = stop + 7;
   }
 
-  this.props.galerey_items.forEach( function(galerey, index) {
-      return (
-          galerey.picture.url == null ? null : fullGalerey.push(galerey)
-      );
-    });
+  if (this.fullGalerey.length !== 0) {
 
-  if (fullGalerey.length !== 0) {
-
-    var viewGalerey = fullGalerey.slice(start, stop).map( function(galerey, index) {
+    var viewGalerey = this.fullGalerey.slice(start, stop).map( function(galerey, index) {
         return (
           <div key={index}>
             <ListGroupItem> <img src={galerey.picture.url} alt="lorem" style={{maxWidth: 1070}} /> </ListGroupItem>
@@ -33,7 +36,7 @@ export default class GalereyUser extends React.Component {
         );
       });
     } else {
-      fullGalerey = <p>"You don't have picture in galerey"</p>
+      this.fullGalerey = <p>"You don't have picture in galerey"</p>
     }
 
     return (

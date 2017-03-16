@@ -63,7 +63,7 @@ const AnotherUserProfile = React.createClass({
                   </ListGroupItem>
 
                   <ListGroupItem>
-                    <GalereyViews         user_galerey={this.props.userGalerey} />
+                    <GalereyViews         user_galerey={this.props.userGalerey.concat(this.props.newsList)} />
                     <Link to={"/Galerey/" + this.props.profile.id} activeClassName="active">Full {this.props.profile.first_name} Galerey</Link>
                   </ListGroupItem>
 

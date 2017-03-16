@@ -56,7 +56,7 @@ const CurrentUserProfile = React.createClass({
                   </ListGroupItem>
 
                   <ListGroupItem >
-                    <GalereyViews      user_galerey={this.props.userGalerey}
+                    <GalereyViews      user_galerey={this.props.userGalerey.concat(this.props.newsList)}
                                        userId={this.props.user.id}/>
                   </ListGroupItem>
 

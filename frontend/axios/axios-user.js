@@ -67,9 +67,7 @@ export function authentication() {
           .then(response => {
             store.dispatch(getCurrentUserSuccess(response.data))
             return response;
-          }).then(function () {
-            
-          });
+          })
       }
       return response;
     });

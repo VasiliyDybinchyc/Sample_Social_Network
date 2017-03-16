@@ -48,7 +48,7 @@ export default class Messages extends React.Component {
       start = this.state.start,
       end = this.state.end,
       that = this;
-730
+
   if (FeedItemsLength > 0) {
     FeedItems = this.props.feed_items.slice(0, end).map( function(feed_item, index) {
         return (
@@ -71,26 +71,22 @@ export default class Messages extends React.Component {
         <div id="News">
           <strong className={FeedItemsLength > 0 ? 'All-news-title':'none'}>All news: {FeedItemsLength}</strong>
           {FeedItems}
-          <button type="button"
-                  onClick={() => this.setState({ isOpen: true })}>
-                    Open Lightbox
-                </button>
 
-                {isOpen &&
-                    <Lightbox
-                        mainSrc={this.images[photoIndex]}
-                        nextSrc={this.images[(photoIndex + 1) % this.images.length]}
-                        prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
+          {isOpen &&
+            <Lightbox
+                mainSrc={this.images[photoIndex]}
+                nextSrc={this.images[(photoIndex + 1) % this.images.length]}
+                prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
 
-                        onCloseRequest={() => {this.setState({ isOpen: false }), this.images=[] }}
-                        onMovePrevRequest={() => this.setState({
-                            photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
-                        })}
-                        onMoveNextRequest={() => this.setState({
-                            photoIndex: (photoIndex + 1) % this.images.length,
-                        })}
-                    />
-                }
+                onCloseRequest={() => {this.setState({ isOpen: false }), this.images=[] }}
+                onMovePrevRequest={() => this.setState({
+                    photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
+                })}
+                onMoveNextRequest={() => this.setState({
+                    photoIndex: (photoIndex + 1) % this.images.length,
+                })}
+            />
+          }
         </div>
       </div>
     );

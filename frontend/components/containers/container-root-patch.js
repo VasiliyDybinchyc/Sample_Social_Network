@@ -7,18 +7,22 @@ import    NotLoginNav             from '../views/not_login_nav';
 import    LoginNav                from '../views/login_nav';
 import    NProgress               from 'react-nprogress';
 import {  Container }             from 'reactstrap';
-import {  checkReadyToRender }    from '../../helper/helperFrontend';
+import {  checkReadyToRender, ifAuthenticationTrueRedirect }    from '../../helper/helperFrontend';
 
 const RootPath = React.createClass({
 
   componentWillMount: function() {
     NProgress.start();
     this.updateProps();
+
   },
 
   updateProps: function() {
+    let that = this
     axiosUser.authentication().then(function() {
-      NProgress.done() })
+      NProgress.done()
+      that.testChotoTam()
+    })
   },
 
   onSubmit: function(event) {
@@ -30,7 +34,15 @@ const RootPath = React.createClass({
     });
   },
 
+  testChotoTam: function(){
+    let that = this
+    if (ifAuthenticationTrueRedirect()) {
+      browserHistory.push('/profile')
+    }
+  },
+
   render: function() {
+
       return (
         <div className="app">
           {this.props.render &&

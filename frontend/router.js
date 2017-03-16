@@ -25,7 +25,7 @@ export default (
       <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
       <Route path="profile" component={CurrentUserProfileContainer} />
-      <Route path="users/:userId" component={UserProfile} />
+      <Route path="user/:userId" component={UserProfile} />
       <Route path="editProfile" component={UserEdit} />
       <Route path="AllUser" component={AllUser} />
       <Route path="Galerey/:userId/page/:pageNumber" component={Galerey} />

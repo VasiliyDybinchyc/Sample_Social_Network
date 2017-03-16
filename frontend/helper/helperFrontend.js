@@ -24,12 +24,15 @@ export function resetError() {
   store.dispatch(resetErrorProps());
 };
 
-export function changeStatusModal(openModal) {
-  store.dispatch(changeOpenModal(openModal));
-};
-
 export function checkIsNotThisMyProfile(curentID, profileID) {
   if (curentID == profileID) {
+    return true
+  }
+};
+
+export function ifAuthenticationTrueRedirect(authentication) {
+  console.log(store.userState.authentication)
+  if (store.userState.authentication == true) {
     return true
   }
 };

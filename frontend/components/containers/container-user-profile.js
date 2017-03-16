@@ -19,16 +19,28 @@ import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
 const AnotherUserProfile = React.createClass({
 
   componentWillMount: function() {
-    if (checkIsNotThisMyProfile(this.props.userId, this.props.params.userId)) {
-      browserHistory.push('/profile')
-    }
-    let userId = this.props.params.userId
-    NProgress.start();
-    axiosUser.getProfile(userId)
-    axiosGallerey.getGallerey(userId)
-    axiosFriend.getFriends(userId)
-    axiosFriend.checkIsThisUserIsFriend(userId)
-    axiosNews.getNews(userId)
+    let that = this
+    axiosUser.getCurrentUser().then(function () {
+      if (checkIsNotThisMyProfile(that.props.userId, that.props.params.userId)) {
+        browserHistory.push('/profile')
+      }
+      that.updateProps(that.props.params.userId)
+    });
+  },
+
+  updateProps: function(userId) {
+    axiosUser.getProfile(userId).then(function () {
+      NProgress.set(0.3);
+      axiosGallerey.getGallerey(userId);
+    }).then(function () {
+      axiosFriend.getFriends(userId);
+    }).then(function () {
+      NProgress.set(0.7);
+      axiosFriend.checkIsThisUserIsFriend(userId)
+      axiosNews.getNews(userId);
+
+      NProgress.done()
+    })
   },
 
   componentDidMount: function() {
@@ -40,12 +52,7 @@ const AnotherUserProfile = React.createClass({
       if (checkIsNotThisMyProfile(this.props.userId, nextProps.params.userId)) {
         browserHistory.push('/profile')
       }
-      let userId = nextProps.params.userId;
-      axiosUser.getProfile(userId)
-      axiosGallerey.getGallerey(userId)
-      axiosFriend.getFriends(userId)
-      axiosFriend.checkIsThisUserIsFriend(userId)
-      axiosNews.getNews(userId)
+      this.updateProps(this.props.params.userId)
     }
   },
 

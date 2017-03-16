@@ -1,17 +1,26 @@
 Rails.application.routes.draw do
-  root "application#shit"
+  root "application#root"
 
-  get  '/signup',  to: 'application#shit'
+  get  '/signup',  to: 'application#root'
   post '/signup',  to: 'users#create'
 
-  get    '/login',   to: 'application#shit'
-  get    'Galerey/:userId/page/:pageNumber', to: 'application#shit'
+  get    '/login',   to: 'application#root'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+
+  get    'Galerey/:userId/page/:pageNumber', to: 'application#shit'
+
   get    '/profile',   to: 'application#shit'
+
+  get    '/editProfile',   to: 'application#shit'
+
+  get    '/AllUser',   to: 'application#shit'
+
+  get    '/allFrend/:userId',   to: 'application#shit'
+
+  get    '/user/:userId',   to: 'application#shit'
+
   resources :sessions, only: [:new, :create, :destroy]
-
-
 
   resources :relationships,       only: [:create, :destroy] do
     member do

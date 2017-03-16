@@ -23,7 +23,10 @@ const CurrentUserProfile = React.createClass({
 
   componentWillMount: function() {
     NProgress.start();
-    this.updateProps();
+    let that = this
+    axiosUser.getCurrentUser().then(function () {
+      that.updateProps();
+    });
   },
 
   updateProps: function() {

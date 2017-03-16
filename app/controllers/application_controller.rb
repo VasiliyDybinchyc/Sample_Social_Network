@@ -2,6 +2,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  def root
+    if logged_in?
+      redirect_to "/profile"
+    else
+      shit
+    end
+  end
+
   def shit
     render :file => 'layouts/application'
   end

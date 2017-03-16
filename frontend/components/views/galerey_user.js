@@ -8,10 +8,10 @@ export default class GalereyUser extends React.Component {
 
   componentWillMount(){
     this.fullGalerey = [];
-    let them = this
+    let there = this
     this.props.galerey_items.forEach( function(galerey, index) {
       return (
-          galerey.picture.url == null ? null : them.fullGalerey.push(galerey)
+          galerey.picture.url == null ? null : there.fullGalerey.push(galerey)
       );
     });
   }

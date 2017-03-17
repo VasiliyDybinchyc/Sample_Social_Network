@@ -30,13 +30,6 @@ export function checkIsNotThisMyProfile(curentID, profileID) {
   }
 };
 
-export function ifAuthenticationTrueRedirect(authentication) {
-  console.log(store.userState.authentication)
-  if (store.userState.authentication == true) {
-    return true
-  }
-};
-
 export function checkIfYourOnBottomPage() {
   const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
   const body = document.body;

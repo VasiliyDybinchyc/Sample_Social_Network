@@ -41,22 +41,22 @@ export default class LoginNav extends React.Component{
           <Nav className="ml-auto" navbar >
 
             <NavItem>
-              <NavLink onClick={this.handleClickProfile}> My profile </NavLink>
+              <NavLink onClick={this.handleClickProfile} style={{cursor: 'pointer'}} > My profile </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.handleClickEditProfile}> Edit my Profile </NavLink>
+              <NavLink onClick={this.handleClickEditProfile} style={{cursor: 'pointer'}}> Edit my Profile </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.handleClickAllUser}> All user </NavLink>
+              <NavLink onClick={this.handleClickAllUser} style={{cursor: 'pointer'}}> All user </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={() => {this.handleClickGalerey(userId)} }> My Galerey </NavLink>
+              <NavLink onClick={() => {this.handleClickGalerey(userId)} } style={{cursor: 'pointer'}}> My Galerey </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={() => {this.handleClickAllFrend(userId)} }> My Friend </NavLink>
+              <NavLink onClick={() => {this.handleClickAllFrend(userId)} } style={{cursor: 'pointer'}}> My Friend </NavLink>
             </NavItem>
             <NavItem>
-              <Button color="danger" onClick={this.props.onSubmit}>
+              <Button color="danger" onClick={this.props.onSubmit} style={{cursor: 'pointer'}}>
                 Log Out
               </Button>
             </NavItem>

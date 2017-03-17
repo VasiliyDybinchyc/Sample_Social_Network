@@ -57,7 +57,7 @@ export default class Messages extends React.Component {
             <p dangerouslySetInnerHTML={{__html: feed_item.content}} />
             {feed_item.picture.url == null ? null : < img src={feed_item.picture.url}
                                                       alt="lorem"
-                                                      style={{maxWidth: 690}}
+                                                      style={{maxWidth: 690}, {cursor: 'pointer'}}
                                                       onClick={() => {that.images.push(feed_item.picture.url, null), that.setState({ isOpen: true }) } } /> }
           </div>
         );

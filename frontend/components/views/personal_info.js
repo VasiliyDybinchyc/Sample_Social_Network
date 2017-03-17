@@ -11,7 +11,7 @@ export default class PersonalInfo extends React.Component{
   componentWillMount(){
     this.images = []
   }
-  
+
   constructor(props) {
         super(props);
 
@@ -36,7 +36,7 @@ export default class PersonalInfo extends React.Component{
     return (
     <div className='PersonalInfo'>
       <h2>{this.props.user.first_name} {this.props.user.last_name}</h2>
-      <img src={this.props.user.croppersAvatar.url} style={{ maxWidth: 300 }} onClick={() => {this.images.push(this.props.user.avatar.url, null), this.setState({ isOpen: true }) } } />
+      <img src={this.props.user.croppersAvatar.url} style={{ maxWidth: 300 }, {cursor: 'pointer'}} onClick={() => {this.images.push(this.props.user.avatar.url, null), this.setState({ isOpen: true }) } } />
 
       {isOpen &&
           <Lightbox

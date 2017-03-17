@@ -74,7 +74,7 @@ const CurrentUserProfile = React.createClass({
 
                 <Col xs='8'>
                   <ListGroupItem >
-                    <NewsViews userId={this.props.user.id} feed_items={this.props.newsList}  />
+                    <NewsViews feed_items={this.props.newsList}  />
                   </ListGroupItem>
                 </Col>
               </Row>

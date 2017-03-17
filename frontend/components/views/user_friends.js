@@ -10,7 +10,7 @@ export default class Frends extends React.Component{
 
     var UserFrendMap = Frends.slice(0, 8).map( function(user_friends, index) {
         return (
-          <Link to={"/users/" + user_friends.id} key={index} className="avatar-frend" >
+          <Link to={"/user/" + user_friends.id} key={index} className="avatar-frend" >
             <img className="avatar-frend" src={user_friends.avatar.url} width="35" height="35"></img>
           </Link>
         );

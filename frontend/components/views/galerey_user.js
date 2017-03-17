@@ -26,7 +26,7 @@ export default class GalereyUser extends React.Component {
     stop = stop + 7;
   }
 
-  if (this.fullGalerey.length !== 0) {
+  if (this.fullGalerey.length !== 0 || undefined) {
 
     var viewGalerey = this.fullGalerey.slice(start, stop).map( function(galerey, index) {
         return (
@@ -36,7 +36,7 @@ export default class GalereyUser extends React.Component {
         );
       });
     } else {
-      this.fullGalerey = <p>"You don't have picture in galerey"</p>
+      var viewGalerey = <p>"You don't have picture in galerey"</p>
     }
 
     return (

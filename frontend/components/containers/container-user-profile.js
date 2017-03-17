@@ -66,12 +66,11 @@ const AnotherUserProfile = React.createClass({
               <Row>
                 <Col xs='4'>
                   <ListGroupItem>
-                    <FriendsViews         user_friends={this.props.userFriends} />
+                    <FriendsViews         user_friends={this.props.userFriends} userId={this.props.params.userId} />
                   </ListGroupItem>
 
                   <ListGroupItem>
-                    <GalereyViews         user_galerey={this.props.userGalerey.concat(this.props.newsList)} />
-                    <Link to={"/Galerey/" + this.props.profile.id} activeClassName="active">Full {this.props.profile.first_name} Galerey</Link>
+                    <GalereyViews         user_galerey={this.props.userGalerey.concat(this.props.newsList)} userId={this.props.params.userId} />
                   </ListGroupItem>
 
                   {this.props.checkIsThisUserIsFriend == true ?
@@ -81,7 +80,7 @@ const AnotherUserProfile = React.createClass({
 
                 </Col>
                 <Col xs='8'>
-                  <ListGroupItem> <NewsViews            feed_items={this.props.newsList} />      </ListGroupItem>
+                  <ListGroupItem> <NewsViews feed_items={this.props.newsList} />  </ListGroupItem>
                 </Col>
               </Row>
             </ListGroup>

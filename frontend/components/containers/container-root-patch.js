@@ -18,10 +18,8 @@ const RootPath = React.createClass({
   },
 
   updateProps: function() {
-    let that = this
     axiosUser.authentication().then(function() {
       NProgress.done()
-      that.testChotoTam()
     })
   },
 
@@ -32,13 +30,6 @@ const RootPath = React.createClass({
       axiosUser.authentication();
       browserHistory.push('/')
     });
-  },
-
-  testChotoTam: function(){
-    let that = this
-    if (ifAuthenticationTrueRedirect()) {
-      browserHistory.push('/profile')
-    }
   },
 
   render: function() {

@@ -30,7 +30,7 @@ export default class PaginationView extends React.Component {
     }else if (Math.round(this.amountPagination) - Math.round(this.props.pageNumber) <= 2){
       if (this.position[4] !== this.amountPagination){
         for (let i = 0; i < this.position.length; i++) {
-          this.position[i] = this.amountPagination - 3 + i
+          this.position[i] = this.amountPagination - 2 + i
         }
       }
     }else {
@@ -48,7 +48,7 @@ export default class PaginationView extends React.Component {
 
     var viewPagination = []
 
-    for (let i = 0; i < 5; i++){
+    for (let i = 0; i < this.amountPagination; i++){
       viewPagination.push(
         <PaginationItem key={i + ' key PaginationItem'}>
           <PaginationLink onClick={() => browserHistory.push('/Galerey/11/page/' + this.position[i] )} >

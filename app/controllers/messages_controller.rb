@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
 
   def index
-    @@stop = 9
+    @@stop = 29
 
     @user = User.find(params[:user_id])
     @posts = @user.feed[0..@@stop]
@@ -12,8 +12,8 @@ class MessagesController < ApplicationController
   end
 
   def takeMoreNews
-    @@stop += 10
-    
+    @@stop += 30
+
     @user = User.find(params[:user_id])
     @posts = @user.feed[0..@@stop]
     render json: @posts.to_json

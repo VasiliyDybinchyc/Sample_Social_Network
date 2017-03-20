@@ -1,6 +1,7 @@
 import React from 'react';
 import { checkIfYourOnBottomPage, changeStatusModal } from '../../helper/helperFrontend';
 import    * as axiosNews      from '../../axios/axios-news';
+import    NProgress           from 'react-nprogress';
 
 import Lightbox from 'react-image-lightbox';
 
@@ -8,25 +9,34 @@ export default class Messages extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { end: 10,
+    this.state = { end: 30,
                    photoIndex: 0,
                    isOpen: false};
   }
 
   componentWillMount(){
+    this.Done = false
     this.images = []
   }
 
   handleScroll() {
     var stateStart = this.state.start;
     var stateEnd = this.state.end;
-    if (checkIfYourOnBottomPage()) {
+    if (checkIfYourOnBottomPage() && this.Done == false) {
       this.setState({
-        end: stateEnd + 10,
-        start: stateStart + 10
+        end: stateEnd + 30,
+        start: stateStart + 30
       }),
+      NProgress.start()
       axiosNews.getMoreNews(this.props.Id)
+      this.Done = true
+    }
+  }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.feed_items !== prevProps.feed_items) {
+      this.Done = false
+      NProgress.done()
     }
   }
 
@@ -41,8 +51,7 @@ export default class Messages extends React.Component {
 
   render() {
 
-    const {
-               photoIndex,
+    const {    photoIndex,
                isOpen,
            } = this.state;
 
@@ -72,7 +81,6 @@ export default class Messages extends React.Component {
       <div className="Feed">
         <h1>News</h1>
         <div id="News">
-          <strong className={FeedItemsLength > 0 ? 'All-news-title':'none'}>All news: {FeedItemsLength}</strong>
           {FeedItems}
 
           {isOpen &&

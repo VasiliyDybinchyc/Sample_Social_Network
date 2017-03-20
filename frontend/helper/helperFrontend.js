@@ -43,7 +43,8 @@ export function checkIfYourOnBottomPage() {
   const html = document.documentElement;
   const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
   const windowBottom = windowHeight + window.pageYOffset;
-  if (windowBottom >= docHeight) {
-      return true
+
+  if (windowBottom >= docHeight - 500) {
+    return true
   }
 };

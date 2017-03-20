@@ -40,6 +40,15 @@ export default class PaginationView extends React.Component {
     }
   }
 
+  viewAmountPagination() {
+    if (this.amountPagination < 5){
+      return this.amountPagination
+    }
+    else{
+      return 5
+    }
+  }
+
   render() {
     this.changePostion()
 
@@ -47,8 +56,7 @@ export default class PaginationView extends React.Component {
         previousPage = Number(this.props.pageNumber) - 1;
 
     var viewPagination = []
-
-    for (let i = 0; i < this.amountPagination; i++){
+    for (let i = 0; i < this.viewAmountPagination(); i++){
       viewPagination.push(
         <PaginationItem key={i + ' key PaginationItem'}>
           <PaginationLink onClick={() => browserHistory.push('/Galerey/11/page/' + this.position[i] )} >

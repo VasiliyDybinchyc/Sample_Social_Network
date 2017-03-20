@@ -3,8 +3,7 @@ import _ from 'lodash';
 
 const initialState = {
   sessions: [],
-  render: false,
-  openModal: false
+  render: false
 };
 
 const sessionReducer = function(state = initialState, action) {

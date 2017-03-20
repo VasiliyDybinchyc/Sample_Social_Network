@@ -62,3 +62,31 @@ export function resetErrorProps() {
     undefined
   };
 }
+
+export function resetProfileProps() {
+  return {
+    type: types.GET_PROFILE_SUCCESS,
+    undefined
+  }
+}
+
+export function resetFriendProps() {
+  return {
+    type: types.GET_FRIEND_SUCCESS,
+    undefined
+  }
+}
+
+export function resetNewsProps() {
+  return {
+    type: types.GET_NEWS_SUCCESS,
+    undefined
+  }
+}
+
+export function resetGallereyProps() {
+  return {
+    type: types.GET_GALLEREY_SUCCESS,
+    undefined
+  }
+}

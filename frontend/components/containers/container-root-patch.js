@@ -12,14 +12,11 @@ import {  checkReadyToRender, ifAuthenticationTrueRedirect }    from '../../help
 const RootPath = React.createClass({
 
   componentWillMount: function() {
-    NProgress.start();
     this.updateProps();
-
   },
 
   updateProps: function() {
     axiosUser.authentication().then(function() {
-      NProgress.done()
     })
   },
 

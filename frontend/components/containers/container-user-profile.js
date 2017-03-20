@@ -13,46 +13,35 @@ import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
-import { checkReadyToRender, checkIsNotThisMyProfile } from '../../helper/helperFrontend';
+import { checkReadyToRender, checkIsNotThisMyProfile, resetNewsGalereyFriendProfile } from '../../helper/helperFrontend';
 import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
 
   componentWillMount: function() {
-    let that = this
-    axiosUser.getCurrentUser().then(function () {
-      if (checkIsNotThisMyProfile(that.props.userId, that.props.params.userId)) {
-        browserHistory.push('/profile')
-      }
-      that.updateProps(that.props.params.userId)
-    });
+    resetNewsGalereyFriendProfile()
+    this.updateProps(this.props.params.userId)
   },
 
   updateProps: function(userId) {
-    axiosUser.getProfile(userId).then(function () {
-      NProgress.set(0.3);
+      axiosUser.getProfile(userId)
       axiosGallerey.getGallerey(userId);
-    }).then(function () {
       axiosFriend.getFriends(userId);
-    }).then(function () {
-      NProgress.set(0.7);
       axiosFriend.checkIsThisUserIsFriend(userId)
       axiosNews.getNews(userId);
-
-      NProgress.done()
-    })
   },
 
   componentDidMount: function() {
       NProgress.done()
-    },
+  },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params != this.props.params) {
+    if (this.props.params.userId !== nextProps.params.userId) {
+      resetNewsGalereyFriendProfile()
       if (checkIsNotThisMyProfile(this.props.userId, nextProps.params.userId)) {
         browserHistory.push('/profile')
       }
-      this.updateProps(this.props.params.userId)
+      this.updateProps(nextProps.params.userId)
     }
   },
 

@@ -15,32 +15,28 @@ import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
 
 import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
-import { checkReadyToRender, changeStatusModal }                 from '../../helper/helperFrontend';
-
-
+import { checkReadyToRender, changeStatusModal, resetNewsGalereyFriendProfile }                 from '../../helper/helperFrontend';
 
 const CurrentUserProfile = React.createClass({
 
   componentWillMount: function() {
     NProgress.start();
-    let that = this
-    axiosUser.getCurrentUser().then(function () {
-      that.updateProps();
-    });
+    resetNewsGalereyFriendProfile()
+    axiosUser.getCurrentUser()
   },
 
-  updateProps: function() {
-    var Id = this.props.user.id;
-    axiosUser.getCurrentUser().then(function () {
-      NProgress.set(0.3);
-      axiosGallerey.getGallerey(Id);
-    }).then(function () {
-      axiosFriend.getFriends(Id);
-    }).then(function () {
-      NProgress.set(0.7);
-      axiosNews.getNews(Id);
-      NProgress.done()
-    })
+  updateProps: function(Id) {
+    axiosGallerey.getGallerey(Id)
+    axiosFriend.getFriends(Id)
+    axiosNews.getNews(Id)
+    NProgress.done()
+  },
+
+  componentWillReceiveProps: function() {
+    if (Array.isArray(this.props.user) == false && this.oneTimeUpdate == undefined){
+      this.oneTimeUpdate = this.oneTimeUpdate + 1
+      this.updateProps(this.props.user.id)
+    }
   },
 
   render: function() {

@@ -3,8 +3,6 @@ import store from '../store';
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
-import { browserHistory } from 'react-router';
-
 import { getUsersSuccess,
          createUserSuccess,
          createUserError,
@@ -16,7 +14,7 @@ import { getUsersSuccess,
 
 
 export function getUsers() {
-  return axios.get('http://localhost:3000/users')
+  return axios.get('/users')
     .then(response => {
       store.dispatch(getUsersSuccess(response.data));
       return response;
@@ -24,7 +22,7 @@ export function getUsers() {
 }
 
 export function createUser(createdUser) {
-  return axios.post('http://localhost:3000/users', {user: createdUser})
+  return axios.post('/users', {user: createdUser})
     .then(response => {
       if (Array.isArray(response.data)) {
         store.dispatch(createUserError(response.data));
@@ -37,7 +35,7 @@ export function createUser(createdUser) {
 }
 
 export function editUser(editedUser , userId) {
-  return axios.patch('http://localhost:3000/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
+  return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
       console.log(response.data)
       if (Array.isArray(response.data)) {
@@ -51,7 +49,7 @@ export function editUser(editedUser , userId) {
 }
 
 export function getProfile(userId) {
-  return axios.get('http://localhost:3000/users/' + userId)
+  return axios.get('/users/' + userId)
     .then(response => {
       store.dispatch(getProfileSuccess(response.data));
       return response;
@@ -59,11 +57,11 @@ export function getProfile(userId) {
 }
 
 export function authentication() {
-  return axios.get('http://localhost:3000/users/authentication')
+  return axios.get('/users/authentication')
     .then(response => {
       store.dispatch(authenticationSuccess(response.data));
       if (response.data == true) {
-        return axios.get('http://localhost:3000/users/getCurrentUser')
+        return axios.get('/users/getCurrentUser')
           .then(response => {
             store.dispatch(getCurrentUserSuccess(response.data))
             return response;
@@ -74,7 +72,7 @@ export function authentication() {
 }
 
 export function getCurrentUser() {
-  return axios.get('http://localhost:3000/users/getCurrentUser')
+  return axios.get('/users/getCurrentUser')
     .then(response => {
       store.dispatch(getCurrentUserSuccess(response.data));
       return response;

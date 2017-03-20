@@ -1,5 +1,5 @@
 import store from '../store';
-import { resetErrorProps } from '../actions/user-actions';
+import * as userActions from '../actions/user-actions';
 import { changeOpenModal } from '../actions/sessions-actions';
 
 // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
@@ -21,7 +21,14 @@ export function checkReadyToRender() {
 
 // this function reset error props in userReducer in order to don`t see error from previous page
 export function resetError() {
-  store.dispatch(resetErrorProps());
+  store.dispatch(userActions.resetErrorProps());
+};
+
+export function resetNewsGalereyFriendProfile() {
+  store.dispatch(userActions.resetProfileProps());
+  store.dispatch(userActions.resetFriendProps());
+  store.dispatch(userActions.resetNewsProps());
+  store.dispatch(userActions.resetGallereyProps());
 };
 
 export function checkIsNotThisMyProfile(curentID, profileID) {

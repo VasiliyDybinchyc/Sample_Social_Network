@@ -22,14 +22,14 @@ import allFrend from './components/containers/container-all-frend';
 export default (
   <Router history={browserHistory}>
     <Route path="/" component={RootPath} >
-      <Route path="login" component={Login} />
-      <Route path="signup" component={Signup} />
-      <Route path="profile" component={CurrentUserProfileContainer} />
-      <Route path="user/:userId" component={UserProfile} />
-      <Route path="editProfile" component={UserEdit} />
-      <Route path="AllUser" component={AllUser} />
-      <Route path="Galerey/:userId/page/:pageNumber" component={Galerey} />
-      <Route path="allFrend/:userId" component={allFrend} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/profile" component={CurrentUserProfileContainer} />
+      <Route path="/user/:userId" component={UserProfile} />
+      <Route path="/editProfile" component={UserEdit} />
+      <Route path="/AllUser" component={AllUser} />
+      <Route path="/Galerey/:userId/page/:pageNumber" component={Galerey} />
+      <Route path="/allFrend/:userId" component={allFrend} />
     </ Route >
   </Router>
 );

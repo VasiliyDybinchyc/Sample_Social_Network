@@ -10,13 +10,6 @@ import {  Navbar,
 
 export default class NotLoginNav extends React.Component{
 
-  handleClickSignUp() {
-    browserHistory.push('/signup')
-  }
-  handleClickLogin() {
-    browserHistory.push('/login')
-  }
-
   render() {
     return (
     <div>
@@ -26,13 +19,13 @@ export default class NotLoginNav extends React.Component{
 
         <Nav className="ml-auto" navbar>
           <NavItem>
-            <Button color="primary" onClick={this.handleClickSignUp}>
+            <Button color="primary" onClick={() => browserHistory.push('/signup')}>
               Sign up
             </Button>
           </NavItem>{fourSpaces}
 
           <NavItem>
-            <Button color="success" onClick={this.handleClickLogin}>
+            <Button color="success" onClick={() => browserHistory.push('/login')}>
               Log in
             </Button>
           </NavItem>

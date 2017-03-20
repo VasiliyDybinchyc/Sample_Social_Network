@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
   resources :users do
 
-    resources :messages,          only: [:create, :destroy, :index]
+    resources :messages,  only: [:create, :destroy, :index] do
+      collection do
+        get :takeMoreNews
+      end
+    end
 
     resources :galleries, only: [:index, :create, :destroy]
 

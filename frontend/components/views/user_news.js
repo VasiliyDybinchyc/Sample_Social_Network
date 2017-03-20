@@ -1,5 +1,6 @@
 import React from 'react';
 import { checkIfYourOnBottomPage, changeStatusModal } from '../../helper/helperFrontend';
+import    * as axiosNews      from '../../axios/axios-news';
 
 import Lightbox from 'react-image-lightbox';
 
@@ -23,7 +24,9 @@ export default class Messages extends React.Component {
       this.setState({
         end: stateEnd + 10,
         start: stateStart + 10
-      })
+      }),
+      axiosNews.getMoreNews(this.props.Id)
+
     }
   }
 

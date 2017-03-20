@@ -20,6 +20,14 @@ export function getNews(userId) {
     });
 }
 
+export function getMoreNews(userId) {
+  return axios.get('/users/' + userId + '/messages/takeMoreNews')
+    .then(response => {
+      store.dispatch(getNewsSuccess(response.data));
+      return response;
+    });
+}
+
 export function getOnlyUserNews(userId) {
   return axios.get('/users/'+ userId +'/get_only_user_message')
     .then(response => {

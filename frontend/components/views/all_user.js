@@ -37,7 +37,7 @@ export default class AllUsers extends React.Component {
     Users = this.props.list.slice(0, end).map( function(user, index) {
         return (
           <div key={index}>
-            <Link to={"/user/" + user.id} activeClassName="active"><img src={user.avatar.url} id="mini-avatar" width="35" height="35"></img> { + " " + user.first_name + " " + user.last_name}</Link>
+            <Link to={"/user/" + user.id} activeClassName="active"><img src={user.avatar.url} id="mini-avatar" width="35" height="35"></img> {user.first_name + " " + user.last_name}</Link>
           </div>
         );
       });

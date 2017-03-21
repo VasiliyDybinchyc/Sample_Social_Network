@@ -28,6 +28,7 @@ export default class PostNews extends React.Component {
     axiosNews.postNews(userId, data).then(function () {
       axiosNews.getNews(userId);
     });
+    this.setState({error: false})
   }
 
   changeCountSymbol(event){

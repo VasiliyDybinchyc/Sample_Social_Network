@@ -5,7 +5,7 @@ class Message < ApplicationRecord
 
   validates_presence_of :user_id
 
-  validates :content, length: { maximum: 400 }
+  validates :content, length: { maximum: 335 }
 
   validate :content_or_picture_presence
 

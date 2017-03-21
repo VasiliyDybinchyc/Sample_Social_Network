@@ -5,7 +5,7 @@ class Message < ApplicationRecord
 
   validates_presence_of :user_id
 
-  validates :content, length: { maximum: 200 }
+  validates :content, length: { maximum: 400 }
 
   validate :content_or_picture_presence
 
@@ -16,5 +16,5 @@ class Message < ApplicationRecord
       errors[:base] << "Content or picture must presence."
     end
   end
-  
+
 end

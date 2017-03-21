@@ -70,7 +70,7 @@ const AnotherUserProfile = React.createClass({
                 </Col>
                 <Col xs='8'>
                   <ListGroupItem>
-                    <NewsViews feed_items={this.props.newsList} Id={this.props.profile.id} />
+                    <NewsViews feed_items={this.props.newsList} Id={this.props.profile.id} user_friends={this.props.userFriends} user={this.props.profile} />
                   </ListGroupItem>
                 </Col>
               </Row>

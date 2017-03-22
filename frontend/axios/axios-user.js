@@ -39,7 +39,6 @@ export function createUser(createdUser) {
 export function editUser(editedUser , userId) {
   return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
-      console.log(response.data)
       if (Array.isArray(response.data)) {
         store.dispatch(editUserError(response.data));
         return response;
@@ -51,7 +50,7 @@ export function editUser(editedUser , userId) {
 }
 
 export function getProfile(userId) {
-  return axios.get('/users/' + userId)
+  return axios.get('/giveUser/' + userId)
     .then(response => {
       store.dispatch(getProfileSuccess(response.data));
       return response;

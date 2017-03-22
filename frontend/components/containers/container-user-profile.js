@@ -52,7 +52,7 @@ const AnotherUserProfile = React.createClass({
   },
 
   notMyProfile(id) {
-    if (id !== this.props.params.userId) {
+    if (id == this.props.params.userId) {
       browserHistory.push('/profile')
       return false
     }else {
@@ -67,7 +67,9 @@ const AnotherUserProfile = React.createClass({
         {this.props.render && this.state.notMyProfile &&
           <div id='Another_User_Profile'>
             <ListGroup>
-
+              <ListGroupItem>
+                <PersonalInfoViews  user={this.props.profile} />
+              </ListGroupItem>
               <Row>
                 <Col xs='4'>
                   <ListGroupItem>

@@ -10,12 +10,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      if params.require(:id).to_i == current_user.id
-        format.html { redirect_to '/profile' }
-      else
-        render json: User.find(params[:id]).to_json
-      end
+    if params.require(:id).to_i == current_user.id
+      redirect_to '/profile'
+    else
+      render :file => 'layouts/application'
     end
   end
 
@@ -25,7 +23,6 @@ class UsersController < ApplicationController
       log_in @user
       render json: @user.to_json
     else
-      p @user.errors.full_messages
       render json: @user.errors.full_messages
     end
   end
@@ -51,6 +48,10 @@ class UsersController < ApplicationController
   def get_only_user_message
     @message = User.find(params[:id]).messages
     render json: @message.to_json
+  end
+
+  def giveUser
+    render json: User.find(params[:id]).to_json
   end
 
   private

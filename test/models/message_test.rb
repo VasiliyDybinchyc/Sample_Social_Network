@@ -20,8 +20,8 @@ class MessageTest < ActiveSupport::TestCase
     assert_not @messages.valid?
   end
 
-  def test_content_should_be_at_most_200_characters
-    @messages.content = "a" * 201
+  def test_content_should_be_at_most_335_characters
+    @messages.content = "a" * 336
     assert_not @messages.valid?
   end
 

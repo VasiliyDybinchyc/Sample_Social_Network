@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { browserHistory } from 'react-router';
 
 export default class GalereyUser extends React.Component {
 

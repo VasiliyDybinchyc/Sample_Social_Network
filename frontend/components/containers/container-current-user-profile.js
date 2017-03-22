@@ -29,6 +29,7 @@ const CurrentUserProfile = React.createClass({
     axiosGallerey.getGallerey(Id)
     axiosFriend.getFriends(Id)
     axiosNews.getNews(Id)
+    axiosNews.getOnlyUserNews(Id);
     NProgress.done()
   },
 
@@ -55,7 +56,7 @@ const CurrentUserProfile = React.createClass({
                   </ListGroupItem>
 
                   <ListGroupItem >
-                    <GalereyViews      user_galerey={this.props.userGalerey.concat(this.props.newsList)}
+                    <GalereyViews      user_galerey={this.props.userGalerey.concat(this.props.newsUser)}
                                        userId={this.props.user.id}/>
                   </ListGroupItem>
 
@@ -89,9 +90,11 @@ const mapStateToProps = function(store) {
     userFriends: store.friendsState.userFriends,
     userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
+    newsUser: store.newsState.onlyUserNews,
     render: store.sessionState.render = checkReadyToRender( store.userState.currentUser,
                                                             store.friendsState.userFriends,
                                                             store.gallereyState.gallerey,
+                                                            store.newsState.onlyUserNews,
                                                             store.newsState.news)
   };
 };

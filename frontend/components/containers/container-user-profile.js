@@ -34,6 +34,7 @@ const AnotherUserProfile = React.createClass({
       axiosFriend.getFriends(userId);
       axiosFriend.checkIsThisUserIsFriend(userId)
       axiosNews.getNews(userId);
+      axiosNews.getOnlyUserNews(userId);
   },
 
   shouldComponentUpdate: function(){
@@ -77,7 +78,7 @@ const AnotherUserProfile = React.createClass({
                   </ListGroupItem>
 
                   <ListGroupItem>
-                    <GalereyViews         user_galerey={this.props.userGalerey.concat(this.props.newsList)} userId={this.props.params.userId} />
+                    <GalereyViews         user_galerey={this.props.userGalerey.concat(this.props.newsUser)} userId={this.props.params.userId} />
                   </ListGroupItem>
 
                   {this.props.checkIsThisUserIsFriend == true ?
@@ -108,10 +109,12 @@ const mapStateToProps = function(store) {
     userFriends: store.friendsState.userFriends,
     checkIsThisUserIsFriend: store.friendsState.checkIsThisUserIsFriend,
     newsList: store.newsState.news,
+    newsUser: store.newsState.onlyUserNews,
     render: store.sessionState.render = checkReadyToRender( store.userState.userProfile,
                                                             store.gallereyState.gallerey,
                                                             store.friendsState.userFriends,
                                                             store.friendsState.checkIsThisUserIsFriend,
+                                                            store.newsState.onlyUserNews,
                                                             store.newsState.news)
   };
 };

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import store from '../store';
 
+import  { browserHistory }   from 'react-router';
+
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
 import { getUsersSuccess,
@@ -64,6 +66,7 @@ export function authentication() {
         return axios.get('/users/getCurrentUser')
           .then(response => {
             store.dispatch(getCurrentUserSuccess(response.data))
+            browserHistory.push('/profile')
             return response;
           })
       }

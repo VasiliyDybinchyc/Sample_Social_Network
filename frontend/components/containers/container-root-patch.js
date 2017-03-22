@@ -16,8 +16,7 @@ const RootPath = React.createClass({
   },
 
   updateProps: function() {
-    axiosUser.authentication().then(function() {
-    })
+    axiosUser.authentication(this.props.location.pathname)
   },
 
   onSubmit: function(event) {

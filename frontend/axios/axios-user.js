@@ -58,7 +58,7 @@ export function getProfile(userId) {
     });
 }
 
-export function authentication() {
+export function authentication(location) {
   return axios.get('/users/authentication')
     .then(response => {
       store.dispatch(authenticationSuccess(response.data));
@@ -66,7 +66,9 @@ export function authentication() {
         return axios.get('/users/getCurrentUser')
           .then(response => {
             store.dispatch(getCurrentUserSuccess(response.data))
-            browserHistory.push('/profile')
+            if (location == '/login' || location == '/signup') {
+              browserHistory.push('/profile')
+            }
             return response;
           })
       }

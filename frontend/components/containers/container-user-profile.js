@@ -36,6 +36,10 @@ const AnotherUserProfile = React.createClass({
       axiosNews.getNews(userId);
   },
 
+  shouldComponentUpdate: function(){
+    return this.notMyProfile(this.props.currentUserId)
+  },
+
   componentDidMount: function() {
       NProgress.done()
   },
@@ -50,13 +54,14 @@ const AnotherUserProfile = React.createClass({
   notMyProfile(id) {
     if (id !== this.props.params.userId) {
       browserHistory.push('/profile')
+      return false
     }else {
       this.setState({notMyProfile: true})
+      return true
     }
   },
 
   render: function() {
-    this.notMyProfile(this.props.currentUserId)
     return (
       <div>
         {this.props.render && this.state.notMyProfile &&

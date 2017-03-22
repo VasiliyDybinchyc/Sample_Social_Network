@@ -10,7 +10,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: User.find(params[:id]).to_json
+    respond_to do |format|
+      if params.require(:id).to_i == current_user.id
+        format.html { redirect_to '/profile' }
+      else
+        render json: User.find(params[:id]).to_json
+      end
+    end
   end
 
   def create

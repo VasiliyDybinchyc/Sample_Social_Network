@@ -18,12 +18,17 @@ import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
 
+  getInitialState: function() {
+    return {notMyProfile: false};
+  },
+
   componentWillMount: function() {
     resetNewsGalereyFriendProfile()
     this.updateProps(this.props.params.userId)
   },
 
   updateProps: function(userId) {
+      axiosUser.getCurrentUser()
       axiosUser.getProfile(userId)
       axiosGallerey.getGallerey(userId);
       axiosFriend.getFriends(userId);
@@ -38,20 +43,26 @@ const AnotherUserProfile = React.createClass({
   componentWillReceiveProps(nextProps) {
     if (this.props.params.userId !== nextProps.params.userId) {
       resetNewsGalereyFriendProfile()
-      if (checkIsNotThisMyProfile(this.props.userId, nextProps.params.userId)) {
-        browserHistory.push('/profile')
-      }
       this.updateProps(nextProps.params.userId)
     }
   },
 
+  notMyProfile(id) {
+    if (id !== this.props.params.userId) {
+      browserHistory.push('/profile')
+    }else {
+      this.setState({notMyProfile: true})
+    }
+  },
+
   render: function() {
+    this.notMyProfile(this.props.currentUserId)
     return (
       <div>
-        {this.props.render &&
+        {this.props.render && this.state.notMyProfile &&
           <div id='Another_User_Profile'>
             <ListGroup>
-              <ListGroupItem> <PersonalInfoViews    user={this.props.profile} />                 </ListGroupItem>
+
               <Row>
                 <Col xs='4'>
                   <ListGroupItem>
@@ -84,7 +95,7 @@ const AnotherUserProfile = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    userId: store.userState.currentUser.id,
+    currentUserId: store.userState.currentUser.id,
     profile: store.userState.userProfile,
     userGalerey: store.gallereyState.gallerey,
     userFriends: store.friendsState.userFriends,

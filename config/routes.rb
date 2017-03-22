@@ -18,8 +18,6 @@ Rails.application.routes.draw do
 
   get    '/allFrend/:userId',   to: 'application#shit'
 
-  get    '/user/:userId',   to: 'application#shit'
-
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :relationships,       only: [:create, :destroy] do

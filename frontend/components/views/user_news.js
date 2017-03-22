@@ -78,7 +78,7 @@ export default class Messages extends React.Component {
           <ListGroupItem key={index} style={{width: 690}}>
             <ListGroupItemHeading>
 
-              <Link to={"/user/" + feed_item.user_id} key={index} className="avatar-frend" >
+              <Link to={"/users/" + feed_item.user_id} key={index} className="avatar-frend" >
                 <img src={that.getRightUser(that.props.user_friends, feed_item.user_id).croppersAvatar == undefined ?
                           that.props.user.croppersAvatar.url :
                           that.getRightUser(that.props.user_friends, feed_item.user_id).croppersAvatar.url }

@@ -5,7 +5,7 @@ import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } fro
 import    * as axiosNews      from '../../axios/axios-news';
 import    NProgress           from 'react-nprogress';
 
-import Lightbox from 'react-image-lightbox';
+
 
 export default class Messages extends React.Component {
 
@@ -110,21 +110,7 @@ export default class Messages extends React.Component {
           {FeedItems}
         </ListGroup>
 
-          {isOpen &&
-            <Lightbox
-                mainSrc={this.images[photoIndex]}
-                nextSrc={this.images[(photoIndex + 1) % this.images.length]}
-                prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
-
-                onCloseRequest={() => {this.setState({ isOpen: false }), this.images=[] }}
-                onMovePrevRequest={() => this.setState({
-                    photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
-                })}
-                onMoveNextRequest={() => this.setState({
-                    photoIndex: (photoIndex + 1) % this.images.length,
-                })}
-            />
-          }
+          
         </div>
       </div>
     );

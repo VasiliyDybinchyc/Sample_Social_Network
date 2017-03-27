@@ -30,6 +30,6 @@ export default (
       <Route path="/AllUser" component={AllUser} />
       <Route path="/Galerey/:userId/page/:pageNumber" component={Galerey} />
       <Route path="/allFrend/:userId" component={allFrend} />
-    </ Route >
+    </Route>
   </Router>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Lightbox from 'react-image-lightbox';
+
 
 export default class Galerey extends React.Component{
 
@@ -57,21 +57,7 @@ export default class Galerey extends React.Component{
             : 'You not have Galerey' }
           </section>
         </div>
-        {isOpen &&
-          <Lightbox
-              mainSrc={this.images[photoIndex]}
-              nextSrc={this.images[(photoIndex + 1) % this.images.length]}
-              prevSrc={this.images[(photoIndex + this.images.length - 1) % this.images.length]}
-
-              onCloseRequest={() => {this.setState({ isOpen: false }), this.images=[] }}
-              onMovePrevRequest={() => this.setState({
-                  photoIndex: (photoIndex + this.images.length - 1) % this.images.length,
-              })}
-              onMoveNextRequest={() => this.setState({
-                  photoIndex: (photoIndex + 1) % this.images.length,
-              })}
-          />
-        }
+        
       </div>
     );
   }

@@ -53,7 +53,6 @@ const RootPath = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    store: store,
     authentication: store.userState.authentication,
     userId: store.userState.currentUser.id,
     render: store.sessionState.render = checkReadyToRender( store.userState.authentication,

@@ -7,6 +7,8 @@ import {  Button,
 
 import { fourSpaces }     from '../../helper/helperFrontend';
 
+import { onSubmitCreateSesion } from '../functionForComponent/testForTest'
+
 export default React.createClass({
 
   getEmail: function() {
@@ -33,7 +35,7 @@ export default React.createClass({
             <Input type="password" name="LoginPassword" getRef={(ref) => (this.password = ref)} id="LoginPassword" placeholder="Password" />
           </FormGroup>{fourSpaces}
 
-          <Button color="success" onClick={this.props.onSubmit}>
+          <Button id='sessionSubmitButton' color="success" onClick={this.props.onSubmit}>
             Log in
           </Button>
         </Form>

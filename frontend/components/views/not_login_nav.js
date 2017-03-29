@@ -25,7 +25,7 @@ export default class NotLoginNav extends React.Component{
           </NavItem>{fourSpaces}
 
           <NavItem>
-            <Button color="success" onClick={() => browserHistory.push('/login')}>
+            <Button color="success" className={'loginButton'} onClick={() => browserHistory.push('/login')}>
               Log in
             </Button>
           </NavItem>

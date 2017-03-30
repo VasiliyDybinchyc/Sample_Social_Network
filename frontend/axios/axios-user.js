@@ -61,16 +61,6 @@ export function authentication(location) {
   return axios.get('/users/authentication')
     .then(response => {
       store.dispatch(authenticationSuccess(response.data));
-      if (response.data == true) {
-        return axios.get('/users/getCurrentUser')
-          .then(response => {
-            store.dispatch(getCurrentUserSuccess(response.data))
-            if (location == '/login' || location == '/signup') {
-              browserHistory.push('/profile')
-            }
-            return response;
-          })
-      }
       return response;
     });
 }

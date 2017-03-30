@@ -1,4 +1,5 @@
 import * as types from '../actions/action-types';
+import { getCurrentUser } from '../axios/axios-user'
 
 export function getUsersSuccess(users) {
   return {
@@ -43,6 +44,9 @@ export function getProfileSuccess(userProfile) {
 }
 
 export function authenticationSuccess(authentication) {
+  if (authentication == true) {
+    getCurrentUser()
+  }
   return {
     type: types.AUTHENTICATION_SUCCESS,
     authentication

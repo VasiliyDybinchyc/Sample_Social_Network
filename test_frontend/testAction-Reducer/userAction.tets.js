@@ -9,7 +9,7 @@ import { describe, it }     from 'mocha'
 
 import * as userActions from '../../frontend/actions/user-actions';
 
-import { fakeUser } from '../fakeData/fakeResponse'
+import { fakeUser, UserOne, UserTwo, manyUsers, errorOne, errorTwo } from '../fakeData/fakeResponse'
 
 import { mockStore,
         storeStateMockUserNotLogin } from '../fakeData/fakeStore'
@@ -49,8 +49,57 @@ describe('Test actions user', () => {
   })
 
   it('Test action getCurrentUserSuccess', () => {
-    store.dispatch(userActions.getCurrentUserSuccess(fakeUser))
-    expect(store.getState().currentUser).to.equal(fakeUser);
+    expect(store.getState().currentUser).to.not.equal(UserOne);
+    store.dispatch(userActions.getCurrentUserSuccess(UserOne))
+    expect(store.getState().currentUser).to.equal(UserOne);
+  })
+
+  it('Test action getProfileSuccess', () => {
+    expect(store.getState().userProfile).to.not.equal(UserOne);
+    store.dispatch(userActions.getProfileSuccess(UserOne))
+    expect(store.getState().userProfile).to.equal(UserOne);
+  })
+
+  it('Test action editUserSuccess', () => {
+    expect(store.getState().currentUser).to.not.equal(UserTwo);
+    store.dispatch(userActions.editUserSuccess(UserTwo))
+    expect(store.getState().currentUser).to.equal(UserTwo);
+  })
+
+  it('Test action createUserSuccess', () => {
+    expect(store.getState().currentUser).to.not.equal(UserOne);
+    store.dispatch(userActions.createUserSuccess(UserOne))
+    expect(store.getState().currentUser).to.equal(UserOne);
+  })
+
+  it('Test action getUsersSuccess', () => {
+    expect(store.getState().users).to.not.equal(manyUsers);
+    store.dispatch(userActions.getUsersSuccess(manyUsers))
+    expect(store.getState().users).to.equal(manyUsers);
+  })
+
+  it('Test action createUserError', () => {
+    expect(store.getState().error).to.not.equal(errorOne);
+    store.dispatch(userActions.createUserError(errorOne))
+    expect(store.getState().error).to.equal(errorOne);
+  })
+
+  it('Test action editUserError', () => {
+    expect(store.getState().error).to.not.equal(errorTwo);
+    store.dispatch(userActions.createUserError(errorTwo))
+    expect(store.getState().error).to.equal(errorTwo);
+  })
+
+  it('Test action resetErrorProps', () => {
+    expect(store.getState().error).to.equal(errorTwo);
+    store.dispatch(userActions.resetErrorProps())
+    expect(store.getState().error).to.equal(undefined);
+  })
+
+  it('Test action resetProfileProps', () => {
+    expect(store.getState().userProfile).to.equal(UserOne);
+    store.dispatch(userActions.resetProfileProps())
+    expect(store.getState().userProfile).to.equal(undefined);
   })
 
   describe('Sad test', () => {
@@ -68,13 +117,13 @@ describe('Test actions user', () => {
     it('Sad preparation', () => {
       nock(host)
         .get('/users/getCurrentUser')
-        .reply(200, fakeUser)
+        .reply(200, UserOne)
       store.dispatch(userActions.authenticationSuccess(true))
     })
 
     it('Sad test action authenticationSuccess', () => {
      expect(store.getState().authentication).to.equal(true);
-     expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(fakeUser.user.firstName) ;
+     expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(UserOne.user.firstName) ;
     })
   })
 })

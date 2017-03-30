@@ -17,13 +17,13 @@ const userReducer = function(state = initialState, action) {
       return Object.assign({}, state, { users: action.users });
 
     case types.CREATE_USER_SUCCESS:
-      return Object.assign({}, state, { user: action.user });
+      return Object.assign({}, state, { currentUser: action.createdUser });
 
     case types.CREATE_USER_ERROR:
       return Object.assign({}, state, { error: action.error });
 
     case types.EDIT_USER_SUCCESS:
-      return Object.assign({}, state, { user: action.user });
+      return Object.assign({}, state, { currentUser: action.editedUser });
 
     case types.EDIT_USER_ERROR:
       return Object.assign({}, state, { error: action.error });

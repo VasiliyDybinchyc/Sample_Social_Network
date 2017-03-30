@@ -8,10 +8,10 @@ export function getUsersSuccess(users) {
   };
 }
 
-export function createUserSuccess(user) {
+export function createUserSuccess(createdUser) {
   return {
     type: types.CREATE_USER_SUCCESS,
-    user
+    createdUser
   };
 }
 
@@ -22,10 +22,10 @@ export function createUserError(error) {
   };
 }
 
-export function editUserSuccess(user) {
+export function editUserSuccess(editedUser) {
   return {
     type: types.EDIT_USER_SUCCESS,
-    user
+    editedUser
   };
 }
 

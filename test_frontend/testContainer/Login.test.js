@@ -12,8 +12,8 @@ import { mount, shallow }   from 'enzyme'
 import { mockStore,
         storeStateMockUserNotLogin } from '../fakeData/fakeStore'
 
-import ContainerLoginUser   from '../../components/containers/container-login-user'
-import CreateSession          from '../../components/views/create_session';
+import ContainerLoginUser   from '../../frontend/components/containers/container-login-user'
+import CreateSession          from '../../frontend/components/views/create_session';
 
 import sinon from 'sinon'
 

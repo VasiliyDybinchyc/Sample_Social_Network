@@ -7,8 +7,6 @@ import {  Button,
 
 import { fourSpaces }     from '../../helper/helperFrontend';
 
-import { onSubmitCreateSesion } from '../functionForComponent/testForTest'
-
 export default React.createClass({
 
   getEmail: function() {

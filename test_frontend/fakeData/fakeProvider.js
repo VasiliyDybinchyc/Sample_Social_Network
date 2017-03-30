@@ -5,8 +5,8 @@ import { createMemoryHistory, createBrowserHistory } from 'history';
 
 import { Router, Route, browserHistory, IndexRoute, useRouterHistory, match, Switch } from 'react-router';
 
-import ContainerRootPatch   from '../../components/containers/container-root-patch'
-import ContainerLoginUser   from '../../components/containers/container-login-user'
+import ContainerRootPatch   from '../../frontend/components/containers/container-root-patch'
+import ContainerLoginUser   from '../../frontend/components/containers/container-login-user'
 
 export const containerRoot = (store) => {
   return(

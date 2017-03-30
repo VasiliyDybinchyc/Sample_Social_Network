@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack --config ./frontend/webpack.config.js",
     "start": "webpack-dev-server  .",
-    "test": "mocha --compilers js:babel-core/register ./frontend/test/*.test.js"
+    "test": "mocha --compilers js:babel-core/register ./test_frontend/*.test.js"
   },
   "repository": {
     "type": "git",

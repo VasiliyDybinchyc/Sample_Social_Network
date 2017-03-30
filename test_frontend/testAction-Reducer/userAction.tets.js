@@ -16,9 +16,6 @@ import { mockStore,
 
 import userReducer from '../../frontend/reducers/user-reducer';
 /*
-import newsReducer from '../../frontend/reducers/news-reducer';
-import friendsReducer from '../../frontend/reducers/friends-reducer';
-import sessionReducer from '../../frontend/reducers/session-reducer';
 import gallereyReducer from '../../frontend/reducers/gallerey-reducer';
 */
 import { createStore } from 'redux';

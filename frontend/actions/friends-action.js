@@ -7,10 +7,10 @@ export function newFriendSuccess(friends) {
   };
 };
 
-export function deleteFriendSuccess(friends) {
+export function deleteFriendSuccess() {
   return {
     type: types.DELETE_FRIEND_SUCCESS,
-    friends
+    undefined
   };
 };
 

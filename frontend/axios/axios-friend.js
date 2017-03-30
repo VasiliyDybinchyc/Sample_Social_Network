@@ -17,7 +17,7 @@ export function newFriend(FriendId) {
 export function deleteFriend(FriendId) {
   return axios.delete('/relationships/' + FriendId)
     .then(response => {
-      store.dispatch(deleteFriendSuccess(response.data));
+      store.dispatch(deleteFriendSuccess());
       return response;
     });
 };

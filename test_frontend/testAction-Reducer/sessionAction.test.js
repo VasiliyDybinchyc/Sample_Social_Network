@@ -9,7 +9,7 @@ import { describe, it }     from 'mocha'
 
 import * as sessionsActions from '../../frontend/actions/sessions-actions';
 
-import { UserOne } from '../fakeData/fakeResponse'
+import { userOne } from '../fakeData/fakeResponse'
 
 import { mockStore,
         storeStateMockUserNotLogin } from '../fakeData/fakeStore'
@@ -33,13 +33,13 @@ describe('Test actions session', () => {
   })
 
   it('Test action createSessionSuccess', () => {
-    expect(store.getState().sessions).to.not.equal(UserOne);
-    store.dispatch(sessionsActions.createSessionSuccess(UserOne))
-    expect(store.getState().sessions).to.equal(UserOne);
+    expect(store.getState().sessions).to.not.equal(userOne);
+    store.dispatch(sessionsActions.createSessionSuccess(userOne))
+    expect(store.getState().sessions).to.equal(userOne);
   })
 
   it('Test action deleteSessionSuccess', () => {
-    expect(store.getState().sessions).to.equal(UserOne);
+    expect(store.getState().sessions).to.equal(userOne);
     store.dispatch(sessionsActions.deleteSessionSuccess())
     expect(store.getState().sessions).to.equal(undefined);
   })

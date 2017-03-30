@@ -1,17 +1,23 @@
 
-export const UserOne = {
+export const userOne = {
   user: { firstName: "Vasiliy", lastName: "Pupkin", id: "1" }
 };
 
-export const UserTwo = {
+export const userTwo = {
   user: { firstName: "Joseph", lastName: "Stalin", id: "227" }
 };
 
-export const ManyUsers = [UserOne, UserTwo];
+export const manyUsers = [userOne, userTwo];
 
 export const errorOne = ['error 1', 'error 2']
 
 export const errorTwo = ['error 3', 'error 4']
+
+export const messageOne = 'I`m a message one'
+
+export const messageTwo = 'I`m a message two'
+
+export const manyMessages = [messageOne, messageTwo];
 
 /*
 getUsersSuccess

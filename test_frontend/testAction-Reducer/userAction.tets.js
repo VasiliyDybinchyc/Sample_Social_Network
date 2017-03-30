@@ -15,10 +15,12 @@ import { mockStore,
         storeStateMockUserNotLogin } from '../fakeData/fakeStore'
 
 import userReducer from '../../frontend/reducers/user-reducer';
+/*
 import newsReducer from '../../frontend/reducers/news-reducer';
 import friendsReducer from '../../frontend/reducers/friends-reducer';
 import sessionReducer from '../../frontend/reducers/session-reducer';
 import gallereyReducer from '../../frontend/reducers/gallerey-reducer';
+*/
 import { createStore } from 'redux';
 
 const host = 'http://localhost';
@@ -53,10 +55,14 @@ describe('Test actions user', () => {
 
   describe('Sad test', () => {
 
-    createdStore = createStore(userReducer);
-
     before( () => {
+      createdStore = createStore(userReducer);
       store = createdStore;
+    })
+
+    it('Sad test check value', () => {
+     expect(store.getState().authentication).to.not.equal(false);
+     expect(initialStore.getState().userState.currentUser).to.empty
     })
 
     it('Sad preparation', () => {
@@ -68,7 +74,7 @@ describe('Test actions user', () => {
 
     it('Sad test action authenticationSuccess', () => {
      expect(store.getState().authentication).to.equal(true);
-     expect(store.getState().currentUser.user.firstName).to.equal(fakeUser.user.firstName) ;
+     expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(fakeUser.user.firstName) ;
     })
   })
 })

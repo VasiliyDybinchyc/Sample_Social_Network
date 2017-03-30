@@ -15,15 +15,10 @@ import { mockStore,
 
 import { containerRoot } from '../fakeData/fakeProvider'
 
-const doc = jsdom.jsdom('<!doctype html><html><body><div className="wrap"></div></body></html>')
+const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
 
 global.document = doc
 global.window = doc.defaultView
-
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server'
-
-ReactDOMServer.renderToString(<containerRoot />)
 
 describe('Root page', () => {
 
@@ -38,7 +33,6 @@ describe('Root page', () => {
     })
 
     it('Container rendered', () => {
-      expect(wrapper.find('.wrap').length).to.equal(1);
       expect(wrapper.length).to.equal(1);
     })
 

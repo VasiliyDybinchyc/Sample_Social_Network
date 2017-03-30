@@ -61,7 +61,7 @@ describe('Test actions user', () => {
     })
 
     it('Sad test check value', () => {
-     expect(store.getState().authentication).to.not.equal(false);
+     expect(store.getState().authentication).to.not.equal(true);
      expect(initialStore.getState().userState.currentUser).to.empty
     })
 

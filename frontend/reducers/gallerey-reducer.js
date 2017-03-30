@@ -13,7 +13,7 @@ const gallereyReducer = function(state = initialState, action) {
       return Object.assign({}, state, { gallerey: action.gallerey });
 
     case types.POST_GALLEREY_SUCCESS:
-      return Object.assign({}, state, { postGallerey: action.postGallerey });
+      return Object.assign({}, state, { lastPostGallerey: action.postGallerey });
   }
 
   return state;

@@ -15,9 +15,7 @@ import { mockStore,
         storeStateMockUserNotLogin } from '../fakeData/fakeStore'
 
 import userReducer from '../../frontend/reducers/user-reducer';
-/*
-import gallereyReducer from '../../frontend/reducers/gallerey-reducer';
-*/
+
 import { createStore } from 'redux';
 
 const host = 'http://localhost';

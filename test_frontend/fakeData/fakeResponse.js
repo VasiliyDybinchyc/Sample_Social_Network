@@ -19,10 +19,8 @@ export const messageTwo = 'I`m a message two'
 
 export const manyMessages = [messageOne, messageTwo];
 
-/*
-getUsersSuccess
-editUserSuccess
-getProfileSuccess
-authenticationSuccess
-getCurrentUserSuccess
-*/
+export const imageOne = 'I`m a image one just trust me'
+
+export const imageTwo = 'I`m a image two just trust me'
+
+export const menyImages = [imageOne, imageTwo];

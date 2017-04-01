@@ -11,7 +11,6 @@ import { checkReadyToRender, resetError } from '../../helper/helperFrontend';
 const EditUser = React.createClass({
 
   componentWillMount: function() {
-      resetError();
       NProgress.start();
     },
 

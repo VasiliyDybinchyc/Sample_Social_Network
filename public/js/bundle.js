@@ -3626,7 +3626,7 @@ function getUsers() {
 }
 
 function createUser(createdUser) {
-  return _axios2.default.post('/users', { user: createdUser }).then(function (response) {
+  return _axios2.default.post('/users', createdUser).then(function (response) {
     (0, _logic.checkError)(response.data, _userActions.createUserSuccess);
   });
 }
@@ -40888,7 +40888,6 @@ var EditUser = _react2.default.createClass({
 
 
   componentWillMount: function componentWillMount() {
-    (0, _helperFrontend.resetError)();
     _reactNprogress2.default.start();
   },
 
@@ -41250,14 +41249,19 @@ var SignUp = _react2.default.createClass({
   onSubmit: function onSubmit(event) {
     event.preventDefault();
 
-    var user = {};
-    user.first_name = this.refs.child.getFirstName();
-    user.last_name = this.refs.child.getLastName();
-    user.email = this.refs.child.getEmail();
-    user.password = this.refs.child.getPassword();
-    user.password_confirmation = this.refs.child.getPasswordConf();
+    var dataUser = new FormData();
 
-    axiosUser.createUser(user).then(function () {
+    dataUser.append('user[first_name]', this.refs.child.getFirstName());
+    dataUser.append('user[last_name]', this.refs.child.getLastName());
+    dataUser.append('user[email]', this.refs.child.getEmail());
+    dataUser.append('user[password]', this.refs.child.getPassword());
+    dataUser.append('user[password_confirmation]', this.refs.child.getPasswordConf());
+    dataUser.append('user[avatar]', this.refs.child.getAvatar());
+    dataUser.append('user[croppersAvatar]', this.refs.child.getCroppersAvatar());
+
+    console.log(dataUser);
+
+    axiosUser.createUser(dataUser).then(function () {
       axiosUser.authentication();
     });
   },

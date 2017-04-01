@@ -61,12 +61,6 @@ class UsersController < ApplicationController
                                   :password_confirmation, :avatar, :croppersAvatar)
    end
 
-   def edit_user_params
-     params.require(:user).permit(:first_name,:last_name, :email, :password,
-                                  :password_confirmation, :phone_number,
-                                  :favorite_book, :favorite_film, :avatar, :croppersAvatar)
-   end
-
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)

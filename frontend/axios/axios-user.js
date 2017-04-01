@@ -26,7 +26,7 @@ export function getUsers() {
 }
 
 export function createUser(createdUser) {
-  return axios.post('/users', {user: createdUser})
+  return axios.post('/users', createdUser)
     .then(response => {
       checkError(response.data, createUserSuccess)
     });

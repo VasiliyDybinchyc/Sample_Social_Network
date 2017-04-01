@@ -23,17 +23,6 @@ const host = 'http://localhost';
 axios.defaults.host = host;
 axios.defaults.adapter = httpAdapter;
 
-/*
-Little description if you see strange test like a "Sad test"
-and you do not understand why I do it this way this because
-nock ('or something') does not have time to fulfill next action
-and I did not think of anything better than to allow him to be late
-until the next test and check him state
-
-but if you know how do this sed test happy
-please send me a message on : VasiliyDybinchyk@gmail.com
-*/
-
 describe('Test actions user', () => {
 
   let store, createdStore

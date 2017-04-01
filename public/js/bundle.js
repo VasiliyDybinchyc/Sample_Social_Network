@@ -31257,7 +31257,7 @@ var Messages = function (_React$Component) {
     value: function handleScroll() {
       var stateStart = this.state.start;
       var stateEnd = this.state.end;
-      if ((0, _helperFrontend.checkIfYourOnBottomPage)() && this.Done == false) {
+      if ((0, _helperFrontend.checkIfYourOnBottomPage)() && this.props.feed_items.length >= stateEnd && this.Done == false) {
         this.setState({
           end: stateEnd + 30,
           start: stateStart + 30

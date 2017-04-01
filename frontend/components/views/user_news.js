@@ -24,7 +24,7 @@ export default class Messages extends React.Component {
   handleScroll() {
     var stateStart = this.state.start;
     var stateEnd = this.state.end;
-    if (checkIfYourOnBottomPage() && this.Done == false) {
+    if (checkIfYourOnBottomPage() && this.props.feed_items.length >= stateEnd && this.Done == false) {
       this.setState({
         end: stateEnd + 30,
         start: stateStart + 30
@@ -109,8 +109,6 @@ export default class Messages extends React.Component {
         <ListGroup>
           {FeedItems}
         </ListGroup>
-
-          
         </div>
       </div>
     );

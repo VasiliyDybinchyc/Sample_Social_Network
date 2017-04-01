@@ -40766,7 +40766,6 @@ var CurrentUserProfile = _react2.default.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps() {
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     if (Array.isArray(this.props.user) == false && this.oneTimeUpdate == undefined) {
       this.oneTimeUpdate = this.oneTimeUpdate + 1;
       this.updateProps(this.props.user.id);
@@ -40774,7 +40773,6 @@ var CurrentUserProfile = _react2.default.createClass({
   },
 
   render: function render() {
-    this.componentWillReceiveProps(); // this bad
     return _react2.default.createElement(
       'div',
       null,
@@ -41158,7 +41156,7 @@ var RootPath = _react2.default.createClass({
 
   onSubmit: function onSubmit(event) {
     event.preventDefault();
-    var userId = this.props.store.userState.currentUser.id;
+    var userId = this.props.userId;
     axiosSessions.deleteSession(userId).then(function () {
       axiosUser.authentication();
       _reactRouter.browserHistory.push('/');

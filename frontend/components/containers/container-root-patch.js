@@ -21,7 +21,7 @@ const RootPath = React.createClass({
 
   onSubmit: function(event) {
     event.preventDefault();
-    let userId = this.props.store.userState.currentUser.id;
+    let userId = this.props.userId;
     axiosSessions.deleteSession(userId).then(function () {
       axiosUser.authentication();
       browserHistory.push('/')

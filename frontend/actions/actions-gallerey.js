@@ -13,3 +13,10 @@ export function getGallereySuccess(gallerey) {
     gallerey
   };
 }
+
+export function resetGallereyProps() {
+  return {
+    type: types.GET_GALLEREY_SUCCESS,
+    undefined
+  }
+}

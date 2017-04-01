@@ -61,4 +61,10 @@ describe('Test actions news', () => {
     store.dispatch(friendActions.checkIsThisUserIsFriendSuccess(true))
     expect(store.getState().checkIsThisUserIsFriend).to.equal(true)
   })
+
+  it('Test action resetFriendProps', () => {
+    expect(store.getState().userFriends).to.equal(manyUsers)
+    store.dispatch(friendActions.resetFriendProps())
+    expect(store.getState().userFriends).to.equal(undefined)
+  })
 })

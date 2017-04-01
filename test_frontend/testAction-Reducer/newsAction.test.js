@@ -49,4 +49,10 @@ describe('Test actions news', () => {
     store.dispatch(newsActions.getOnlyUserNewsSuccess(manyMessages))
     expect(store.getState().onlyUserNews).to.equal(manyMessages)
   })
+
+  it('Test action resetNewsProps', () => {
+    expect(store.getState().news).to.equal(manyMessages)
+    store.dispatch(newsActions.resetNewsProps())
+    expect(store.getState().news).to.equal(undefined)
+  })
 })

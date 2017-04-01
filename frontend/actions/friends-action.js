@@ -34,3 +34,10 @@ export function checkIsThisUserIsFriendSuccess(checkIsThisUserIsFriend) {
     checkIsThisUserIsFriend
   };
 };
+
+export function resetFriendProps() {
+  return {
+    type: types.GET_FRIEND_SUCCESS,
+    undefined
+  }
+}

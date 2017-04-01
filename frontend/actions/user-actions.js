@@ -73,24 +73,3 @@ export function resetProfileProps() {
     undefined
   }
 }
-
-export function resetFriendProps() {
-  return {
-    type: types.GET_FRIEND_SUCCESS,
-    undefined
-  }
-}
-
-export function resetNewsProps() {
-  return {
-    type: types.GET_NEWS_SUCCESS,
-    undefined
-  }
-}
-
-export function resetGallereyProps() {
-  return {
-    type: types.GET_GALLEREY_SUCCESS,
-    undefined
-  }
-}

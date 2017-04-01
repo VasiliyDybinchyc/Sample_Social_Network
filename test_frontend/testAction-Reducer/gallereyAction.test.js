@@ -43,4 +43,10 @@ describe('Test actions news', () => {
     store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
   })
+
+  it('Test action resetGallereyProps', () => {
+    expect(store.getState().gallerey).to.equal(menyImages)
+    store.dispatch(newsActions.resetGallereyProps())
+    expect(store.getState().gallerey).to.equal(undefined)
+  })
 })

@@ -20,3 +20,10 @@ export function getOnlyUserNewsSuccess(onlyUserNews) {
     onlyUserNews
   };
 }
+
+export function resetNewsProps() {
+  return {
+    type: types.GET_NEWS_SUCCESS,
+    undefined
+  }
+}

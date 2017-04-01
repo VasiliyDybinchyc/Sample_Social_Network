@@ -34,6 +34,7 @@ const CurrentUserProfile = React.createClass({
   },
 
   componentWillReceiveProps: function() {
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     if (Array.isArray(this.props.user) == false && this.oneTimeUpdate == undefined){
       this.oneTimeUpdate = this.oneTimeUpdate + 1
       this.updateProps(this.props.user.id)
@@ -41,6 +42,7 @@ const CurrentUserProfile = React.createClass({
   },
 
   render: function() {
+    this.componentWillReceiveProps() // this bad
     return(
         <div>
           {this.props.render &&

@@ -1,5 +1,8 @@
 import store from '../store';
 import * as userActions from '../actions/user-actions';
+import * as friendActions from '../actions/friends-action';
+import * as newsActions from '../actions/news-actions';
+import * as gallereyActions from '../actions/actions-gallerey';
 import { changeOpenModal } from '../actions/sessions-actions';
 
 // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
@@ -21,9 +24,9 @@ export function checkReadyToRender() {
 
 export function resetNewsGalereyFriendProfile() {
   store.dispatch(userActions.resetProfileProps());
-  store.dispatch(userActions.resetFriendProps());
-  store.dispatch(userActions.resetNewsProps());
-  store.dispatch(userActions.resetGallereyProps());
+  store.dispatch(friendActions.resetFriendProps());
+  store.dispatch(newsActions.resetNewsProps());
+  store.dispatch(gallereyActions.resetGallereyProps());
 };
 
 export function checkIsNotThisMyProfile(curentID, profileID) {

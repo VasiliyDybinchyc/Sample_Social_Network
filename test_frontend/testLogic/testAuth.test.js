@@ -10,13 +10,17 @@ import { describe, it }     from 'mocha'
 import { mockStore,
         storeStateMockUserNotLogin } from '../fakeData/fakeStore'
 
-import { userOne } from '../fakeData/fakeResponse'
+import { userOne, userTwo, manyError } from '../fakeData/fakeResponse'
 
 import userReducer from '../../frontend/reducers/user-reducer';
 
 import { createStore } from 'redux';
 
-import { auth } from '../../frontend/logic/logic'
+import { auth, checkError } from '../../frontend/helper/logic'
+
+import * as axiosUser from '../../frontend/axios/axios-user';
+
+import {getCurrentUserSuccess} from '../../frontend/actions/user-actions';
 
 const host = 'http://localhost';
 
@@ -64,5 +68,31 @@ describe('Test logic', () => {
       expect(initialStore.getState().userState.authentication).to.equal(true);
       expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userOne.user.firstName);
     })
+  })
+
+  it('Test checkError helper set user',() => {
+    expect(initialStore.getState().userState.error).to.empty;
+    expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userOne.user.firstName)
+
+    checkError(userTwo, getCurrentUserSuccess)
+
+    expect(initialStore.getState().userState.error).to.equal(undefined)
+    expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userTwo.user.firstName);
+  })
+
+  it('Test checkError helper set error',() => {
+    expect(initialStore.getState().userState.error).to.equal(undefined)
+
+    checkError(manyError, "action")
+
+    expect(initialStore.getState().userState.error).to.equal(manyError)
+  })
+
+  it('Test checkError helper reset error',() => {
+    expect(initialStore.getState().userState.error).to.equal(manyError)
+
+    checkError(userTwo, getCurrentUserSuccess)
+
+    expect(initialStore.getState().userState.error).to.equal(undefined)
   })
 })

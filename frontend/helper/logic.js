@@ -13,3 +13,12 @@ export function auth() {
     }
   })
 }
+
+export function checkError(result, action) {
+  if (Array.isArray(result)) {
+    return store.dispatch(actionUser.createUserError(result))
+  }else {
+    store.dispatch(actionUser.resetErrorProps())
+    return store.dispatch(action(result));
+  }
+}

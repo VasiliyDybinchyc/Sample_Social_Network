@@ -13,6 +13,8 @@ export const errorOne = ['error 1', 'error 2']
 
 export const errorTwo = ['error 3', 'error 4']
 
+export const manyError = [errorOne, errorTwo];
+
 export const messageOne = 'I`m a message one'
 
 export const messageTwo = 'I`m a message two'

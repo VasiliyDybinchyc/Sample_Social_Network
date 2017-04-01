@@ -5,6 +5,8 @@ import  { browserHistory }   from 'react-router';
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
+import { checkError }     from '../helper/logic';
+
 import { getUsersSuccess,
          createUserSuccess,
          createUserError,
@@ -26,26 +28,14 @@ export function getUsers() {
 export function createUser(createdUser) {
   return axios.post('/users', {user: createdUser})
     .then(response => {
-      if (Array.isArray(response.data)) {
-        store.dispatch(createUserError(response.data));
-        return response;
-      }else {
-        store.dispatch(createUserSuccess(response.data));
-        return response;
-      }
+      checkError(response.data, createUserSuccess)
     });
 }
 
 export function editUser(editedUser , userId) {
   return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
-      if (Array.isArray(response.data)) {
-        store.dispatch(editUserError(response.data));
-        return response;
-      }else {
-        store.dispatch(editUserSuccess(response.data));
-        return response;
-      }
+      checkError(response.data, editUserSuccess)
     });
 }
 

@@ -70,3 +70,10 @@ export function resetProfileProps() {
     undefined
   }
 }
+
+export function resetCurrentUser() {
+  return {
+    type: types.RESET_CURRENT_USER,
+    currentUser: []
+  }
+}

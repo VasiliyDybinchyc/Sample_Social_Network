@@ -1893,6 +1893,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fourSpaces = undefined;
 exports.checkReadyToRender = checkReadyToRender;
+exports.resetCurrentUser = resetCurrentUser;
 exports.resetNewsGalereyFriendProfile = resetNewsGalereyFriendProfile;
 exports.checkIsNotThisMyProfile = checkIsNotThisMyProfile;
 exports.checkIfYourOnBottomPage = checkIfYourOnBottomPage;
@@ -1938,6 +1939,10 @@ function checkReadyToRender() {
       return false;
     }
   }
+};
+
+function resetCurrentUser() {
+  _store2.default.dispatch(userActions.resetCurrentUser());
 };
 
 function resetNewsGalereyFriendProfile() {
@@ -2747,6 +2752,7 @@ var EDIT_USER_ERROR = exports.EDIT_USER_ERROR = 'EDIT_USER_ERROR';
 var GET_PROFILE_SUCCESS = exports.GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
 var AUTHENTICATION_SUCCESS = exports.AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
 var GET_CURRENT_USER_SUCCESS = exports.GET_CURRENT_USER_SUCCESS = 'GET_CURRENT_USER_SUCCESS';
+var RESET_CURRENT_USER = exports.RESET_CURRENT_USER = 'RESET_CURRENT_USER';
 
 var CREATE_SESSION_SUCCESS = exports.CREATE_SESSION_SUCCESS = 'CREATE_SESSION_SUCCESS';
 var DELETE_SESSION_SUCCESS = exports.DELETE_SESSION_SUCCESS = 'DELETE_SESSION_SUCCESS';
@@ -26773,6 +26779,7 @@ exports.authenticationSuccess = authenticationSuccess;
 exports.getCurrentUserSuccess = getCurrentUserSuccess;
 exports.resetErrorProps = resetErrorProps;
 exports.resetProfileProps = resetProfileProps;
+exports.resetCurrentUser = resetCurrentUser;
 
 var _actionTypes = __webpack_require__(20);
 
@@ -26849,6 +26856,13 @@ function resetProfileProps() {
   return {
     type: types.GET_PROFILE_SUCCESS,
     undefined: undefined
+  };
+}
+
+function resetCurrentUser() {
+  return {
+    type: types.RESET_CURRENT_USER,
+    currentUser: []
   };
 }
 
@@ -41055,6 +41069,8 @@ var _axiosSessions = __webpack_require__(113);
 
 var axiosSessions = _interopRequireWildcard(_axiosSessions);
 
+var _logic = __webpack_require__(221);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -41079,7 +41095,7 @@ var LogIn = _react2.default.createClass({
     user.password = this.refs.child.getPassword();
 
     axiosSessions.createSession(user).then(function () {
-      axiosUser.authentication();
+      (0, _logic.auth)();
     });
   },
 
@@ -41137,6 +41153,8 @@ var _reactstrap = __webpack_require__(12);
 
 var _helperFrontend = __webpack_require__(14);
 
+var _logic = __webpack_require__(221);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -41150,7 +41168,7 @@ var RootPath = _react2.default.createClass({
   },
 
   updateProps: function updateProps() {
-    axiosUser.authentication(this.props.location.pathname);
+    (0, _logic.auth)();
   },
 
   onSubmit: function onSubmit(event) {
@@ -41159,6 +41177,7 @@ var RootPath = _react2.default.createClass({
     axiosSessions.deleteSession(userId).then(function () {
       axiosUser.authentication();
       _reactRouter.browserHistory.push('/');
+      (0, _helperFrontend.resetCurrentUser)();
     });
   },
 
@@ -41230,6 +41249,8 @@ var _axiosUser = __webpack_require__(25);
 
 var axiosUser = _interopRequireWildcard(_axiosUser);
 
+var _logic = __webpack_require__(221);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -41262,7 +41283,7 @@ var SignUp = _react2.default.createClass({
     console.log(dataUser);
 
     axiosUser.createUser(dataUser).then(function () {
-      axiosUser.authentication();
+      (0, _logic.auth)();
     });
   },
 
@@ -42377,6 +42398,8 @@ var _userActions = __webpack_require__(67);
 
 var actionUser = _interopRequireWildcard(_userActions);
 
+var _reactRouter = __webpack_require__(9);
+
 var _store = __webpack_require__(27);
 
 var _store2 = _interopRequireDefault(_store);
@@ -42387,9 +42410,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function auth() {
   return axiosUser.authentication().then(function (result) {
-    if (result.data == true) {
+
+    if (result.data == true && _store2.default.getState().userState.currentUser.id !== undefined) {
       _store2.default.dispatch(actionUser.authenticationSuccess(true));
-      return axiosUser.getCurrentUser();
+      _reactRouter.browserHistory.push('/profile');
+      console.log('signup');
+    } else if (result.data == true) {
+      _store2.default.dispatch(actionUser.authenticationSuccess(true));
+      console.log('login');
+      return axiosUser.getCurrentUser().then(function () {
+        _reactRouter.browserHistory.push('/profile');
+      });
     } else {
       return _store2.default.dispatch(actionUser.authenticationSuccess(false));
     }
@@ -42713,6 +42744,9 @@ var userReducer = function userReducer() {
       return Object.assign({}, state, { authentication: action.authentication });
 
     case types.GET_CURRENT_USER_SUCCESS:
+      return Object.assign({}, state, { currentUser: action.currentUser });
+
+    case types.RESET_CURRENT_USER:
       return Object.assign({}, state, { currentUser: action.currentUser });
 
   }

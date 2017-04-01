@@ -22,6 +22,10 @@ export function checkReadyToRender() {
   }
 };
 
+export function resetCurrentUser() {
+  store.dispatch(userActions.resetCurrentUser());
+};
+
 export function resetNewsGalereyFriendProfile() {
   store.dispatch(userActions.resetProfileProps());
   store.dispatch(friendActions.resetFriendProps());

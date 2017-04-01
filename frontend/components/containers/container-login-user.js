@@ -6,6 +6,8 @@ import NProgress              from 'react-nprogress';
 import    * as axiosUser      from '../../axios/axios-user';
 import    * as axiosSessions  from '../../axios/axios-sessions';
 
+import { auth }    from '../../helper/logic';
+
 const LogIn = React.createClass({
 
   componentWillMount: function() {
@@ -24,7 +26,7 @@ const LogIn = React.createClass({
     user.password   = this.refs.child.getPassword();
 
     axiosSessions.createSession(user).then(function () {
-      axiosUser.authentication()
+      auth()
     });
   },
 

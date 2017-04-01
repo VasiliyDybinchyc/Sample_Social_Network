@@ -99,4 +99,12 @@ describe('Test actions user', () => {
     store.dispatch(userActions.resetProfileProps())
     expect(store.getState().userProfile).to.equal(undefined);
   })
+
+  it('Action resetCurrentUser change value store state currentUser from userOne on empty', () => {
+    store.dispatch(userActions.getCurrentUserSuccess(userOne))
+    expect(store.getState().currentUser).to.equal(userOne);
+
+    store.dispatch(userActions.resetCurrentUser())
+    expect(store.getState().currentUser).to.empty
+  })
 })

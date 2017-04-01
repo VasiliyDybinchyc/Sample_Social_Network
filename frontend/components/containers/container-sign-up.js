@@ -6,6 +6,8 @@ import NProgress          from 'react-nprogress';
 
 import   * as axiosUser   from '../../axios/axios-user';
 
+import { auth }    from '../../helper/logic';
+
 
 const SignUp = React.createClass({
 
@@ -33,7 +35,7 @@ const SignUp = React.createClass({
     console.log(dataUser)
 
     axiosUser.createUser(dataUser).then(function () {
-      axiosUser.authentication()
+      auth()
     });
   },
 

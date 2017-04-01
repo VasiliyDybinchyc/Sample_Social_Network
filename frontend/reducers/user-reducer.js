@@ -37,6 +37,9 @@ const userReducer = function(state = initialState, action) {
     case types.GET_CURRENT_USER_SUCCESS:
       return Object.assign({}, state, { currentUser: action.currentUser });
 
+    case types.RESET_CURRENT_USER:
+      return Object.assign({}, state, { currentUser: action.currentUser });
+
     }
 
   return state;

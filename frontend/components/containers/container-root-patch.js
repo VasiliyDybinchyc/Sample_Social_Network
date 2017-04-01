@@ -7,7 +7,10 @@ import    NotLoginNav             from '../views/not_login_nav';
 import    LoginNav                from '../views/login_nav';
 import    NProgress               from 'react-nprogress';
 import {  Container }             from 'reactstrap';
-import {  checkReadyToRender, ifAuthenticationTrueRedirect }    from '../../helper/helperFrontend';
+
+import {  checkReadyToRender, ifAuthenticationTrueRedirect, resetCurrentUser }    from '../../helper/helperFrontend';
+
+import { auth }    from '../../helper/logic';
 
 const RootPath = React.createClass({
 
@@ -16,7 +19,7 @@ const RootPath = React.createClass({
   },
 
   updateProps: function() {
-    axiosUser.authentication(this.props.location.pathname)
+    auth()
   },
 
   onSubmit: function(event) {
@@ -25,6 +28,7 @@ const RootPath = React.createClass({
     axiosSessions.deleteSession(userId).then(function () {
       axiosUser.authentication();
       browserHistory.push('/')
+      resetCurrentUser()
     });
   },
 

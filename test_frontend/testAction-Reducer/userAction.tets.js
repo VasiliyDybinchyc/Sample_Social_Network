@@ -38,87 +38,76 @@ describe('Test actions user', () => {
 
   let store, createdStore
 
-  before( () => {
+  beforeEach( () => {
     createdStore = createStore(userReducer);
     store = createdStore;
   })
 
-  it('Test action getCurrentUserSuccess', () => {
-    expect(store.getState().currentUser).to.not.equal(userOne);
+  it('Action authentication change value store state authentication from undefined on true', () => {
+    expect(store.getState().authentication).to.equal(undefined);
+    store.dispatch(userActions.authenticationSuccess(true))
+    expect(store.getState().authentication).to.equal(true);
+  })
+
+  it('Action getCurrentUserSuccess change value store state currentUser from empty on userOne', () => {
+    expect(store.getState().currentUser).to.empty;
     store.dispatch(userActions.getCurrentUserSuccess(userOne))
     expect(store.getState().currentUser).to.equal(userOne);
   })
 
-  it('Test action getProfileSuccess', () => {
-    expect(store.getState().userProfile).to.not.equal(userOne);
+  it('Action getProfileSuccess change value store state userProfile from empty on userOne', () => {
+    expect(store.getState().userProfile).to.empty;
     store.dispatch(userActions.getProfileSuccess(userOne))
     expect(store.getState().userProfile).to.equal(userOne);
   })
 
-  it('Test action editUserSuccess', () => {
-    expect(store.getState().currentUser).to.not.equal(userTwo);
+  it('Action editUserSuccess change value store state currentUser from userOne on userTwo', () => {
+    store.dispatch(userActions.getCurrentUserSuccess(userOne))
+    expect(store.getState().currentUser).to.equal(userOne);
+
     store.dispatch(userActions.editUserSuccess(userTwo))
     expect(store.getState().currentUser).to.equal(userTwo);
   })
 
-  it('Test action createUserSuccess', () => {
-    expect(store.getState().currentUser).to.not.equal(userOne);
+  it('Action createUserSuccess change value store state currentUser from empty on userOne', () => {
+    expect(store.getState().currentUser).to.empty;
     store.dispatch(userActions.createUserSuccess(userOne))
     expect(store.getState().currentUser).to.equal(userOne);
   })
 
-  it('Test action getUsersSuccess', () => {
-    expect(store.getState().users).to.not.equal(manyUsers);
+  it('Action getUsersSuccess change value store state users from empty on manyUsers', () => {
+    expect(store.getState().users).to.empty;
     store.dispatch(userActions.getUsersSuccess(manyUsers))
     expect(store.getState().users).to.equal(manyUsers);
   })
 
-  it('Test action createUserError', () => {
-    expect(store.getState().error).to.not.equal(errorOne);
+  it('Action createUserError change value store state error from undefined on errorOne', () => {
+    expect(store.getState().error).to.equal(undefined);
     store.dispatch(userActions.createUserError(errorOne))
     expect(store.getState().error).to.equal(errorOne);
   })
 
-  it('Test action editUserError', () => {
-    expect(store.getState().error).to.not.equal(errorTwo);
+  it('Action editUserError change value store state error from errorOne on errorTwo', () => {
+    store.dispatch(userActions.createUserError(errorOne))
+    expect(store.getState().error).to.equal(errorOne);
+
     store.dispatch(userActions.createUserError(errorTwo))
     expect(store.getState().error).to.equal(errorTwo);
   })
 
-  it('Test action resetErrorProps', () => {
+  it('Action resetErrorProps change value store state error from errorTwo on undefined', () => {
+    store.dispatch(userActions.createUserError(errorTwo))
     expect(store.getState().error).to.equal(errorTwo);
+
     store.dispatch(userActions.resetErrorProps())
     expect(store.getState().error).to.equal(undefined);
   })
 
-  it('Test action resetProfileProps', () => {
+  it('Action resetProfileProps change value store state userProfile from userOne on undefined', () => {
+    store.dispatch(userActions.getProfileSuccess(userOne))
     expect(store.getState().userProfile).to.equal(userOne);
+
     store.dispatch(userActions.resetProfileProps())
     expect(store.getState().userProfile).to.equal(undefined);
-  })
-
-  describe('Sad test', () => {
-
-    before( () => {
-      createdStore = createStore(userReducer);
-      store = createdStore;
-    })
-
-    it('Sad test check value', () => {
-     expect(store.getState().authentication).to.not.equal(true);
-     expect(initialStore.getState().userState.currentUser).to.empty
-    })
-
-    it('Sad preparation', () => {
-      nock(host)
-        .get('/users/getCurrentUser')
-        .reply(200, userOne)
-      store.dispatch(userActions.authenticationSuccess(true))
-    })
-
-    it('Sad test action authenticationSuccess', () => {
-     expect(store.getState().authentication).to.equal(true);
-     expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userOne.user.firstName) ;
-    })
   })
 })

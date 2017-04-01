@@ -27,31 +27,33 @@ describe('Test actions news', () => {
 
   let store, createdStore
 
-  before( () => {
+  beforeEach( () => {
     createdStore = createStore(newsReducer);
     store = createdStore;
   })
 
-  it('Test action postNews', () => {
+  it('Action postNews change value store state lastNews from undefined on messageOne', () => {
     expect(store.getState().lastNews).to.equal(undefined)
     store.dispatch(newsActions.postNewsSuccess(messageOne))
     expect(store.getState().lastNews).to.equal(messageOne)
   })
 
-  it('Test action getNewsSuccess', () => {
+  it('Action getNewsSuccess change value store state news from undefined on manyMessages', () => {
     expect(store.getState().news).to.equal(undefined)
     store.dispatch(newsActions.getNewsSuccess(manyMessages))
     expect(store.getState().news).to.equal(manyMessages)
   })
 
-  it('Test action getOnlyUserNewsSuccess', () => {
+  it('Action getOnlyUserNewsSuccess change value store state onlyUserNews from empty on manyMessages', () => {
     expect(store.getState().onlyUserNews).to.empty
     store.dispatch(newsActions.getOnlyUserNewsSuccess(manyMessages))
     expect(store.getState().onlyUserNews).to.equal(manyMessages)
   })
 
-  it('Test action resetNewsProps', () => {
+  it('Action resetNewsProps change value store state news from manyMessages on undefined', () => {
+    store.dispatch(newsActions.getNewsSuccess(manyMessages))
     expect(store.getState().news).to.equal(manyMessages)
+    
     store.dispatch(newsActions.resetNewsProps())
     expect(store.getState().news).to.equal(undefined)
   })

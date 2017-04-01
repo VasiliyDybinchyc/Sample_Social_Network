@@ -57,7 +57,7 @@ export function getProfile(userId) {
     });
 }
 
-export function authentication(location) {
+export function authentication() {
   return axios.get('/users/authentication')
     .then(response => {
       store.dispatch(authenticationSuccess(response.data));

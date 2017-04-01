@@ -27,25 +27,27 @@ describe('Test actions news', () => {
 
   let store, createdStore
 
-  before( () => {
+  beforeEach( () => {
     createdStore = createStore(gallereyReducer);
     store = createdStore;
   })
 
-  it('Test action postGallereySuccess', () => {
+  it('Action postGallereySuccess change value store state lastPostGallerey from undefined on imageOne', () => {
     expect(store.getState().lastPostGallerey).to.equal(undefined)
     store.dispatch(newsActions.postGallereySuccess(imageOne))
     expect(store.getState().lastPostGallerey).to.equal(imageOne)
   })
 
-  it('Test action getGallereySuccess', () => {
+  it('Action getGallereySuccess change value store state gallerey from undefined on menyImages', () => {
     expect(store.getState().gallerey).to.equal(undefined)
     store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
   })
 
-  it('Test action resetGallereyProps', () => {
+  it('Action resetGallereyProps change value store state gallerey from menyImages on undefined', () => {
+    store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
+    
     store.dispatch(newsActions.resetGallereyProps())
     expect(store.getState().gallerey).to.equal(undefined)
   })

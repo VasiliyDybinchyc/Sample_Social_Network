@@ -44,9 +44,6 @@ export function getProfileSuccess(userProfile) {
 }
 
 export function authenticationSuccess(authentication) {
-  if (authentication == true) {
-    getCurrentUser()
-  }
   return {
     type: types.AUTHENTICATION_SUCCESS,
     authentication

@@ -36,7 +36,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 group :production do

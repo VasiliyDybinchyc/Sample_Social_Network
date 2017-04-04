@@ -35,7 +35,7 @@ const LogIn = React.createClass({
     user.password   = this.refs.child.getPassword();
 
     axiosSessions.createSession(user).then(function () {
-      auth()
+      auth(true)
     });
   },
 

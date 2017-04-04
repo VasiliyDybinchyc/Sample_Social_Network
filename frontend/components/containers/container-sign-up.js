@@ -38,7 +38,7 @@ const SignUp = React.createClass({
     dataUser.append('user[croppersAvatar]',         this.refs.child.getCroppersAvatar())
 
     axiosUser.createUser(dataUser).then(function () {
-      auth()
+      auth(true)
     });
   },
 

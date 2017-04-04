@@ -4,17 +4,17 @@ import { browserHistory } from 'react-router';
 
 import store from '../store'
 
-export function auth() {
+export function auth(redirect) {
   return axiosUser.authentication().then(result => {
 
     if(result.data == true && store.getState().userState.currentUser.id !== undefined) {
       store.dispatch(actionUser.authenticationSuccess(true))
-      browserHistory.push('/profile')
+      redirect && browserHistory.push('/profile')
     }
     else if (result.data == true){
       store.dispatch(actionUser.authenticationSuccess(true))
       return axiosUser.getCurrentUser().then( () => {
-        browserHistory.push('/profile')
+        redirect && browserHistory.push('/profile')
       })
     }
     else{

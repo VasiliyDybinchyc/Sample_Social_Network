@@ -19,6 +19,8 @@ import sinon from 'sinon'
 
 import ReactTestUtils from 'react-addons-test-utils'
 
+import { containerLogin } from '../fakeData/fakeProvider'
+
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
 
 global.document = doc
@@ -33,7 +35,7 @@ describe('Login page', () => {
 
     beforeEach( () => {
       store = mockStore(storeStateMockUserNotLogin);
-      wrapper = mount(<ContainerLoginUser />)
+      wrapper = mount(containerLogin(store))
     })
 
     it('Container rendered', () => {
@@ -42,10 +44,10 @@ describe('Login page', () => {
 
     describe('CreateSession views', () => {
 
-      beforeEach( () => {
-        store = mockStore(storeStateMockUserNotLogin);
-        wrapper = mount(<ContainerLoginUser />)
-      })
+      // beforeEach( () => {
+      //   store = mockStore(storeStateMockUserNotLogin);
+      //   wrapper = mount(containerLogin(store))
+      // })
 
       it('Contains a Form', () => {
         expect(wrapper.find('Form').length).to.equal(1);

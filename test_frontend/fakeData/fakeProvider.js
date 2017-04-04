@@ -18,8 +18,10 @@ export const containerRoot = (store) => {
   )
 }
 
-export const containerLogin = () => {
+export const containerLogin = (store) => {
   return(
-    <ContainerLoginUser />
+    <Provider store={store}>
+      <ContainerLoginUser />
+    </Provider>
   )
 }

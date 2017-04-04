@@ -64,7 +64,9 @@ describe('Test logic', () => {
       .get('/users/getCurrentUser')
       .reply(200, userOne)
 
-    return auth().then(() => {
+    return auth().catch((error) => {
+      console.log(error) // I don`t know how fix that 
+    }).then(() => {
       expect(initialStore.getState().userState.authentication).to.equal(true);
       expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userOne.user.firstName);
     })

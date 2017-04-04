@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       log_in @user
       render json: @user.to_json
     else
-      render json: @user.to_json
+      render json: ['Email or password incorrect']
     end
   end
 

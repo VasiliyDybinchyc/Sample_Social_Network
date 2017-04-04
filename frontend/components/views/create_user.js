@@ -39,7 +39,11 @@ export default React.createClass({
   },
 
   getCroppersAvatar: function() {
-    return this.refs.cropper.getCroppedCanvas().toDataURL();
+      try {
+      return this.refs.cropper.getCroppedCanvas().toDataURL();
+    } catch (error) {
+      return undefined;
+    }
   },
 
   changeCropp: function() {

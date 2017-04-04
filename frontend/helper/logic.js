@@ -10,11 +10,9 @@ export function auth() {
     if(result.data == true && store.getState().userState.currentUser.id !== undefined) {
       store.dispatch(actionUser.authenticationSuccess(true))
       browserHistory.push('/profile')
-      console.log('signup')
     }
     else if (result.data == true){
       store.dispatch(actionUser.authenticationSuccess(true))
-      console.log('login')
       return axiosUser.getCurrentUser().then( () => {
         browserHistory.push('/profile')
       })

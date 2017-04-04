@@ -18,6 +18,10 @@ const EditUser = React.createClass({
       NProgress.done()
     },
 
+  componentWillUnmount: function() {
+      resetError()
+    },
+
   onSubmit: function(event) {
     event.preventDefault();
     let userId = this.props.userId;
@@ -34,7 +38,6 @@ const EditUser = React.createClass({
 
     axiosUser.editUser(dataUser, userId).then(function () {
       axiosUser.getCurrentUser();
-
     });
   },
 

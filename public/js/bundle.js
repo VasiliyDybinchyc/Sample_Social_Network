@@ -1893,6 +1893,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fourSpaces = undefined;
 exports.checkReadyToRender = checkReadyToRender;
+exports.resetError = resetError;
 exports.resetCurrentUser = resetCurrentUser;
 exports.resetNewsGalereyFriendProfile = resetNewsGalereyFriendProfile;
 exports.checkIsNotThisMyProfile = checkIsNotThisMyProfile;
@@ -1939,6 +1940,11 @@ function checkReadyToRender() {
       return false;
     }
   }
+};
+
+// this function reset error props in userReducer in order to don`t see error from previous page
+function resetError() {
+  _store2.default.dispatch(userActions.resetErrorProps());
 };
 
 function resetCurrentUser() {
@@ -30592,11 +30598,13 @@ var _reactRouter = __webpack_require__(9);
 
 var _sessionsActions = __webpack_require__(112);
 
+var _logic = __webpack_require__(221);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function createSession(User) {
   return _axios2.default.post('/sessions', { user: User }).then(function (response) {
-    _store2.default.dispatch((0, _sessionsActions.createSessionSuccess)(response.data));
+    (0, _logic.checkError)(response.data, _sessionsActions.createSessionSuccess);
     return response;
   });
 }
@@ -30779,7 +30787,11 @@ exports.default = _react2.default.createClass({
   },
 
   getCroppersAvatar: function getCroppersAvatar() {
-    return this.refs.cropper.getCroppedCanvas().toDataURL();
+    try {
+      return this.refs.cropper.getCroppedCanvas().toDataURL();
+    } catch (error) {
+      return undefined;
+    }
   },
 
   changeCropp: function changeCropp() {
@@ -40909,6 +40921,10 @@ var EditUser = _react2.default.createClass({
     _reactNprogress2.default.done();
   },
 
+  componentWillUnmount: function componentWillUnmount() {
+    (0, _helperFrontend.resetError)();
+  },
+
   onSubmit: function onSubmit(event) {
     event.preventDefault();
     var userId = this.props.userId;
@@ -41069,6 +41085,14 @@ var _axiosSessions = __webpack_require__(113);
 
 var axiosSessions = _interopRequireWildcard(_axiosSessions);
 
+var _reactRedux = __webpack_require__(24);
+
+var _error = __webpack_require__(68);
+
+var _error2 = _interopRequireDefault(_error);
+
+var _helperFrontend = __webpack_require__(14);
+
 var _logic = __webpack_require__(221);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -41087,6 +41111,10 @@ var LogIn = _react2.default.createClass({
     _reactNprogress2.default.done();
   },
 
+  componentWillUnmount: function componentWillUnmount() {
+    (0, _helperFrontend.resetError)();
+  },
+
   onSubmit: function onSubmit(event) {
     event.preventDefault();
 
@@ -41103,12 +41131,20 @@ var LogIn = _react2.default.createClass({
     return _react2.default.createElement(
       'div',
       null,
+      this.props.error == undefined ? null : _react2.default.createElement(_error2.default, { error: this.props.error }),
       _react2.default.createElement(_create_session2.default, { onSubmit: this.onSubmit, ref: 'child' })
     );
   }
 });
 
-exports.default = LogIn;
+var mapStateToProps = function mapStateToProps(store) {
+
+  return {
+    error: store.userState.error
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(LogIn);
 
 /***/ }),
 /* 209 */
@@ -41251,6 +41287,8 @@ var axiosUser = _interopRequireWildcard(_axiosUser);
 
 var _logic = __webpack_require__(221);
 
+var _helperFrontend = __webpack_require__(14);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -41267,6 +41305,10 @@ var SignUp = _react2.default.createClass({
     _reactNprogress2.default.done();
   },
 
+  componentWillUnmount: function componentWillUnmount() {
+    (0, _helperFrontend.resetError)();
+  },
+
   onSubmit: function onSubmit(event) {
     event.preventDefault();
 
@@ -41279,8 +41321,6 @@ var SignUp = _react2.default.createClass({
     dataUser.append('user[password_confirmation]', this.refs.child.getPasswordConf());
     dataUser.append('user[avatar]', this.refs.child.getAvatar());
     dataUser.append('user[croppersAvatar]', this.refs.child.getCroppersAvatar());
-
-    console.log(dataUser);
 
     axiosUser.createUser(dataUser).then(function () {
       (0, _logic.auth)();
@@ -42414,10 +42454,8 @@ function auth() {
     if (result.data == true && _store2.default.getState().userState.currentUser.id !== undefined) {
       _store2.default.dispatch(actionUser.authenticationSuccess(true));
       _reactRouter.browserHistory.push('/profile');
-      console.log('signup');
     } else if (result.data == true) {
       _store2.default.dispatch(actionUser.authenticationSuccess(true));
-      console.log('login');
       return axiosUser.getCurrentUser().then(function () {
         _reactRouter.browserHistory.push('/profile');
       });

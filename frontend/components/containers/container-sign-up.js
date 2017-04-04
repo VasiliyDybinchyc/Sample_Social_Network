@@ -8,6 +8,7 @@ import   * as axiosUser   from '../../axios/axios-user';
 
 import { auth }    from '../../helper/logic';
 
+import { resetError } from '../../helper/helperFrontend';
 
 const SignUp = React.createClass({
 
@@ -17,6 +18,10 @@ const SignUp = React.createClass({
 
   componentDidMount: function() {
       NProgress.done()
+    },
+
+  componentWillUnmount: function() {
+      resetError()
     },
 
   onSubmit: function(event) {
@@ -31,8 +36,6 @@ const SignUp = React.createClass({
     dataUser.append('user[password_confirmation]',  this.refs.child.getPasswordConf())
     dataUser.append('user[avatar]',                 this.refs.child.getAvatar())
     dataUser.append('user[croppersAvatar]',         this.refs.child.getCroppersAvatar())
-
-    console.log(dataUser)
 
     axiosUser.createUser(dataUser).then(function () {
       auth()

@@ -4,10 +4,12 @@ import { browserHistory } from 'react-router';
 import { deleteSessionSuccess,
          createSessionSuccess} from '../actions/sessions-actions';
 
+import { checkError }     from '../helper/logic';
+
 export function createSession(User) {
   return axios.post('/sessions', {user: User})
     .then(response => {
-      store.dispatch(createSessionSuccess(response.data));
+      checkError(response.data, createSessionSuccess)
       return response;
     });
 }

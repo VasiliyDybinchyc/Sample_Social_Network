@@ -6,6 +6,11 @@ import NProgress              from 'react-nprogress';
 import    * as axiosUser      from '../../axios/axios-user';
 import    * as axiosSessions  from '../../axios/axios-sessions';
 
+import  { connect }       from 'react-redux';
+import ErrorViews         from '../views/error';
+
+import { resetError } from '../../helper/helperFrontend';
+
 import { auth }    from '../../helper/logic';
 
 const LogIn = React.createClass({
@@ -16,6 +21,10 @@ const LogIn = React.createClass({
 
   componentDidMount: function() {
       NProgress.done()
+    },
+
+  componentWillUnmount: function() {
+      resetError()
     },
 
   onSubmit: function(event) {
@@ -33,10 +42,18 @@ const LogIn = React.createClass({
   render: function() {
     return (
       <div>
+        {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
         <CreateSession onSubmit={this.onSubmit} ref="child" />
       </div>
     );
   },
 });
 
-export default ( LogIn );
+const mapStateToProps = function(store) {
+
+  return {
+    error: store.userState.error
+  };
+};
+
+export default connect(mapStateToProps)(LogIn);

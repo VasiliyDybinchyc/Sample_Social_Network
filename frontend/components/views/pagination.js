@@ -30,7 +30,7 @@ export default class PaginationView extends React.Component {
     }else if (Math.round(this.amountPagination) - Math.round(this.props.pageNumber) <= 2){
       if (this.position[4] !== this.amountPagination){
         for (let i = 0; i < this.position.length; i++) {
-          this.position[i] = this.amountPagination - 2 + i
+          this.position[i] = this.amountPagination - 4 + i
         }
       }
     }else {

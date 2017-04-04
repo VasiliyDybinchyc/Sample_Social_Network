@@ -19,7 +19,7 @@ const RootPath = React.createClass({
   },
 
   updateProps: function() {
-    auth(true)
+    auth()
   },
 
   onSubmit: function(event) {

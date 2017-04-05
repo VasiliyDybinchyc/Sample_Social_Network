@@ -15,7 +15,6 @@ const Galerey = React.createClass({
     var Id = this.props.params.userId
     NProgress.start();
     axiosGallerey.getGallerey(Id);
-    axiosNews.getOnlyUserNews(Id);
   },
 
   componentDidMount: function() {
@@ -27,9 +26,9 @@ const Galerey = React.createClass({
       <div>
         {this.props.render &&
           <div className="Full galerey">
-            <PaginationView pageNumber={this.props.params.pageNumber} paginationFor={'galerey'} amountElement={this.props.galere.concat(this.props.newsList)} />
+            <PaginationView pageNumber={this.props.params.pageNumber} paginationFor={'galerey'} amountElement={this.props.galere} />
             <h1>Full Galerey</h1>
-            <FullGalereyViews galerey_items={this.props.galere.concat(this.props.newsList)} pageNumber={this.props.params.pageNumber} />
+            <FullGalereyViews galerey_items={this.props.galere} pageNumber={this.props.params.pageNumber} />
           </div>
         }
       </div>
@@ -40,7 +39,6 @@ const Galerey = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    newsList: store.newsState.onlyUserNews,
     galere: store.gallereyState.gallerey,
     render: store.sessionState.render = checkReadyToRender( store.newsState.onlyUserNews,
                                                             store.gallereyState.gallerey)

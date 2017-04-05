@@ -1,6 +1,8 @@
 import React from 'react';
 
 import    * as axiosNews    from '../../axios/axios-news';
+import    * as axiosGallerey  from '../../axios/axios-gallerey';
+
 import    ErrorViews         from '../views/error';
 import {  Button,
           Form,
@@ -26,9 +28,13 @@ export default class PostNews extends React.Component {
     data.append('message[picture]', this.newsFile.files[0])
 
     axiosNews.postNews(userId, data).then(function () {
-      axiosNews.getNews(userId);
+      if (data.get('message[picture]') !== 'undefined') {
+        axiosGallerey.getGallerey(userId);
+      }
     });
     this.setState({error: false})
+    this.newsText.value = ''
+    this.newsFile.value = ''
   }
 
   changeCountSymbol(event){

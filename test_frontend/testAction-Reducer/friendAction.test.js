@@ -23,7 +23,7 @@ const host = 'http://localhost';
 axios.defaults.host = host;
 axios.defaults.adapter = httpAdapter;
 
-describe('Test actions news', () => {
+describe('Test actions friends', () => {
 
   let store, createdStore
 
@@ -67,7 +67,7 @@ describe('Test actions news', () => {
   it('Action resetFriendProps change value store state userFriends from manyUsers on undefined', () => {
     store.dispatch(friendActions.getFriendsSuccess(manyUsers))
     expect(store.getState().userFriends).to.equal(manyUsers)
-    
+
     store.dispatch(friendActions.resetFriendProps())
     expect(store.getState().userFriends).to.equal(undefined)
   })

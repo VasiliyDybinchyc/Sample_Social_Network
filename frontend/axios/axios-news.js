@@ -4,11 +4,11 @@ import { postNewsSuccess, getNewsSuccess, getOnlyUserNewsSuccess, getMoreNewsSuc
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
-export function postNews(userId, news) {
-  return axios.post('/users/' + userId + '/messages', news, CONFIG_MULTIPART_FORM_DATA)
-    .then(news => {
-      store.dispatch(postNewsSuccess(news));
-      return news;
+export function postNews(userId, dataForServer) {
+  return axios.post('/users/' + userId + '/messages', dataForServer, CONFIG_MULTIPART_FORM_DATA)
+    .then(response => {
+      store.dispatch(postNewsSuccess([response.data]));
+      return response;
     });
 }
 

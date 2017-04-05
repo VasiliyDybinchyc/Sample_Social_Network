@@ -23,8 +23,12 @@ class MessagesController < ApplicationController
     @message = current_user.messages.new(message_params)
     if link_youtube?(@message.content)
       @message.content = youtube_embed(@message.content)
+    elsif @message.picture
+      galerie = current_user.galleries.new(galerie_params)
+      galerie.save
     end
     @message.save
+    render json: @message.to_json
   end
 
   def destroy
@@ -34,6 +38,10 @@ class MessagesController < ApplicationController
   end
 
   private
+
+    def galerie_params
+      params.require(:message).permit(:picture)
+    end
 
     def message_params
       params.require(:message).permit(:content, :picture)

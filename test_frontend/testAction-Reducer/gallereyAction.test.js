@@ -23,7 +23,7 @@ const host = 'http://localhost';
 axios.defaults.host = host;
 axios.defaults.adapter = httpAdapter;
 
-describe('Test actions news', () => {
+describe('Test actions galerey', () => {
 
   let store, createdStore
 
@@ -33,13 +33,13 @@ describe('Test actions news', () => {
   })
 
   it('Action postGallereySuccess change value store state lastPostGallerey from undefined on imageOne', () => {
-    expect(store.getState().lastPostGallerey).to.equal(undefined)
+    expect(store.getState().gallerey).to.empty
     store.dispatch(newsActions.postGallereySuccess(imageOne))
-    expect(store.getState().lastPostGallerey).to.equal(imageOne)
+    expect(store.getState().gallerey).to.equal(imageOne)
   })
 
   it('Action getGallereySuccess change value store state gallerey from undefined on menyImages', () => {
-    expect(store.getState().gallerey).to.equal(undefined)
+    expect(store.getState().gallerey).to.empty
     store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
   })
@@ -47,7 +47,7 @@ describe('Test actions news', () => {
   it('Action resetGallereyProps change value store state gallerey from menyImages on undefined', () => {
     store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
-    
+
     store.dispatch(newsActions.resetGallereyProps())
     expect(store.getState().gallerey).to.equal(undefined)
   })

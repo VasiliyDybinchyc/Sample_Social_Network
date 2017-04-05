@@ -19,9 +19,7 @@ export default React.createClass({
 
     data.append('gallery[picture]', this.gelereyFile.files[0])
 
-    axiosGallerey.postGallerey(userId, data).then(function () {
-      axiosGallerey.getGallerey(userId);
-    });
+    axiosGallerey.postGallerey(userId, data)
   },
 
   render: function() {

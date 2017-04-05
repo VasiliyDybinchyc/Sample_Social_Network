@@ -11,6 +11,7 @@ class GalleriesController < ApplicationController
   def create
     @galerie = current_user.galleries.new(galerie_params)
     @galerie.save
+    render json: @galerie.to_json
   end
 
   def destroy

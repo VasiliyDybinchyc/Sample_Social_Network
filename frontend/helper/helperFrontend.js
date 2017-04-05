@@ -10,14 +10,32 @@ export var fourSpaces = '\u200b \u200b \u200b \u200b';
 
 // this function check heve got response form server to all props
 export function checkReadyToRender() {
+  var ok = 0
   for (var i = 0; i < arguments.length; i++) {
-    if (arguments[i] !== undefined) {
-      if (i == arguments.length - 1) {
-        return true
+
+    if (typeof arguments[i] == 'Array') {
+
+      if(arguments[i].length !== 0){
+        ok +=1
+
+        if (ok == arguments.length) {
+          return true
+        }
+
+        continue
       }
-      continue
+
     }else {
-      return false
+
+      if (arguments[i] !== undefined){
+        ok +=1
+
+        if (ok == arguments.length) {
+          return true
+        }
+
+        continue
+      }
     }
   }
 };

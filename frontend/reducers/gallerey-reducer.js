@@ -2,7 +2,7 @@ import * as types from '../actions/action-types';
 import _ from 'lodash';
 
 const initialState = {
-  gallerey: undefined
+  gallerey: []
 };
 
 const gallereyReducer = function(state = initialState, action) {
@@ -13,7 +13,7 @@ const gallereyReducer = function(state = initialState, action) {
       return Object.assign({}, state, { gallerey: action.gallerey });
 
     case types.POST_GALLEREY_SUCCESS:
-      return Object.assign({}, state, { lastPostGallerey: action.postGallerey });
+      return Object.assign({}, state, { gallerey: action.postGallerey.concat(state.gallerey) });
   }
 
   return state;

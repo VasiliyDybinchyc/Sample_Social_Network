@@ -21,7 +21,7 @@ export default class PostNews extends React.Component {
     event.preventDefault();
     let userId = this.props.userId;
     let data = new FormData()
-    console.log('bad')
+
     data.append('message[content]', this.newsText.value)
     data.append('message[picture]', this.newsFile.files[0])
 

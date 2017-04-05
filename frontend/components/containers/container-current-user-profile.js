@@ -91,6 +91,7 @@ const mapStateToProps = function(store) {
     userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
     newsUser: store.newsState.onlyUserNews,
+    apenedNews: store.newsState.apenedNews,
     render: store.sessionState.render = checkReadyToRender( store.userState.currentUser,
                                                             store.friendsState.userFriends,
                                                             store.gallereyState.gallerey,

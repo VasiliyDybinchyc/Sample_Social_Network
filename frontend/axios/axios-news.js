@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store';
-import { postNewsSuccess, getNewsSuccess, getOnlyUserNewsSuccess } from '../actions/news-actions';
+import { postNewsSuccess, getNewsSuccess, getOnlyUserNewsSuccess, getMoreNewsSuccess } from '../actions/news-actions';
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
@@ -23,7 +23,7 @@ export function getNews(userId) {
 export function getMoreNews(userId) {
   return axios.get('/users/' + userId + '/messages/takeMoreNews')
     .then(response => {
-      store.dispatch(getNewsSuccess(response.data));
+      store.dispatch(getMoreNewsSuccess(response.data));
       return response;
     });
 }

@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     @@stop = 29
-
+    @@start = 0
     @user = User.find(params[:user_id])
     @posts = @user.feed[0..@@stop]
     render json: @posts.to_json
@@ -13,9 +13,9 @@ class MessagesController < ApplicationController
 
   def takeMoreNews
     @@stop += 30
-
+    @@start += 30
     @user = User.find(params[:user_id])
-    @posts = @user.feed[0..@@stop]
+    @posts = @user.feed[@@start..@@stop]
     render json: @posts.to_json
   end
 

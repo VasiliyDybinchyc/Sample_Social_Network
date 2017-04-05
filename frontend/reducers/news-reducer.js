@@ -3,7 +3,8 @@ import _ from 'lodash';
 
 const initialState = {
   news: undefined,
-  onlyUserNews: []
+  onlyUserNews: [],
+  apenedNews: undefined
 };
 
 const newsReducer = function(state = initialState, action) {
@@ -15,6 +16,9 @@ const newsReducer = function(state = initialState, action) {
 
     case types.GET_NEWS_SUCCESS:
       return Object.assign({}, state, { news: action.news });
+
+    case types.GET_MORE_NEWS_SUCCESS:
+      return Object.assign({}, state, { news: state.news.concat(action.apenedNews) });
 
     case types.ONLY_USER_NEWS_SUCCESS:
       return Object.assign({}, state, { onlyUserNews: action.onlyUserNews });

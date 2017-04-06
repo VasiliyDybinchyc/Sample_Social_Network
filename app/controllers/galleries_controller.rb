@@ -2,10 +2,18 @@ class GalleriesController < ApplicationController
 
   skip_before_filter :verify_authenticity_token, only: [:create]
 
-  def index
-    @user = User.find(params[:user_id])
-    @galerie = @user.galleries
-    render json: @galerie.to_json
+  def getGallerey
+    @user = User.find(params[:userId])
+    if params[:pageNumber].to_i == 0
+      @start = 0
+      @stop = 7
+    else
+      @start = params[:pageNumber].to_i * 7 - 7
+      @stop = params[:pageNumber].to_i * 7
+    end
+    @galerie = @user.galleries[@start..@stop]
+    @galerie.push(@user.galleries.length)
+    render json: @galerie
   end
 
   def create

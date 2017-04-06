@@ -5,26 +5,22 @@ class RelationshipsController < ApplicationController
 
   def create
     user = User.find(params[:friendId])
-    @test = current_user.follow(user)
-    render json: @test.to_json
+    @relationships = current_user.follow(user)
   end
 
   def destroy
     user = User.find(params[:id])
-    @test = current_user.unfollow(user)
-    render json: @test.to_json
+    @relationships = current_user.unfollow(user)
   end
 
   def get_friends
     @user = User.find(params[:id])
-    @user_frends = @user.following.limit(10).shuffle
-    render json: @user_frends.to_json
+    render json: @user.following.limit(10).shuffle
   end
 
   def get_all_friends
     @user = User.find(params[:id])
-    @user_frends = @user.following
-    render json: @user_frends.to_json
+    render json: @user.following
   end
 
   def check_is_this_user_is_friend

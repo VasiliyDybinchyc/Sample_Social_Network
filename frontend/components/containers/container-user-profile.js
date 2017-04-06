@@ -13,7 +13,7 @@ import    * as axiosNews      from '../../axios/axios-news';
 import    * as axiosFriend    from '../../axios/axios-friend';
 import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
-import { checkReadyToRender, checkIsNotThisMyProfile, resetNewsGalereyFriendProfile } from '../../helper/helperFrontend';
+import { checkReadyToRender, checkIsNotThisMyProfile, resetNewsGalereyFriendProfile, resetGallereyInfo } from '../../helper/helperFrontend';
 import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
@@ -25,6 +25,7 @@ const AnotherUserProfile = React.createClass({
   componentWillMount: function() {
     resetNewsGalereyFriendProfile()
     this.updateProps(this.props.params.userId)
+    NProgress.start()
   },
 
   updateProps: function(userId) {
@@ -34,6 +35,7 @@ const AnotherUserProfile = React.createClass({
       axiosFriend.getFriends(userId);
       axiosFriend.checkIsThisUserIsFriend(userId)
       axiosNews.getNews(userId);
+      NProgress.done()
   },
 
   shouldComponentUpdate: function(){
@@ -51,6 +53,10 @@ const AnotherUserProfile = React.createClass({
     }
   },
 
+  componentWillUnmount: function() {
+    resetGallereyInfo()
+  },
+
   notMyProfile(id) {
     if (id == this.props.params.userId) {
       browserHistory.push('/profile')
@@ -62,6 +68,7 @@ const AnotherUserProfile = React.createClass({
   },
 
   render: function() {
+    NProgress.done()
     return (
       <div>
         {this.props.render && this.state.notMyProfile &&
@@ -112,7 +119,6 @@ const mapStateToProps = function(store) {
                                                             store.gallereyState.gallerey,
                                                             store.friendsState.userFriends,
                                                             store.friendsState.checkIsThisUserIsFriend,
-                                                            store.newsState.onlyUserNews,
                                                             store.newsState.news)
   };
 };

@@ -2,8 +2,8 @@ import * as types from '../actions/action-types';
 import _ from 'lodash';
 
 const initialState = {
-  news: [],
-  onlyUserNews: []
+  news: [null],
+  onlyUserNews: [null]
 };
 
 const newsReducer = function(state = initialState, action) {

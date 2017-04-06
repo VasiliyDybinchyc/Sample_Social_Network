@@ -12,21 +12,34 @@ import { checkReadyToRender } from '../../helper/helperFrontend';
 const Galerey = React.createClass({
 
   componentWillMount: function() {
-    var Id = this.props.params.userId
-    NProgress.start();
-    axiosGallerey.getGallerey(Id);
+    NProgress.start();  
+    this.updateProps()
+  },
+
+  updateProps: function() {
+    axiosGallerey.getGallerey(this.props.params.userId,
+                              this.props.params.pageNumber);
   },
 
   componentDidMount: function() {
     NProgress.done()
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.pageNumber !== nextProps.params.pageNumber) {
+      axiosGallerey.getGallerey(this.props.params.userId,
+                                nextProps.params.pageNumber);
+    }
+  },
+
   render: function() {
+    console.log(this.props.allAmount)
+    console.log(this.props.galere)
     return(
       <div>
         {this.props.render &&
           <div className="Full galerey">
-            <PaginationView pageNumber={this.props.params.pageNumber} paginationFor={'galerey'} amountElement={this.props.galere} />
+            <PaginationView pageNumber={this.props.params.pageNumber} userId={this.props.params.userId} paginationFor={'galerey'} amountElement={this.props.allAmount} />
             <h1>Full Galerey</h1>
             <FullGalereyViews galerey_items={this.props.galere} pageNumber={this.props.params.pageNumber} />
           </div>
@@ -40,8 +53,9 @@ const Galerey = React.createClass({
 const mapStateToProps = function(store) {
   return {
     galere: store.gallereyState.gallerey,
-    render: store.sessionState.render = checkReadyToRender( store.newsState.onlyUserNews,
-                                                            store.gallereyState.gallerey)
+    allAmount: store.gallereyState.allAmount,
+    render: store.sessionState.render = checkReadyToRender(store.gallereyState.gallerey,
+                                                           store.gallereyState.allAmount)
   };
 };
 

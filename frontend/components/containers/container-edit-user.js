@@ -1,7 +1,7 @@
 import    React              from 'react';
 import  { connect }          from 'react-redux';
 import  { browserHistory }   from 'react-router';
-import    CreateUserViews    from '../views/create_user';
+import    CreateUserViews    from '../views/edit_user';
 import    ErrorViews         from '../views/error';
 import    * as axiosUser     from '../../axios/axios-user';
 import   NProgress           from 'react-nprogress';
@@ -30,9 +30,6 @@ const EditUser = React.createClass({
 
     dataUser.append('user[first_name]',             this.refs.child.getFirstName())
     dataUser.append('user[last_name]',              this.refs.child.getLastName())
-    dataUser.append('user[email]',                  this.refs.child.getEmail())
-    dataUser.append('user[password]',               this.refs.child.getPassword())
-    dataUser.append('user[password_confirmation]',  this.refs.child.getPasswordConf())
     dataUser.append('user[avatar]',                 this.refs.child.getAvatar())
     dataUser.append('user[croppersAvatar]',         this.refs.child.getCroppersAvatar())
 

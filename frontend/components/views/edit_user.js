@@ -21,18 +21,6 @@ export default React.createClass({
     return this.surname.value;
   },
 
-  getEmail: function() {
-    return this.email.value;
-  },
-
-  getPassword: function() {
-    return this.password.value;
-  },
-
-  getPasswordConf: function() {
-    return this.password_confirmation.value;
-  },
-
   getAvatar: function() {
     return this.avatar.files[0];
   },
@@ -78,27 +66,6 @@ export default React.createClass({
 
           <FormGroup>
             <Col xs='4'>
-              <Label for="SignUpEmail">Email</Label>
-              <Input type="email" name="SignUpEmail" getRef={(ref) => (this.email = ref)} id="SignUpEmail" placeholder="Email" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col xs='4'>
-              <Label for="SignUpPassword">Password</Label>
-              <Input type="password" name="SignUpPassword" getRef={(ref) => (this.password = ref)} id="SignUpPassword" placeholder="Password" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col xs='4'>
-              <Label for="SignUpPasswordConfirmation">Password Confirmation</Label>
-              <Input type="password" name="SignUpPasswordConfirmation" getRef={(ref) => (this.password_confirmation = ref)} id="SignUpPasswordConfirmation" placeholder="Password Confirmation" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col xs='4'>
               <Label for="Avatar">Avatar</Label>
               <Input type="file" name="Avatar" getRef={(ref) => (this.avatar = ref)} id="Avatar" onChange={this.changeCropp} />
               <Cropper src={this.state.test} guides={false} preview=".img-preview" ref="cropper" style={{height: 400, width: '100%'}} viewMode={1} />
@@ -110,7 +77,7 @@ export default React.createClass({
           </FormGroup>
 
           <Button color="success" onClick={this.props.onSubmit}>
-            Sign Up
+            Change Me
           </Button>
         </Form>
       </div>

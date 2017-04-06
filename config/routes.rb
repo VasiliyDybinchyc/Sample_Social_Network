@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get    'Galerey/:userId/page/:pageNumber', to: 'application#shit'
 
+  get    'getGallerey/:userId/page/:pageNumber', to: 'galleries#getGallerey'
+
   get    '/profile',   to: 'application#shit'
 
   get    '/editProfile',   to: 'application#shit'
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :galleries, only: [:index, :create, :destroy]
+    resources :galleries, only: [:create, :destroy]
 
     member do
       get :get_only_user_message

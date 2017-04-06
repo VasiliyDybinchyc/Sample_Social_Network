@@ -33,13 +33,13 @@ describe('Test actions galerey', () => {
   })
 
   it('Action postGallereySuccess change value store state lastPostGallerey from undefined on imageOne', () => {
-    expect(store.getState().gallerey).to.empty
+    expect(store.getState().gallerey[0]).to.equal(undefined)
     store.dispatch(newsActions.postGallereySuccess(imageOne))
     expect(store.getState().gallerey).to.equal(imageOne)
   })
 
   it('Action getGallereySuccess change value store state gallerey from undefined on menyImages', () => {
-    expect(store.getState().gallerey).to.empty
+    expect(store.getState().gallerey[0]).to.equal(undefined)
     store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
   })

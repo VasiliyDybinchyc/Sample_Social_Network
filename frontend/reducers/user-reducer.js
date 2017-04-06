@@ -2,10 +2,10 @@ import * as types from '../actions/action-types';
 import _ from 'lodash';
 
 const initialState = {
-  users: [],
+  users: [null],
   userProfile: undefined,
   authentication: undefined,
-  currentUser: [],
+  currentUser: [null],
   error: undefined
 };
 

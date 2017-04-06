@@ -4,7 +4,8 @@ import _ from 'lodash';
 const initialState = {
   userFriends: undefined,
   checkIsThisUserIsFriend: [],
-  allUserFriends: []
+  allUserFriends: [],
+  friends: [null]
 };
 
 const friendsReducer = function(state = initialState, action) {

@@ -12,13 +12,9 @@ export default class PaginationView extends React.Component {
 
   componentWillMount(){
     var amountElement = 0
+    console.log(this.props.amountElement)
     if (this.props.paginationFor == "galerey") {
-      this.props.amountElement.forEach( function(galerey, index) {
-          return (
-              galerey.picture.url == null ? null : amountElement += 1
-          );
-        });
-        this.amountPagination = Math.ceil(amountElement / 7)
+      this.amountPagination = Math.ceil(this.props.amountElement / 8)
     }
   }
 
@@ -59,7 +55,7 @@ export default class PaginationView extends React.Component {
     for (let i = 0; i < this.viewAmountPagination(); i++){
       viewPagination.push(
         <PaginationItem key={i + ' key PaginationItem'}>
-          <PaginationLink onClick={() => browserHistory.push('/Galerey/11/page/' + this.position[i] )} >
+          <PaginationLink onClick={() => browserHistory.push('/Galerey/' + this.props.userId + '/page/' + this.position[i] )} >
             {this.position[i]}
           </PaginationLink>
         </PaginationItem>)

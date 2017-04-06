@@ -14,9 +14,23 @@ export function getGallereySuccess(gallerey) {
   };
 }
 
+export function getAllGallereyAmount(amount) {
+  return {
+    type: types.GET_ALL_GALLEREY_AMOUNT,
+    amount
+  };
+}
+
 export function resetGallereyProps() {
   return {
     type: types.GET_GALLEREY_SUCCESS,
-    undefined
+    gallerey: [null]
+  }
+}
+
+export function resetGallereyAmountProps() {
+  return {
+    type: types.RESET_ALL_GALLEREY_AMOUNT,
+    amount: [null]
   }
 }

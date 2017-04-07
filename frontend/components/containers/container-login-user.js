@@ -52,7 +52,7 @@ const LogIn = React.createClass({
 const mapStateToProps = function(store) {
 
   return {
-    error: store.userState.error
+    error: store.globalState.error
   };
 };
 

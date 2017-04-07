@@ -53,8 +53,8 @@ const EditUser = React.createClass({
 const mapStateToProps = function(store) {
   return {
     userId: store.userState.currentUser.id,
-    error: store.userState.error,
-    render: store.sessionState.render = checkReadyToRender(store.userState.currentUser)
+    error: store.globalState.error,
+    render: store.globalState.render = checkReadyToRender(store.userState.currentUser)
   };
 };
 

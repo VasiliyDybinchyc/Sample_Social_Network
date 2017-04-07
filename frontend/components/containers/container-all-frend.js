@@ -36,7 +36,7 @@ const AllFrendUser = React.createClass({
 const mapStateToProps = function(store) {
   return {
     allUserFriends: store.friendsState.allUserFriends,
-    render: store.sessionState.render = checkReadyToRender(store.friendsState.allUserFriends)
+    render: store.globalState.render = checkReadyToRender(store.friendsState.allUserFriends)
   };
 };
 

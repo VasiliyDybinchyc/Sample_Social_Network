@@ -10,6 +10,6 @@ export function newError(error) {
 export function resetError() {
   return {
     type: types.RESET_ERROR,
-    reset: [null]
+    reset: undefined
   };
 }

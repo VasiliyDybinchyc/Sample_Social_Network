@@ -59,7 +59,7 @@ const mapStateToProps = function(store) {
   return {
     authentication: store.userState.authentication,
     userId: store.userState.currentUser.id,
-    render: store.sessionState.render = checkReadyToRender(store.userState.authentication)
+    render: store.globalState.render = checkReadyToRender(store.userState.authentication)
   };
 };
 

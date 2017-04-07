@@ -35,7 +35,7 @@ const AllUser = React.createClass({
 const mapStateToProps = function(store) {
   return {
     users: store.userState.users,
-    render: store.sessionState.render = checkReadyToRender(store.userState.users)
+    render: store.globalState.render = checkReadyToRender(store.userState.users)
   };
 };
 

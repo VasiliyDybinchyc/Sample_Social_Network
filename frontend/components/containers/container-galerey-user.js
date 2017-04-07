@@ -12,7 +12,7 @@ import { checkReadyToRender } from '../../helper/helperFrontend';
 const Galerey = React.createClass({
 
   componentWillMount: function() {
-    NProgress.start();  
+    NProgress.start();
     this.updateProps()
   },
 
@@ -54,7 +54,7 @@ const mapStateToProps = function(store) {
   return {
     galere: store.gallereyState.gallerey,
     allAmount: store.gallereyState.allAmount,
-    render: store.sessionState.render = checkReadyToRender(store.gallereyState.gallerey,
+    render: store.globalState.render = checkReadyToRender(store.gallereyState.gallerey,
                                                            store.gallereyState.allAmount)
   };
 };

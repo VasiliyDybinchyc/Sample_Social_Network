@@ -5,8 +5,7 @@ const initialState = {
   users: [null],
   userProfile: undefined,
   authentication: undefined,
-  currentUser: [null],
-  error: undefined
+  currentUser: [null]
 };
 
 const userReducer = function(state = initialState, action) {
@@ -19,14 +18,8 @@ const userReducer = function(state = initialState, action) {
     case types.CREATE_USER_SUCCESS:
       return Object.assign({}, state, { currentUser: action.createdUser });
 
-    case types.CREATE_USER_ERROR:
-      return Object.assign({}, state, { error: action.error });
-
     case types.EDIT_USER_SUCCESS:
       return Object.assign({}, state, { currentUser: action.editedUser });
-
-    case types.EDIT_USER_ERROR:
-      return Object.assign({}, state, { error: action.error });
 
     case types.GET_PROFILE_SUCCESS:
       return Object.assign({}, state, { userProfile: action.userProfile });

@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const initialState = {
   render: [null],
-  error:  [null]
+  error:  undefined
 };
 
 const globalReducer = function(state = initialState, action) {

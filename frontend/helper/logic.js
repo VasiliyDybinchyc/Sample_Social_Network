@@ -1,5 +1,6 @@
 import    * as axiosUser          from '../axios/axios-user';
 import    * as actionUser         from '../actions/user-actions';
+import * as globalActions from '../actions/global-action';
 import { browserHistory } from 'react-router';
 
 import store from '../store'
@@ -23,11 +24,12 @@ export function auth(redirect) {
   })
 }
 
+
 export function checkError(result, action) {
   if (Array.isArray(result)) {
-    return store.dispatch(actionUser.createUserError(result))
+    return store.dispatch(globalActions.newError(result))
   }else {
-    store.dispatch(actionUser.resetErrorProps())
+    store.dispatch(globalActions.resetError())
     return store.dispatch(action(result));
   }
 }

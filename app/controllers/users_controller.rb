@@ -37,8 +37,11 @@ class UsersController < ApplicationController
   end
 
   def authentication
-    @user =! current_user.blank?
-    render json: @user.to_json
+    if current_user.blank?
+      render json: false.to_json
+    else
+      render json: current_user.to_json
+    end
   end
 
   def getCurrentUser

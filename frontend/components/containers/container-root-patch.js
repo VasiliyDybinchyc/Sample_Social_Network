@@ -24,12 +24,8 @@ const RootPath = React.createClass({
 
   onSubmit: function(event) {
     event.preventDefault();
-    let userId = this.props.userId;
-    axiosSessions.deleteSession(userId).then(function () {
-      axiosUser.authentication();
-      browserHistory.push('/')
-      resetCurrentUser()
-    });
+    browserHistory.push('/')
+    axiosSessions.deleteSession(this.props.userId)
   },
 
   render: function() {
@@ -57,9 +53,9 @@ const RootPath = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    authentication: store.userState.authentication,
-    userId: store.userState.currentUser.id,
-    render: store.globalState.render = checkReadyToRender(store.userState.authentication)
+    authentication: store.sessionState.sessions,
+    userId: store.sessionState.sessions.id,
+    render: store.globalState.render = checkReadyToRender(store.sessionState.sessions)
   };
 };
 

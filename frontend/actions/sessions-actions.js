@@ -10,6 +10,6 @@ export function createSessionSuccess(session) {
 export function deleteSessionSuccess() {
   return {
     type: types.DELETE_SESSION_SUCCESS,
-    reset: [null]
+    reset: false
   };
 }

@@ -12,6 +12,8 @@ import { getUsersSuccess,
          authenticationSuccess,
          newCurrentUser } from '../actions/user-actions';
 
+import {createSessionSuccess} from '../actions/sessions-actions';
+
 
 export function getUsers() {
   return axios.get('/users')
@@ -24,14 +26,14 @@ export function getUsers() {
 export function createUser(createdUser) {
   return axios.post('/users', createdUser)
     .then(response => {
-      checkError(response.data, newCurrentUser)
+      checkError(response.data, createSessionSuccess)
     });
 }
 
 export function editUser(editedUser , userId) {
   return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
-      checkError(response.data, newCurrentUser)
+      checkError(response.data, createSessionSuccess)
     });
 }
 
@@ -54,7 +56,7 @@ export function authentication() {
 export function getCurrentUser() {
   return axios.get('/users/getCurrentUser')
     .then(response => {
-      store.dispatch(newCurrentUser(response.data));
+      store.dispatch(createSessionSuccess(response.data));
       return response;
     });
 }

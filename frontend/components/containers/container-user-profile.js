@@ -109,7 +109,7 @@ const AnotherUserProfile = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    currentUserId: store.userState.currentUser.id,
+    currentUserId: store.sessionState.sessions.id,
     profile: store.userState.userProfile,
     userGalerey: store.gallereyState.gallerey,
     userFriends: store.friendsState.userFriends,

@@ -85,12 +85,12 @@ const CurrentUserProfile = React.createClass({
 const mapStateToProps = function(store) {
 
   return {
-    user: store.userState.currentUser,
+    user: store.sessionState.sessions,
     userFriends: store.friendsState.userFriends,
     userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
     apenedNews: store.newsState.apenedNews,
-    render: store.globalState.render = checkReadyToRender( store.userState.currentUser,
+    render: store.globalState.render = checkReadyToRender(  store.sessionState.sessions,
                                                             store.friendsState.userFriends,
                                                             store.gallereyState.gallerey,
                                                             store.newsState.news)

@@ -1,25 +1,23 @@
 import    * as axiosUser          from '../axios/axios-user';
 import    * as actionUser         from '../actions/user-actions';
+import    * as actionSession         from '../actions/sessions-actions';
 import * as globalActions from '../actions/global-action';
 import { browserHistory } from 'react-router';
 
 import store from '../store'
 
 export function auth(redirect) {
-  return axiosUser.authentication().then(result => {
-
-    if(result.data == true && store.getState().userState.currentUser.id !== undefined) {
-      store.dispatch(actionUser.authenticationSuccess(true))
+  return axiosUser.authentication().then(response => {
+    if(response.data !== undefined && store.getState().sessionState.sessions.id !== undefined) {
+      store.dispatch(actionSession.createSessionSuccess(response.data))
       redirect && browserHistory.push('/profile')
     }
-    else if (result.data == true){
-      store.dispatch(actionUser.authenticationSuccess(true))
-      return axiosUser.getCurrentUser().then( () => {
-        redirect && browserHistory.push('/profile')
-      })
+    else if (response.data !== undefined){
+      store.dispatch(actionSession.createSessionSuccess(response.data))
+      redirect && browserHistory.push('/profile')
     }
     else{
-      return store.dispatch(actionUser.authenticationSuccess(false))
+      return store.dispatch(actionSession.createSessionSuccess(false))
     }
   })
 }

@@ -13,7 +13,7 @@ const sessionReducer = function(state = initialState, action) {
       return Object.assign({}, state, { sessions: action.session });
 
     case types.DELETE_SESSION_SUCCESS:
-      return Object.assign({}, state, { sessions: action.session });
+      return Object.assign({}, state, { sessions: action.reset });
 
     }
 

@@ -1,25 +1,15 @@
 import axios from 'axios';
 import store from '../store';
-import {newFriendSuccess,
-        deleteFriendSuccess,
-        getFriendsSuccess,
+import {getFriendsSuccess,
         checkIsThisUserIsFriendSuccess,
         getAllFriendsSuccess } from '../actions/friends-action';
 
 export function newFriend(FriendId) {
   return axios.post('/relationships', {friendId : FriendId})
-    .then(response => {
-      store.dispatch(newFriendSuccess(response.data));
-      return response;
-    });
 };
 
 export function deleteFriend(FriendId) {
   return axios.delete('/relationships/' + FriendId)
-    .then(response => {
-      store.dispatch(deleteFriendSuccess());
-      return response;
-    });
 };
 
 export function getFriends(userId) {

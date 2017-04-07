@@ -1,19 +1,5 @@
 import * as types from '../actions/action-types';
 
-export function newFriendSuccess(friends) {
-  return {
-    type: types.NEW_FRIEND_SUCCESS,
-    friends
-  };
-};
-
-export function deleteFriendSuccess() {
-  return {
-    type: types.DELETE_FRIEND_SUCCESS,
-    undefined
-  };
-};
-
 export function getFriendsSuccess(userFriends) {
   return {
     type: types.GET_FRIEND_SUCCESS,
@@ -21,10 +7,24 @@ export function getFriendsSuccess(userFriends) {
   };
 };
 
+export function resetFriendProps() {
+  return {
+    type: types.RESET_FRIEND_SUCCESS,
+    reset: [null]
+  }
+}
+
 export function getAllFriendsSuccess(allUserFriends) {
   return {
     type: types.GET_ALL_FRIEND_SUCCESS,
     allUserFriends
+  };
+};
+
+export function resetAllFriendsSuccess(allUserFriends) {
+  return {
+    type: types.RESET_ALL_FRIEND_SUCCESS,
+    reset: [null]
   };
 };
 
@@ -34,10 +34,3 @@ export function checkIsThisUserIsFriendSuccess(checkIsThisUserIsFriend) {
     checkIsThisUserIsFriend
   };
 };
-
-export function resetFriendProps() {
-  return {
-    type: types.GET_FRIEND_SUCCESS,
-    undefined
-  }
-}

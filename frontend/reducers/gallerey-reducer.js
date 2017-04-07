@@ -17,8 +17,6 @@ const gallereyReducer = function(state = initialState, action) {
       return Object.assign({}, state, { allAmount: action.amount });
 
     case types.RESET_ALL_GALLEREY_AMOUNT:
-    console.log('==============================================================')
-    console.log(action.amount)
       return Object.assign({}, state, { allAmount: action.amount });
 
     case types.POST_GALLEREY_SUCCESS:

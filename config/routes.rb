@@ -40,10 +40,6 @@ Rails.application.routes.draw do
 
     resources :galleries, only: [:create, :destroy]
 
-    member do
-      get :get_only_user_message
-    end
-
     collection  do
       get :authentication, :getCurrentUser
     end

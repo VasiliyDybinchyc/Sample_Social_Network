@@ -45,11 +45,6 @@ class UsersController < ApplicationController
     render json: current_user.to_json
   end
 
-  def get_only_user_message
-    @message = User.find(params[:id]).messages
-    render json: @message.to_json
-  end
-
   def giveUser
     render json: User.find(params[:id]).to_json
   end

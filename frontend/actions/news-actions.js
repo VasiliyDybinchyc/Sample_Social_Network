@@ -21,16 +21,9 @@ export function getMoreNewsSuccess(apenedNews) {
   };
 }
 
-export function getOnlyUserNewsSuccess(onlyUserNews) {
-  return {
-    type: types.ONLY_USER_NEWS_SUCCESS,
-    onlyUserNews
-  };
-}
-
 export function resetNewsProps() {
   return {
-    type: types.GET_NEWS_SUCCESS,
-    undefined
+    type: types.RESET_NEWS_SUCCESS,
+    reset: [null]
   }
 }

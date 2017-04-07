@@ -27,11 +27,3 @@ export function getMoreNews(userId) {
       return response;
     });
 }
-
-export function getOnlyUserNews(userId) {
-  return axios.get('/users/'+ userId +'/get_only_user_message')
-    .then(response => {
-      store.dispatch(getOnlyUserNewsSuccess(response.data));
-      return response;
-    });
-}

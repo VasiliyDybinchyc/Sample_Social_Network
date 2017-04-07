@@ -13,11 +13,14 @@ const gallereyReducer = function(state = initialState, action) {
     case types.GET_GALLEREY_SUCCESS:
       return Object.assign({}, state, { gallerey: action.gallerey });
 
+    case types.RESET_GALLEREY_SUCCESS:
+      return Object.assign({}, state, { gallerey: action.reset });
+
     case types.GET_ALL_GALLEREY_AMOUNT:
       return Object.assign({}, state, { allAmount: action.amount });
 
     case types.RESET_ALL_GALLEREY_AMOUNT:
-      return Object.assign({}, state, { allAmount: action.amount });
+      return Object.assign({}, state, { allAmount: action.reset });
 
     case types.POST_GALLEREY_SUCCESS:
       return Object.assign({}, state, { gallerey: action.postGallerey.concat(state.gallerey) });

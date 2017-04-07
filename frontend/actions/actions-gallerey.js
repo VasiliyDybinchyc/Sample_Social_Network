@@ -14,6 +14,13 @@ export function getGallereySuccess(gallerey) {
   };
 }
 
+export function resetGallereyProps() {
+  return {
+    type: types.RESET_GALLEREY_SUCCESS,
+    reset: [null]
+  }
+}
+
 export function getAllGallereyAmount(amount) {
   return {
     type: types.GET_ALL_GALLEREY_AMOUNT,
@@ -21,16 +28,9 @@ export function getAllGallereyAmount(amount) {
   };
 }
 
-export function resetGallereyProps() {
-  return {
-    type: types.GET_GALLEREY_SUCCESS,
-    gallerey: [null]
-  }
-}
-
 export function resetGallereyAmountProps() {
   return {
     type: types.RESET_ALL_GALLEREY_AMOUNT,
-    amount: [null]
+    reset: [null]
   }
 }

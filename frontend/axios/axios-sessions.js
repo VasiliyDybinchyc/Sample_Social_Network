@@ -16,9 +16,8 @@ export function createSession(User) {
 
 export function deleteSession(userId) {
   return axios.delete('/sessions/' + userId)
-    .then(response => {
+    .then(() => {
       store.dispatch(deleteSessionSuccess());
       browserHistory.push('/');
-      return response;
     });
 }

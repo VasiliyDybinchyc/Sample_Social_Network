@@ -39,7 +39,7 @@ describe('Test actions user', () => {
   })
 
   it('Action getCurrentUserSuccess change value store state currentUser from empty on userOne', () => {
-    expect(store.getState().currentUser).to.empty;
+    expect(store.getState().currentUser[0]).to.equal(null);
     store.dispatch(userActions.getCurrentUserSuccess(userOne))
     expect(store.getState().currentUser).to.equal(userOne);
   })
@@ -59,13 +59,13 @@ describe('Test actions user', () => {
   })
 
   it('Action createUserSuccess change value store state currentUser from empty on userOne', () => {
-    expect(store.getState().currentUser).to.empty;
+    expect(store.getState().currentUser[0]).to.equal(null);
     store.dispatch(userActions.createUserSuccess(userOne))
     expect(store.getState().currentUser).to.equal(userOne);
   })
 
   it('Action getUsersSuccess change value store state users from empty on manyUsers', () => {
-    expect(store.getState().users).to.empty;
+    expect(store.getState().users[0]).to.equal(null);
     store.dispatch(userActions.getUsersSuccess(manyUsers))
     expect(store.getState().users).to.equal(manyUsers);
   })

@@ -33,19 +33,19 @@ describe('Test actions news', () => {
   })
 
   it('Action postNews change value store state lastNews from undefined on messageOne', () => {
-    expect(store.getState().news[0]).to.equal(undefined)
+    expect(store.getState().news[0]).to.equal(null)
     store.dispatch(newsActions.postNewsSuccess(messageOne))
     expect(store.getState().news).to.equal(messageOne)
   })
 
   it('Action getNewsSuccess change value store state news from undefined on manyMessages', () => {
-    expect(store.getState().news[0]).to.equal(undefined)
+    expect(store.getState().news[0]).to.equal(null)
     store.dispatch(newsActions.getNewsSuccess(manyMessages))
     expect(store.getState().news).to.equal(manyMessages)
   })
 
   it('Action getOnlyUserNewsSuccess change value store state onlyUserNews from empty on manyMessages', () => {
-    expect(store.getState().onlyUserNews).to.empty
+    expect(store.getState().onlyUserNews[0]).to.equal(null)
     store.dispatch(newsActions.getOnlyUserNewsSuccess(manyMessages))
     expect(store.getState().onlyUserNews).to.equal(manyMessages)
   })

@@ -48,13 +48,13 @@ describe('Test logic', () => {
 
     return auth().then(() => {
       expect(initialStore.getState().userState.authentication).to.equal(false);
-      expect(initialStore.getState().userState.currentUser).to.empty
+      expect(initialStore.getState().userState.currentUser[0]).to.equal(null)
     })
   })
 
   it('If auth logic true',() => {
     expect(initialStore.getState().userState.authentication).to.equal(false);
-    expect(initialStore.getState().userState.currentUser).to.empty
+    expect(initialStore.getState().userState.currentUser[0]).to.equal(null)
 
     nock(host)
       .get('/users/authentication')
@@ -65,7 +65,7 @@ describe('Test logic', () => {
       .reply(200, userOne)
 
     return auth().catch((error) => {
-      console.log(error) // I don`t know how fix that 
+      console.log(error) // I don`t know how fix that
     }).then(() => {
       expect(initialStore.getState().userState.authentication).to.equal(true);
       expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userOne.user.firstName);
@@ -73,7 +73,7 @@ describe('Test logic', () => {
   })
 
   it('Test checkError helper set user',() => {
-    expect(initialStore.getState().userState.error).to.empty;
+    expect(initialStore.getState().userState.error).to.equal(undefined);
     expect(initialStore.getState().userState.currentUser.user.firstName).to.equal(userOne.user.firstName)
 
     checkError(userTwo, getCurrentUserSuccess)

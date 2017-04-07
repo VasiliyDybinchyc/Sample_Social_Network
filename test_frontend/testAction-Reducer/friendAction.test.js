@@ -33,7 +33,7 @@ describe('Test actions friends', () => {
   })
 
   it('Action newFriendSuccess change value store state friends from undefined on userOne', () => {
-    expect(store.getState().friends).to.equal(undefined)
+    expect(store.getState().friends[0]).to.equal(null)
     store.dispatch(friendActions.newFriendSuccess(userOne))
     expect(store.getState().friends).to.equal(userOne)
   })
@@ -52,13 +52,13 @@ describe('Test actions friends', () => {
     expect(store.getState().userFriends).to.equal(manyUsers)
   })
 
-  it('Action getAllFriendsSuccess change value store state allUserFriends from empty on manyUsers', () => {
+  it('Action getAllFriendsSuccess change value store state allUserFriends from [null] on manyUsers', () => {
     expect(store.getState().allUserFriends).to.empty
     store.dispatch(friendActions.getAllFriendsSuccess(manyUsers))
     expect(store.getState().allUserFriends).to.equal(manyUsers)
   })
 
-  it('Action checkIsThisUserIsFriendSuccess change value store state checkIsThisUserIsFriend from empty on true', () => {
+  it('Action checkIsThisUserIsFriendSuccess change value store state checkIsThisUserIsFriend from [null] on true', () => {
     expect(store.getState().checkIsThisUserIsFriend).to.empty
     store.dispatch(friendActions.checkIsThisUserIsFriendSuccess(true))
     expect(store.getState().checkIsThisUserIsFriend).to.equal(true)

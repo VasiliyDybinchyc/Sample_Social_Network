@@ -33,13 +33,13 @@ describe('Test actions galerey', () => {
   })
 
   it('Action postGallereySuccess change value store state lastPostGallerey from undefined on imageOne', () => {
-    expect(store.getState().gallerey[0]).to.equal(undefined)
+    expect(store.getState().gallerey[0]).to.equal(null)
     store.dispatch(newsActions.postGallereySuccess(imageOne))
     expect(store.getState().gallerey).to.equal(imageOne)
   })
 
   it('Action getGallereySuccess change value store state gallerey from undefined on menyImages', () => {
-    expect(store.getState().gallerey[0]).to.equal(undefined)
+    expect(store.getState().gallerey[0]).to.equal(null)
     store.dispatch(newsActions.getGallereySuccess(menyImages))
     expect(store.getState().gallerey).to.equal(menyImages)
   })
@@ -49,6 +49,6 @@ describe('Test actions galerey', () => {
     expect(store.getState().gallerey).to.equal(menyImages)
 
     store.dispatch(newsActions.resetGallereyProps())
-    expect(store.getState().gallerey).to.equal(undefined)
+    expect(store.getState().gallerey[0]).to.equal(null)
   })
 })

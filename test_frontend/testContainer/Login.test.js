@@ -44,11 +44,6 @@ describe('Login page', () => {
 
     describe('CreateSession views', () => {
 
-      // beforeEach( () => {
-      //   store = mockStore(storeStateMockUserNotLogin);
-      //   wrapper = mount(containerLogin(store))
-      // })
-
       it('Contains a Form', () => {
         expect(wrapper.find('Form').length).to.equal(1);
       })

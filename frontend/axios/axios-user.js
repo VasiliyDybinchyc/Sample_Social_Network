@@ -8,13 +8,9 @@ import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 import { checkError }     from '../helper/logic';
 
 import { getUsersSuccess,
-         createUserSuccess,
-         createUserError,
-         editUserSuccess,
-         editUserError,
          getProfileSuccess,
          authenticationSuccess,
-         getCurrentUserSuccess } from '../actions/user-actions';
+         newCurrentUser } from '../actions/user-actions';
 
 
 export function getUsers() {
@@ -28,14 +24,14 @@ export function getUsers() {
 export function createUser(createdUser) {
   return axios.post('/users', createdUser)
     .then(response => {
-      checkError(response.data, createUserSuccess)
+      checkError(response.data, newCurrentUser)
     });
 }
 
 export function editUser(editedUser , userId) {
   return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(response => {
-      checkError(response.data, editUserSuccess)
+      checkError(response.data, newCurrentUser)
     });
 }
 
@@ -58,7 +54,7 @@ export function authentication() {
 export function getCurrentUser() {
   return axios.get('/users/getCurrentUser')
     .then(response => {
-      store.dispatch(getCurrentUserSuccess(response.data));
+      store.dispatch(newCurrentUser(response.data));
       return response;
     });
 }

@@ -8,31 +8,10 @@ export function getUsersSuccess(users) {
   };
 }
 
-export function createUserSuccess(createdUser) {
+export function newCurrentUser(currentUser) {
   return {
-    type: types.CREATE_USER_SUCCESS,
-    createdUser
-  };
-}
-
-export function createUserError(error) {
-  return {
-    type: types.CREATE_USER_ERROR,
-    error
-  };
-}
-
-export function editUserSuccess(editedUser) {
-  return {
-    type: types.EDIT_USER_SUCCESS,
-    editedUser
-  };
-}
-
-export function editUserError(error) {
-  return {
-    type: types.EDIT_USER_ERROR,
-    error
+    type: types.NEW_CURRENT_USER,
+    currentUser
   };
 }
 
@@ -43,6 +22,13 @@ export function getProfileSuccess(userProfile) {
   };
 }
 
+export function resetProfileProps() {
+  return {
+    type: types.RESET_PROFILE_SUCCESS,
+    reset: [null]
+  }
+}
+
 export function authenticationSuccess(authentication) {
   return {
     type: types.AUTHENTICATION_SUCCESS,
@@ -50,30 +36,9 @@ export function authenticationSuccess(authentication) {
   };
 }
 
-export function getCurrentUserSuccess(currentUser) {
-  return {
-    type: types.GET_CURRENT_USER_SUCCESS,
-    currentUser
-  };
-}
-
-export function resetErrorProps() {
-  return {
-    type: types.EDIT_USER_ERROR,
-    undefined
-  };
-}
-
-export function resetProfileProps() {
-  return {
-    type: types.GET_PROFILE_SUCCESS,
-    undefined
-  }
-}
-
 export function resetCurrentUser() {
   return {
     type: types.RESET_CURRENT_USER,
-    currentUser: []
+    reset: [null]
   }
 }

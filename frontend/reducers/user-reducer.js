@@ -15,23 +15,20 @@ const userReducer = function(state = initialState, action) {
     case types.GET_USERS_SUCCESS:
       return Object.assign({}, state, { users: action.users });
 
-    case types.CREATE_USER_SUCCESS:
-      return Object.assign({}, state, { currentUser: action.createdUser });
+    case types.NEW_CURRENT_USER:
+      return Object.assign({}, state, { currentUser: action.currentUser });
 
-    case types.EDIT_USER_SUCCESS:
-      return Object.assign({}, state, { currentUser: action.editedUser });
+    case types.RESET_CURRENT_USER:
+      return Object.assign({}, state, { currentUser: action.reset });
 
     case types.GET_PROFILE_SUCCESS:
       return Object.assign({}, state, { userProfile: action.userProfile });
 
+    case types.RESET_PROFILE_SUCCESS:
+      return Object.assign({}, state, { userProfile: action.reset });
+
     case types.AUTHENTICATION_SUCCESS:
       return Object.assign({}, state, { authentication: action.authentication });
-
-    case types.GET_CURRENT_USER_SUCCESS:
-      return Object.assign({}, state, { currentUser: action.currentUser });
-
-    case types.RESET_CURRENT_USER:
-      return Object.assign({}, state, { currentUser: action.currentUser });
 
     }
 

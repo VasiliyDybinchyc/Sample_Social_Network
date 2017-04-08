@@ -8,9 +8,7 @@ import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 import { checkError }     from '../helper/logic';
 
 import { getUsersSuccess,
-         getProfileSuccess,
-         authenticationSuccess,
-         newCurrentUser } from '../actions/user-actions';
+         getProfileSuccess } from '../actions/user-actions';
 
 import {createSessionSuccess} from '../actions/sessions-actions';
 

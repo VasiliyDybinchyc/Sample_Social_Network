@@ -33,7 +33,7 @@ describe('Test actions session', () => {
   })
 
   it('Action createSessionSuccess change value store state sessions from empty on userOne', () => {
-    expect(store.getState().sessions).to.empty;
+    expect(store.getState().sessions[0]).to.equal(null);
     store.dispatch(sessionsActions.createSessionSuccess(userOne))
     expect(store.getState().sessions).to.equal(userOne);
   })
@@ -41,8 +41,8 @@ describe('Test actions session', () => {
   it('Action deleteSessionSuccess change value store state sessions from userOne on undefined', () => {
     store.dispatch(sessionsActions.createSessionSuccess(userOne))
     expect(store.getState().sessions).to.equal(userOne);
-    
+
     store.dispatch(sessionsActions.deleteSessionSuccess())
-    expect(store.getState().sessions).to.equal(undefined);
+    expect(store.getState().sessions[0]).to.equal(undefined);
   })
 })

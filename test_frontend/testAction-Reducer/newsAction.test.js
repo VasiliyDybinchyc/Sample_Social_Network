@@ -44,17 +44,11 @@ describe('Test actions news', () => {
     expect(store.getState().news).to.equal(manyMessages)
   })
 
-  it('Action getOnlyUserNewsSuccess change value store state onlyUserNews from empty on manyMessages', () => {
-    expect(store.getState().onlyUserNews[0]).to.equal(null)
-    store.dispatch(newsActions.getOnlyUserNewsSuccess(manyMessages))
-    expect(store.getState().onlyUserNews).to.equal(manyMessages)
-  })
-
-  it('Action resetNewsProps change value store state news from manyMessages on undefined', () => {
+  it('Action resetNewsProps change value store state news from manyMessages on [null]', () => {
     store.dispatch(newsActions.getNewsSuccess(manyMessages))
     expect(store.getState().news).to.equal(manyMessages)
 
     store.dispatch(newsActions.resetNewsProps())
-    expect(store.getState().news).to.equal(undefined)
+    expect(store.getState().news[0]).to.equal(null)
   })
 })

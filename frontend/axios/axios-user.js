@@ -48,7 +48,6 @@ export function getProfile(userId) {
 export function authentication() {
   return axios.get('/users/authentication')
     .then(response => {
-      store.dispatch(authenticationSuccess(response.data));
       return response;
     });
 }

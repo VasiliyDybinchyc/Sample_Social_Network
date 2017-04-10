@@ -29,12 +29,13 @@ const Galerey = React.createClass({
     if (this.props.params.pageNumber !== nextProps.params.pageNumber) {
       axiosGallerey.getGallerey(this.props.params.userId,
                                 nextProps.params.pageNumber);
+    } else if (this.props.params.userId !== nextProps.params.userId) {
+      axiosGallerey.getGallerey(nextProps.params.userId,
+                                nextProps.params.pageNumber);
     }
   },
 
   render: function() {
-    console.log(this.props.allAmount)
-    console.log(this.props.galere)
     return(
       <div>
         {this.props.render &&

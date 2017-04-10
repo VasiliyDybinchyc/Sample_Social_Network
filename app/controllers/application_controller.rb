@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def checkLogined
+    if logged_in?
+      shit
+    else
+      redirect_to root_path
+    end
+  end
+
   def shit
     render :file => 'layouts/application'
   end

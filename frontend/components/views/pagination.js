@@ -12,7 +12,6 @@ export default class PaginationView extends React.Component {
 
   componentWillMount(){
     var amountElement = 0
-    console.log(this.props.amountElement)
     if (this.props.paginationFor == "galerey") {
       this.amountPagination = Math.ceil(this.props.amountElement / 8)
     }

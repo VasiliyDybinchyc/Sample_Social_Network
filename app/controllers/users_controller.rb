@@ -10,10 +10,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params.require(:id).to_i == current_user.id
-      redirect_to '/profile'
+    if logged_in?
+      if params[:id].to_i == current_user.id
+        redirect_to '/profile'
+      else
+        render :file => 'layouts/application'
+      end
     else
-      render :file => 'layouts/application'
+      redirect_to root_path
     end
   end
 

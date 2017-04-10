@@ -8,17 +8,17 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  get    'Galerey/:userId/page/:pageNumber', to: 'application#shit'
+  get    'Galerey/:userId/page/:pageNumber', to: 'application#checkLogined'
 
   get    'getGallerey/:userId/page/:pageNumber', to: 'galleries#getGallerey'
 
-  get    '/profile',   to: 'application#shit'
+  get    '/profile',   to: 'application#checkLogined'
 
-  get    '/editProfile',   to: 'application#shit'
+  get    '/editProfile',   to: 'application#checkLogined'
 
-  get    '/AllUser',   to: 'application#shit'
+  get    '/AllUser',   to: 'application#checkLogined'
 
-  get    '/allFrend/:userId',   to: 'application#shit'
+  get    '/allFrend/:userId',   to: 'application#checkLogined'
 
   get   '/giveUser/:id', to: 'users#giveUser'
 

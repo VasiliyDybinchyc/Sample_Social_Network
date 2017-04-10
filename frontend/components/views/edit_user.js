@@ -14,11 +14,11 @@ export default React.createClass({
   },
 
   getFirstName: function() {
-    return this.name.value;
+    return this.name.value || this.props.user.first_name;
   },
 
   getLastName: function() {
-    return this.surname.value;
+    return this.surname.value || this.props.user.last_name;
   },
 
   getAvatar: function() {

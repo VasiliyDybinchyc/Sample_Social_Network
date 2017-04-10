@@ -24,7 +24,7 @@ const EditUser = React.createClass({
 
   onSubmit: function(event) {
     event.preventDefault();
-    let userId = this.props.userId;
+    let userId = this.props.user.id;
 
     let dataUser = new FormData()
 
@@ -43,7 +43,7 @@ const EditUser = React.createClass({
       <div>
         {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
         {this.props.render &&
-          <CreateUserViews onSubmit={this.onSubmit} ref="child" />
+          <CreateUserViews onSubmit={this.onSubmit} ref="child" user={this.props.user} />
         }
       </div>
     );
@@ -52,7 +52,7 @@ const EditUser = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    userId: store.sessionState.sessions.id,
+    user: store.sessionState.sessions,
     error: store.globalState.error,
     render: store.globalState.render = checkReadyToRender(store.sessionState.sessions)
   };

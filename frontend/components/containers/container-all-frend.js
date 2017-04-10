@@ -18,6 +18,12 @@ const AllFrendUser = React.createClass({
     NProgress.done()
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.userId !== nextProps.params.userId) {
+      axiosFriend.getAllFriends(nextProps.params.userId);
+    }
+  },
+
   render: function() {
     return(
       <div>

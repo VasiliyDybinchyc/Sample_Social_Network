@@ -17,6 +17,16 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def update
+    @user = current_user
+    if @user.update_attributes(user_params)
+      render json: @user.to_json
+    else
+      render json: @user.errors.full_messages
+    end
+  end
+
   def authentication
     if current_user.blank?
       render json: false.to_json

@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   validates :email, format: { with: VALID_EMAIL_REGEX }
 
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+
   mount_uploader :avatar, AvatarUploader
 
   mount_base64_uploader :croppersAvatar, CroppersAvatarUploader

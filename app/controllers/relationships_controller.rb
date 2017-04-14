@@ -1,7 +1,4 @@
 class RelationshipsController < ApplicationController
-  before_action :logged_in_user
-
-  skip_before_action :verify_authenticity_token
 
   def create
     user = User.find(params[:friendId])

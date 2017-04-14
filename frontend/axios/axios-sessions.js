@@ -7,7 +7,7 @@ import { deleteSessionSuccess,
 import { checkError }     from '../helper/logic';
 
 export function createSession(User) {
-  return axios.post('/sessions', {user: User})
+  return axios.post('/users/sign_in', {user: User})
     .then(response => {
       checkError(response.data, createSessionSuccess)
       return response;
@@ -15,9 +15,8 @@ export function createSession(User) {
 }
 
 export function deleteSession(userId) {
-  return axios.delete('/sessions/' + userId)
+  return axios.get('/users/sign_out')
     .then(() => {
       store.dispatch(deleteSessionSuccess());
-      browserHistory.push('/');
     });
 }

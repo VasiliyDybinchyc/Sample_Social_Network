@@ -1,8 +1,6 @@
 class MessagesController < ApplicationController
   include MessagesHelper
 
-  skip_before_filter :verify_authenticity_token, only: [:create]
-
   def index
     @@stop = 29
     @@start = 0

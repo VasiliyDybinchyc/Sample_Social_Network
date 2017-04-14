@@ -25,7 +25,7 @@ const RootPath = React.createClass({
   onSubmit: function(event) {
     event.preventDefault();
     browserHistory.push('/')
-    axiosSessions.deleteSession(this.props.userId)
+    axiosSessions.deleteSession()
   },
 
   render: function() {

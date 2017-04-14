@@ -1,7 +1,5 @@
 class GalleriesController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token, only: [:create]
-
   def getGallerey
     @user = User.find(params[:userId])
     if params[:pageNumber].to_i == 0

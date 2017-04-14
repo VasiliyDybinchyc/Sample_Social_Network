@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-  protect_from_forgery with: :exception
-
-  skip_before_filter :verify_authenticity_token, only: [:create, :update]
-
   def index
     @users = User.all
     render json: @users.to_json
@@ -18,25 +14,6 @@ class UsersController < ApplicationController
       end
     else
       redirect_to root_path
-    end
-  end
-
-  def create
-    @user = User.create(user_params)
-    if @user.save
-      log_in @user
-      render json: @user.to_json
-    else
-      render json: @user.errors.full_messages
-    end
-  end
-
-  def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      render json: @user.to_json
-    else
-      render json: @user.errors.full_messages
     end
   end
 

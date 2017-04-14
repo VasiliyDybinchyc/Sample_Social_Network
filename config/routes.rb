@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
   root "application#root"
 
   get  '/signup',  to: 'application#root'
-  post '/signup',  to: 'users#create'
 
   get    '/login',   to: 'application#root'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
 
   get    'Galerey/:userId/page/:pageNumber', to: 'application#checkLogined'
 
   get    'getGallerey/:userId/page/:pageNumber', to: 'galleries#getGallerey'
 
-  get    '/profile',   to: 'application#checkLogined'
+  get    '/profile', to: 'application#checkLogined'
 
   get    '/editProfile',   to: 'application#checkLogined'
 
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
+  resources :users, only: [:index, :show] do
 
     resources :messages,  only: [:create, :destroy, :index] do
       collection do
@@ -43,6 +43,5 @@ Rails.application.routes.draw do
     collection  do
       get :authentication, :getCurrentUser
     end
-
   end
 end

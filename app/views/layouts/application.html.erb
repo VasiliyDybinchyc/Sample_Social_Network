@@ -6,9 +6,11 @@
     <%= stylesheet_link_tag :nprogress, :recurseve => true %>
     <%= stylesheet_link_tag :cropper,   :recurseve => true %>
 
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
   <body>
-    <%= yield %>
     <div id="root"><script src="/bundleFrontend/bundle.js"></script></div>
   </body>
 </html>

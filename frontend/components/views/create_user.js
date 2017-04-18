@@ -33,18 +33,6 @@ export default React.createClass({
     return this.password_confirmation.value;
   },
 
-  getAvatar: function() {
-    return this.avatar.files[0];
-  },
-
-  getCroppersAvatar: function() {
-      try {
-      return this.refs.cropper.getCroppedCanvas().toDataURL();
-    } catch (error) {
-      return undefined;
-    }
-  },
-
   changeCropp: function() {
     var file = this.avatar.files[0];
     var reader = new FileReader();
@@ -94,18 +82,6 @@ export default React.createClass({
             <Col xs='4'>
               <Label for="SignUpPasswordConfirmation">Password Confirmation</Label>
               <Input type="password" name="SignUpPasswordConfirmation" getRef={(ref) => (this.password_confirmation = ref)} id="SignUpPasswordConfirmation" placeholder="Password Confirmation" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col xs='4'>
-              <Label for="Avatar">Avatar</Label>
-              <Input type="file" name="Avatar" getRef={(ref) => (this.avatar = ref)} id="Avatar" onChange={this.changeCropp} />
-              <Cropper src={this.state.test} guides={false} preview=".img-preview" ref="cropper" style={{height: 400, width: '100%'}} viewMode={1} />
-              <div className="box" style={{ width: '50%', float: 'right' }}>
-                <h1>Preview</h1>
-                <div className="img-preview" style={{ width: '100%', float: 'left', height: 300, overflow: 'hidden' }} />
-              </div>
             </Col>
           </FormGroup>
 

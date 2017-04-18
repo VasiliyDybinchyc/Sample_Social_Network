@@ -4,6 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include DeviseTokenAuth::Concerns::User
+
+  before_validation :set_provider
+  def set_provider
+    self[:provider] = "email" if self[:provider].blank?
+  end
+
+  before_validation :set_uid
+  def set_uid
+    self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
+  end
+
   before_save { self.email = email.downcase }
 
   validates_presence_of :first_name, :last_name, :email
@@ -37,6 +49,18 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
 
   has_many :followers, through: :passive_relationships, source: :follower
+
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
 
   def feed
     following_ids = "SELECT followed_id FROM relationships

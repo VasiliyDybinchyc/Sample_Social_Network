@@ -4,14 +4,14 @@ import CreateSession          from '../views/create_session';
 import NProgress              from 'react-nprogress';
 
 import    * as axiosUser      from '../../axios/axios-user';
-import    * as axiosSessions  from '../../axios/axios-sessions';
+import { createSession }      from '../../auth/authRequest';
 
 import  { connect }       from 'react-redux';
 import ErrorViews         from '../views/error';
 
 import { resetError } from '../../helper/helperFrontend';
 
-import { auth }    from '../../helper/logic';
+import AuthN from 'j-toker';
 
 const LogIn = React.createClass({
 
@@ -20,8 +20,8 @@ const LogIn = React.createClass({
     },
 
   componentDidMount: function() {
-      NProgress.done()
-    },
+    NProgress.done()
+  },
 
   componentWillUnmount: function() {
       resetError()
@@ -31,12 +31,11 @@ const LogIn = React.createClass({
     event.preventDefault();
 
     let user = {};
-    user.email      = this.refs.child.getEmail();
-    user.password   = this.refs.child.getPassword();
 
-    axiosSessions.createSession(user).then(function () {
-      auth(true)
-    });
+    user.email      = this.refs.child.getEmail()
+    user.password   = this.refs.child.getPassword()
+
+    createSession(user)
   },
 
   render: function() {

@@ -5,12 +5,12 @@ import  { browserHistory }   from 'react-router';
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
-import { checkError }     from '../helper/logic';
-
 import { getUsersSuccess,
          getProfileSuccess } from '../actions/user-actions';
 
 import {createSessionSuccess} from '../actions/sessions-actions';
+
+import    * as globalActions from '../actions/global-action';
 
 
 export function getUsers() {
@@ -21,18 +21,17 @@ export function getUsers() {
     });
 }
 
-export function createUser(createdUser) {
-  return axios.post('/users', createdUser)
-    .then(response => {
-      checkError(response.data, createSessionSuccess)
-    });
-}
-
 export function editUser(editedUser , userId) {
   return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
-    .then(response => {
-      checkError(response.data, createSessionSuccess)
-    });
+    .then(
+      response => {
+        store.dispatch(createSessionSuccess(response.data))
+        store.dispatch(globalActions.resetError())
+        browserHistory.push('/profile')
+      },
+      response => {
+        store.dispatch(globalActions.newError(response.data.errors.full_messages))
+      });
 }
 
 export function getProfile(userId) {

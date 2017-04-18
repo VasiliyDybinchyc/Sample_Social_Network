@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if logged_in?
+    if user_signed_in?
       if params[:id].to_i == current_user.id
         redirect_to '/profile'
       else
@@ -16,7 +16,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
 
   def update
     @user = current_user
@@ -36,7 +35,11 @@ class UsersController < ApplicationController
   end
 
   def getCurrentUser
-    render json: current_user.to_json
+    if current_user == nil
+      render json: false.to_json
+    else
+      render json: current_user.to_json
+    end
   end
 
   def giveUser
@@ -46,8 +49,7 @@ class UsersController < ApplicationController
   private
 
    def user_params
-     params.require(:user).permit(:first_name,:last_name, :email, :password,
-                                  :password_confirmation, :avatar, :croppersAvatar)
+     params.require(:user).permit(:first_name, :last_name, :avatar, :croppersAvatar)
    end
 
     def correct_user

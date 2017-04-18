@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
+  include DeviseTokenAuth::Concerns::SetUserByToken
 
+  before_action :get_current_user
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  # def authenticate_current_user
+  #   head :unauthorized if get_current_user.nil?
+  # end
 
   def root
     if user_signed_in?
@@ -23,24 +27,20 @@ class ApplicationController < ActionController::Base
     render :file => 'layouts/application'
   end
 
-
   private
+    def get_current_user
+      return nil unless cookies[:authHeaders]
+      authHeaders = JSON.parse(cookies[:authHeaders])
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :avatar, :croppersAvatar])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :avatar, :croppersAvatar])
-  end
+      expiration_datetime = DateTime.strptime(authHeaders["expiry"], "%s")
+      current_user = User.find_by(uid: authHeaders["uid"])
 
-  def account_update
-    p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-  end
-  def update_resource(resource, params)
-    p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-    resource.update_without_password(params)
-  end
+      if current_user &&
+         current_user.tokens.has_key?(authHeaders["client"]) &&
+         expiration_datetime > DateTime.now
 
-  def after_update_path_for(resource)
-    p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-    user_path(resource)
+        @current_user = current_user
+      end
+    @current_user
   end
 end

@@ -2,6 +2,7 @@ import store from '../store';
 import * as userActions from '../actions/user-actions';
 import * as globalActions from '../actions/global-action';
 import * as friendActions from '../actions/friends-action';
+import * as actionSession from '../actions/sessions-actions';
 import * as newsActions from '../actions/news-actions';
 import * as gallereyActions from '../actions/actions-gallerey';
 import { getGallereySuccess, getAllGallereyAmount } from '../actions/actions-gallerey';
@@ -47,7 +48,7 @@ export function resetError() {
 };
 
 export function resetCurrentUser() {
-  store.dispatch(userActions.resetCurrentUser());
+  store.dispatch(actionSession.deleteSessionSuccess());
 };
 
 export function resetGallereyInfo() {

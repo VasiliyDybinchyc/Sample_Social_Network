@@ -1,25 +1,26 @@
 import React from 'react';
 
-import    * as axiosNews    from '../../axios/axios-news';
-import    * as axiosGallerey  from '../../axios/axios-gallerey';
+import    ErrorViews     from './error';
 
-import    ErrorViews         from '../views/error';
-import {  Button,
-          Form,
-          FormGroup,
-          Label,
-          Input,
-          Col}         from 'reactstrap';
+import   { postNews }    from '../../axios/axios-news';
+
+import { Col,
+         Form,
+         Label,
+         Input,
+         Button,
+         FormGroup }  from 'reactstrap';
 
 export default class PostNews extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = { countSymbol: 0,
-                   error: false };
+                   error: false,
+                   errorMessage: ''};
   }
 
-  postNews(event) {
+  checkNews(event) {
     event.preventDefault();
     let userId = this.props.userId;
     let data = new FormData()
@@ -27,34 +28,42 @@ export default class PostNews extends React.Component {
     data.append('message[content]', this.newsText.value)
     data.append('message[picture]', this.newsFile.files[0])
 
-    axiosNews.postNews(userId, data).then(function () {
-      if (data.get('message[picture]') !== 'undefined') {
-        axiosGallerey.getGallerey(userId);
-      }
-    });
-    this.setState({error: false})
-    this.newsText.value = ''
-    this.newsFile.value = ''
+    if (data.get('message[picture]') !== 'undefined' ||
+        data.get('message[content]') !== '')
+    {
+      postNews(userId, data)
+      
+      this.newsFile.value = ''
+      this.resetError()
+    }
+    else {
+      this.seeEror('You must write message or upload picture before post')
+    }
   }
 
   changeCountSymbol(event){
     this.setState({countSymbol: event.target.value.length})
   }
 
-  seeEror(event){
-    event.preventDefault();
+  seeEror(message){
+    this.setState({errorMessage: message})
     this.setState({error: true})
+  }
+
+  resetError(){
+    this.setState({error: false})
+    this.setState({errorMessage: ''})
   }
 
   render() {
     return (
       <div>
         <h3>Add news</h3>
-        {this.state.error == false ? null : <ErrorViews error={['Your message biger 335 symbols']} />}
+        {this.state.error && <ErrorViews error={[this.state.errorMessage]} />}
         <Form id="newMessage">
           <FormGroup>
               <Label for="TextMessage">Text Message</Label>
-              <Input type="textarea" name="TextMessage" getRef={(ref) => (this.newsText = ref)} id="TextMessage" onChange={this.changeCountSymbol.bind(this)} />
+              <Input type="textarea" name="TextMessage" getRef={(ref) => (this.newsText = ref)} id="TextMessage" onChange={this.changeCountSymbol.bind(this)} maxLength="335" />
           </FormGroup>
 
           <FormGroup>
@@ -64,13 +73,10 @@ export default class PostNews extends React.Component {
 
           <p>You have remaining {335 - this.state.countSymbol} symbols</p>
 
-          <Button color="primary"
-                  onClick={this.state.countSymbol >= 336 ? this.seeEror.bind(this) : this.postNews.bind(this) }
-                  className={this.state.countSymbol >= 336 ? 'disabled' : null}>
+          <Button color="primary" onClick={ this.checkNews.bind(this) }>
             Post
           </Button>
         </Form>
-
       </div>
     );
   }

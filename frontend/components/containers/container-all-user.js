@@ -1,16 +1,18 @@
-import   React            from 'react';
-import { connect }        from 'react-redux';
-import { Link }           from 'react-router';
-import   * as axiosUser   from '../../axios/axios-user';
-import   AllUserViews     from '../views/all_user';
-import   NProgress        from 'react-nprogress';
+import   React                 from 'react';
+import   NProgress             from 'react-nprogress';
 
-import { checkReadyToRender }   from '../../helper/helperFrontend';
+import   AllUserViews          from '../views/all_user';
+
+import { connect }             from 'react-redux';
+
+import { getUsers }            from '../../axios/axios-user';
+
+import { checkReadyToRender }  from '../../helper/helperFrontend';
 
 const AllUser = React.createClass({
 
   componentWillMount: function() {
-    axiosUser.getUsers()
+    getUsers()
     NProgress.start();
   },
 
@@ -29,12 +31,12 @@ const AllUser = React.createClass({
       </div>
     );
   }
-
 });
 
 const mapStateToProps = function(store) {
   return {
     users: store.userState.users,
+
     render: store.globalState.render = checkReadyToRender(store.userState.users)
   };
 };

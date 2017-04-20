@@ -1,16 +1,18 @@
-import React from 'react';
-import Cropper from 'react-cropper'
-import {  Button,
-          Form,
-          FormGroup,
-          Label,
-          Input,
-          Col}         from 'reactstrap';
+import React          from 'react';
+
+import Cropper        from 'react-cropper'
+
+import { Col,
+         Form,
+         Label,
+         Input,
+         Button,
+         FormGroup }  from 'reactstrap';
 
 export default React.createClass({
 
   getInitialState: function() {
-    return({test: ''})
+    return({Cropper: ''})
   },
 
   getFirstName: function() {
@@ -40,7 +42,7 @@ export default React.createClass({
 
     reader.onloadend = function (e) {
       this.setState({
-        test: reader.result,
+        Cropper: reader.result,
       })
     }.bind(this);
   },
@@ -50,6 +52,7 @@ export default React.createClass({
       <div>
         <h1>Sign Up</h1>
         <Form>
+
           <FormGroup>
             <Col xs='4'>
               <Label for="SignUpName">Name</Label>
@@ -65,15 +68,17 @@ export default React.createClass({
           </FormGroup>
 
           <FormGroup>
+
+            <div className="box" style={{position: 'fixed', width: 400, height: 400, paddingLeft: '40%', paddingTop: '5%'}}>
+              <div className="img-preview" style={{ width: 400, height: 400, overflow: 'hidden'}} />
+            </div>
+
             <Col xs='4'>
               <Label for="Avatar">Avatar</Label>
               <Input type="file" name="Avatar" getRef={(ref) => (this.avatar = ref)} id="Avatar" onChange={this.changeCropp} />
-              <Cropper src={this.state.test} guides={false} preview=".img-preview" ref="cropper" style={{height: 400, width: '100%'}} viewMode={1} />
-              <div className="box" style={{ width: '50%', float: 'right' }}>
-                <h1>Preview</h1>
-                <div className="img-preview" style={{ width: '100%', float: 'left', height: 300, overflow: 'hidden' }} />
-              </div>
+              <Cropper src={this.state.Cropper} guides={false} preview=".img-preview" ref="cropper" style={{height: 400, width: '100%'}} viewMode={1} />
             </Col>
+
           </FormGroup>
 
           <Button color="success" onClick={this.props.onSubmit}>

@@ -1,34 +1,43 @@
 import React from 'react';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+
 import { browserHistory } from 'react-router';
 
-export default class PaginationView extends React.Component {
+import { Pagination,
+         PaginationItem,
+         PaginationLink } from 'reactstrap';
 
-  endPagination(something){
-    if (something > this.amountPagination || something < 1){
-      return true
-    }
-  }
+
+export default class PaginationView extends React.Component {
 
   componentWillMount(){
     var amountElement = 0
     if (this.props.paginationFor == "galerey") {
       this.amountPagination = Math.ceil(this.props.amountElement / 8)
     }
+    this.viewPaginations()
+  }
+
+  componentWillReceiveProps() {
+    this.viewPaginations()
   }
 
   changePostion(){
     this.position = [,,,,,]
+
     let defaultPosition = [1, 2, 3, 4, 5];
-    if (this.props.pageNumber <= 3) {
+
+    if (this.props.pageNumber <= 3){
       this.position = defaultPosition
-    }else if (Math.round(this.amountPagination) - Math.round(this.props.pageNumber) <= 2){
+    }
+    else if (Math.round(this.amountPagination) - Math.round(this.props.pageNumber) <= 2)
+    {
       if (this.position[4] !== this.amountPagination){
         for (let i = 0; i < this.position.length; i++) {
           this.position[i] = this.amountPagination - 4 + i
         }
       }
-    }else {
+    }
+    else {
       for (let i = 0; i < this.position.length; i++) {
         this.position[i] = Number(this.props.pageNumber) - 2 + i
       }
@@ -44,30 +53,44 @@ export default class PaginationView extends React.Component {
     }
   }
 
-  render() {
+  endPagination(previousPage){
+    if (previousPage > this.amountPagination || previousPage < 1){
+      return true
+    }
+  }
+
+  viewPaginations() {
     this.changePostion()
 
-    var nextPage = Number(this.props.pageNumber) + 1,
-        previousPage = Number(this.props.pageNumber) - 1;
+    this.nextPage = Number(this.props.pageNumber) + 1,
+    this.previousPage = Number(this.props.pageNumber) - 1;
 
-    var viewPagination = []
+    this.viewPagination = []
+
     for (let i = 0; i < this.viewAmountPagination(); i++){
-      viewPagination.push(
+      this.viewPagination.push(
+
         <PaginationItem key={i + ' key PaginationItem'}>
           <PaginationLink onClick={() => browserHistory.push('/Galerey/' + this.props.userId + '/page/' + this.position[i] )} >
             {this.position[i]}
           </PaginationLink>
-        </PaginationItem>)
-    }
+        </PaginationItem>
 
+      )
+    }
+  }
+
+  render() {
     return (
       <Pagination>
-        <PaginationItem disabled={this.endPagination(previousPage)}>
-          <PaginationLink previous onClick={() => browserHistory.push('/Galerey/11/page/' + previousPage)} />
+        <PaginationItem disabled={this.endPagination(this.previousPage)}>
+          <PaginationLink previous onClick={() => browserHistory.push('/Galerey/' + this.props.userId + '/page/' + this.previousPage)} />
         </PaginationItem>
-        {viewPagination}
-        <PaginationItem disabled={this.endPagination(nextPage)}>
-          <PaginationLink next onClick={() => browserHistory.push('/Galerey/11/page/' + nextPage)} />
+
+        {this.viewPagination}
+
+        <PaginationItem disabled={this.endPagination(this.nextPage)}>
+          <PaginationLink next onClick={() => browserHistory.push('/Galerey/' + this.props.userId + '/page/' + this.nextPage)} />
         </PaginationItem>
       </Pagination>
     );

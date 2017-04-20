@@ -1,20 +1,35 @@
 import React                  from 'react';
-import { connect }            from 'react-redux';
-import  { browserHistory, Link }    from 'react-router';
 import NProgress              from 'react-nprogress';
+
 import PersonalInfoViews      from '../views/personal_info';
 import FriendsViews           from '../views/user_friends';
 import GalereyViews           from '../views/mini_galerey';
 import NewsViews              from '../views/user_news';
 import FriendButton           from '../views/friend_button';
 import NotFriendButton        from '../views/not_friend_button';
-import   * as axiosUser       from '../../axios/axios-user';
-import    * as axiosNews      from '../../axios/axios-news';
-import    * as axiosFriend    from '../../axios/axios-friend';
-import    * as axiosGallerey  from '../../axios/axios-gallerey';
 
-import { checkReadyToRender, checkIsNotThisMyProfile, resetNewsGalereyFriendProfile, resetGallereyInfo } from '../../helper/helperFrontend';
-import { ListGroup, ListGroupItem, Row, Col, Button } from 'reactstrap';
+import { connect }            from 'react-redux';
+import { browserHistory }     from 'react-router';
+
+import { getProfile,
+         getCurrentUser }   from '../../axios/axios-user';
+
+import { getNews,
+         getNewsFriends }      from '../../axios/axios-news';
+
+import { getFriends,
+         checkIsThisUserIsFriend }    from '../../axios/axios-friend';
+
+import { getGallerey }  from '../../axios/axios-gallerey';
+
+import { checkReadyToRender,
+         checkIsNotThisMyProfile,
+         resetNewsGalereyFriendProfile } from '../../helper/helperFrontend';
+
+import { Row,
+         Col,
+         ListGroup,
+         ListGroupItem } from 'reactstrap';
 
 const AnotherUserProfile = React.createClass({
 
@@ -29,12 +44,13 @@ const AnotherUserProfile = React.createClass({
   },
 
   updateProps: function(userId) {
-      axiosUser.getCurrentUser()
-      axiosUser.getProfile(userId)
-      axiosGallerey.getGallerey(userId);
-      axiosFriend.getFriends(userId);
-      axiosFriend.checkIsThisUserIsFriend(userId)
-      axiosNews.getNews(userId);
+      getCurrentUser()
+      getProfile(userId)
+      getGallerey(userId);
+      getFriends(userId);
+      checkIsThisUserIsFriend(userId)
+      getNews(userId);
+      getNewsFriends(userId)
       NProgress.done()
   },
 
@@ -51,10 +67,6 @@ const AnotherUserProfile = React.createClass({
       resetNewsGalereyFriendProfile()
       this.updateProps(nextProps.params.userId)
     }
-  },
-
-  componentWillUnmount: function() {
-    resetGallereyInfo()
   },
 
   notMyProfile(id) {
@@ -111,6 +123,7 @@ const mapStateToProps = function(store) {
   return {
     currentUserId: store.sessionState.sessions.id,
     profile: store.userState.userProfile,
+    newsFriend: store.newsState.newsFriend,
     userGalerey: store.gallereyState.gallerey,
     userFriends: store.friendsState.userFriends,
     checkIsThisUserIsFriend: store.friendsState.checkIsThisUserIsFriend,
@@ -119,7 +132,8 @@ const mapStateToProps = function(store) {
                                                             store.gallereyState.gallerey,
                                                             store.friendsState.userFriends,
                                                             store.friendsState.checkIsThisUserIsFriend,
-                                                            store.newsState.news)
+                                                            store.newsState.news,
+                                                            store.friendsState.userFriends)
   };
 };
 

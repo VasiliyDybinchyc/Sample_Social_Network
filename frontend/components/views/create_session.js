@@ -1,9 +1,10 @@
 import React from 'react';
-import {  Button,
-          Form,
-          FormGroup,
-          Label,
-          Input }         from 'reactstrap';
+
+import { Form,
+         Label,
+         Input,
+         Button,
+         FormGroup }         from 'reactstrap';
 
 import { fourSpaces }     from '../../helper/helperFrontend';
 

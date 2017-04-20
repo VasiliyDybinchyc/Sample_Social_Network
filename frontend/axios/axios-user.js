@@ -1,16 +1,17 @@
 import axios from 'axios';
 import store from '../store';
 
-import  { browserHistory }   from 'react-router';
+import { browserHistory }   from 'react-router';
+
+import { createSessionSuccess } from '../actions/sessions-actions';
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
 
+import  { newError,
+          resetError } from '../actions/global-action';
+
 import { getUsersSuccess,
          getProfileSuccess } from '../actions/user-actions';
-
-import {createSessionSuccess} from '../actions/sessions-actions';
-
-import    * as globalActions from '../actions/global-action';
 
 
 export function getUsers() {
@@ -24,13 +25,13 @@ export function getUsers() {
 export function editUser(editedUser , userId) {
   return axios.patch('/users/' + userId, editedUser, CONFIG_MULTIPART_FORM_DATA)
     .then(
-      response => {
-        store.dispatch(createSessionSuccess(response.data))
-        store.dispatch(globalActions.resetError())
+      fulfilled => {
+        store.dispatch(createSessionSuccess(fulfilled.data))
+        store.dispatch(resetError())
         browserHistory.push('/profile')
       },
-      response => {
-        store.dispatch(globalActions.newError(response.data.errors.full_messages))
+      rejected => {
+        store.dispatch(newError(rejected.data.errors.full_messages))
       });
 }
 
@@ -38,13 +39,6 @@ export function getProfile(userId) {
   return axios.get('/giveUser/' + userId)
     .then(response => {
       store.dispatch(getProfileSuccess(response.data));
-      return response;
-    });
-}
-
-export function authentication() {
-  return axios.get('/users/authentication')
-    .then(response => {
       return response;
     });
 }

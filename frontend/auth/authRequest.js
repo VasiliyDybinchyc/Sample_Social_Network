@@ -1,25 +1,25 @@
+import Auth from 'j-toker';
 import store from '../store';
 
 import { browserHistory } from 'react-router';
 
-import { deleteSessionSuccess,
-         createSessionSuccess} from '../actions/sessions-actions';
-
 import { newError,
          resetError } from '../actions/global-action';
 
-import Auth from 'j-toker';
+import { deleteSessionSuccess,
+         createSessionSuccess } from '../actions/sessions-actions';
 
-export function createSession(User) {
-  return Auth.emailSignIn(User)
+
+export function createSession(user) {
+  return Auth.emailSignIn(user)
     .then(
-      response => {
-        store.dispatch(createSessionSuccess(response.data))
+      fulfilled => {
+        store.dispatch(createSessionSuccess(fulfilled.data))
         store.dispatch(resetError())
         browserHistory.push('/profile')
       },
-      response => {
-        store.dispatch(newError(response.data.errors))
+      rejected => {
+        store.dispatch(newError(rejected.data.errors))
       }
     )
 }
@@ -27,13 +27,13 @@ export function createSession(User) {
 export function createUser(createdUser) {
   return Auth.emailSignUp({user: createdUser})
     .then(
-      response => {
-        store.dispatch(createSessionSuccess(response.data))
+      fulfilled => {
+        store.dispatch(createSessionSuccess(fulfilled.data))
         store.dispatch(resetError())
         browserHistory.push('/profile')
       },
-      response => {
-        store.dispatch(newError(response.data.errors.full_messages))
+      rejected => {
+        store.dispatch(newError(rejected.data.errors.full_messages))
       });
 }
 

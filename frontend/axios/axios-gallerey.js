@@ -1,9 +1,12 @@
 import axios from 'axios';
 import store from '../store';
-import { getGallereySuccess, postGallereySuccess } from '../actions/actions-gallerey';
+
+import { popAllAmount }     from '../helper/helperFrontend'
 
 import { CONFIG_MULTIPART_FORM_DATA }     from '../helper/helperAxios';
-import { popAllAmount }     from '../helper/helperFrontend'
+
+import { getGallereySuccess, postGallereySuccess } from '../actions/actions-gallerey';
+
 
 export function postGallerey(userId, gallerey) {
   return axios.post('/users/' + userId + '/galleries', gallerey, CONFIG_MULTIPART_FORM_DATA)

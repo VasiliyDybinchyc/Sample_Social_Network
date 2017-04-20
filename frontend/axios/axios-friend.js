@@ -1,15 +1,17 @@
 import axios from 'axios';
 import store from '../store';
-import {getFriendsSuccess,
-        checkIsThisUserIsFriendSuccess,
-        getAllFriendsSuccess } from '../actions/friends-action';
 
-export function newFriend(FriendId) {
-  return axios.post('/relationships', {friendId : FriendId})
+import { getFriendsSuccess,
+         getAllFriendsSuccess,
+         checkIsThisUserIsFriendSuccess } from '../actions/friends-action';
+
+
+export function newFriend(friendId) {
+  return axios.post('/relationships', {friendId : friendId})
 };
 
-export function deleteFriend(FriendId) {
-  return axios.delete('/relationships/' + FriendId)
+export function deleteFriend(friendId) {
+  return axios.delete('/relationships/' + friendId)
 };
 
 export function getFriends(userId) {

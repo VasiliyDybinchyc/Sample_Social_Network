@@ -1,34 +1,44 @@
-import    React               from 'react';
-import  { connect }           from 'react-redux';
-import  { Link }              from 'react-router';
-import    PersonalInfoViews   from '../views/personal_info';
-import    FriendsViews        from '../views/user_friends';
-import    GalereyViews        from '../views/mini_galerey';
-import    NewsViews           from '../views/user_news';
-import    FormPost            from '../views/form_post';
-import    FormGalletey        from '../views/form_gallerey';
-import    NProgress           from 'react-nprogress';
-import    * as axiosNews      from '../../axios/axios-news';
-import    * as axiosFriend    from '../../axios/axios-friend';
-import    * as axiosUser      from '../../axios/axios-user';
-import    * as axiosGallerey  from '../../axios/axios-gallerey';
+import    React              from 'react';
+import    NProgress          from 'react-nprogress';
 
+import    FormPost           from '../views/form_post';
+import    NewsViews          from '../views/user_news';
+import    FriendsViews       from '../views/user_friends';
+import    GalereyViews       from '../views/mini_galerey';
+import    FormGalletey       from '../views/form_gallerey';
+import    PersonalInfoViews  from '../views/personal_info';
 
-import { ListGroup, ListGroupItem, Row, Col } from 'reactstrap';
-import { checkReadyToRender, changeStatusModal, resetNewsGalereyFriendProfile }                 from '../../helper/helperFrontend';
+import  { connect }          from 'react-redux';
+
+import  { getFriends }       from '../../axios/axios-friend';
+import  { getGallerey }      from '../../axios/axios-gallerey';
+import  { getCurrentUser }   from '../../axios/axios-user';
+import  { getNews,
+          getNewsFriends }   from '../../axios/axios-news';
+
+import { Row,
+         Col,
+         ListGroup,
+         ListGroupItem } from 'reactstrap';
+
+import { checkReadyToRender,
+         resetNewsGalereyFriendProfile }                 from '../../helper/helperFrontend';
+
 
 const CurrentUserProfile = React.createClass({
 
   componentWillMount: function() {
     NProgress.start();
     resetNewsGalereyFriendProfile()
-    axiosUser.getCurrentUser()
+    getCurrentUser()
   },
 
-  updateProps: function(Id) {
-    axiosGallerey.getGallerey(Id)
-    axiosFriend.getFriends(Id)
-    axiosNews.getNews(Id)
+  updateProps: function(id) {
+    getGallerey(id)
+    getFriends(id)
+    getNewsFriends(id)
+    getNews(id)
+
     NProgress.done()
   },
 
@@ -70,12 +80,14 @@ const CurrentUserProfile = React.createClass({
 
                 <Col xs='8'>
                   <ListGroupItem style={{background: '#f7f7f7'}}>
-                    <NewsViews feed_items={this.props.newsList} Id={this.props.user.id} user_friends={this.props.userFriends} user={this.props.user} />
+                    <NewsViews  feed_items={this.props.newsList}
+                                Id={this.props.user.id}
+                                user_friends={this.props.newsFriend}
+                                user={this.props.user} />
                   </ListGroupItem>
                 </Col>
               </Row>
             </ListGroup>
-
           }
         </div>
     );
@@ -83,17 +95,19 @@ const CurrentUserProfile = React.createClass({
 });
 
 const mapStateToProps = function(store) {
-
   return {
-    user: store.sessionState.sessions,
-    userFriends: store.friendsState.userFriends,
-    userGalerey: store.gallereyState.gallerey,
     newsList: store.newsState.news,
+    user: store.sessionState.sessions,
+    newsFriend: store.newsState.newsFriend,
     apenedNews: store.newsState.apenedNews,
-    render: store.globalState.render = checkReadyToRender(  store.sessionState.sessions,
-                                                            store.friendsState.userFriends,
-                                                            store.gallereyState.gallerey,
-                                                            store.newsState.news)
+    userGalerey: store.gallereyState.gallerey,
+    userFriends: store.friendsState.userFriends,
+
+    render: store.globalState.render = checkReadyToRender(store.newsState.news,
+                                                          store.newsState.newsFriend,
+                                                          store.sessionState.sessions,
+                                                          store.gallereyState.gallerey,
+                                                          store.friendsState.userFriends)
   };
 };
 

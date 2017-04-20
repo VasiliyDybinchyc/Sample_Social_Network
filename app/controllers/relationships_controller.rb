@@ -12,7 +12,7 @@ class RelationshipsController < ApplicationController
 
   def get_friends
     @user = User.find(params[:id])
-    render json: @user.following.limit(10).shuffle
+    render json: @user.following.limit(8).shuffle
   end
 
   def get_all_friends

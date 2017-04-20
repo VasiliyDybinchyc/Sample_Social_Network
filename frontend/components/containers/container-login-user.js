@@ -1,17 +1,15 @@
-import React                  from 'react';
+import React              from 'react';
+import NProgress          from 'react-nprogress';
 
-import CreateSession          from '../views/create_session';
-import NProgress              from 'react-nprogress';
-
-import    * as axiosUser      from '../../axios/axios-user';
-import { createSession }      from '../../auth/authRequest';
+import ErrorViews         from '../views/error';
+import CreateSession      from '../views/create_session';
 
 import  { connect }       from 'react-redux';
-import ErrorViews         from '../views/error';
 
-import { resetError } from '../../helper/helperFrontend';
+import { createSession }  from '../../auth/authRequest';
 
-import AuthN from 'j-toker';
+import { resetError }     from '../../helper/helperFrontend';
+
 
 const LogIn = React.createClass({
 
@@ -41,7 +39,7 @@ const LogIn = React.createClass({
   render: function() {
     return (
       <div>
-        {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
+        {this.props.error && <ErrorViews error={this.props.error} /> }
         <CreateSession onSubmit={this.onSubmit} ref="child" />
       </div>
     );

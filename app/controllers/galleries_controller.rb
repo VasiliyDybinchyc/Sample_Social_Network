@@ -5,9 +5,9 @@ class GalleriesController < ApplicationController
     if params[:pageNumber].to_i == 0
       @start = 0
       @stop = 7
-    else
-      @start = params[:pageNumber].to_i * 7 - 7
-      @stop = params[:pageNumber].to_i * 7
+    else params[:pageNumber].to_i == 1
+      @start = params[:pageNumber].to_i * 8 - 8
+      @stop = params[:pageNumber].to_i * 8 - 1
     end
     @galerie = @user.galleries[@start..@stop]
     @galerie.push(@user.galleries.length)

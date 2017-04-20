@@ -5,16 +5,26 @@ class MessagesController < ApplicationController
     @@stop = 29
     @@start = 0
     @user = User.find(params[:user_id])
-    @posts = @user.feed[0..@@stop]
-    render json: @posts.to_json
+    render json: @user.feed[0..@@stop].to_json
   end
 
   def takeMoreNews
     @@stop += 30
     @@start += 30
     @user = User.find(params[:user_id])
-    @posts = @user.feed[@@start..@@stop]
-    render json: @posts.to_json
+    render json: @user.feed[@@start..@@stop].to_json
+  end
+
+  def getFeedFriends
+    @user = User.find(params[:user_id])
+
+    feed_friends = Set.new []
+
+    @user.feed[@@start..@@stop].each do |message|
+      feed_friends.add(User.find(message.user_id))
+    end
+
+    render json: feed_friends
   end
 
   def create
@@ -30,7 +40,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
+    @message = Message.find(params[:user_id])
     @message.destroy
     redirect_to request.referrer || root_url
   end

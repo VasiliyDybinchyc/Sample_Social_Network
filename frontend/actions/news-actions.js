@@ -14,6 +14,13 @@ export function getNewsSuccess(news) {
   };
 }
 
+export function getNewsFriendsSuccess(newsFriend) {
+  return {
+    type: types.GET_NEWS_FRIENDS,
+    newsFriend
+  };
+}
+
 export function getMoreNewsSuccess(apenedNews) {
   return {
     type: types.GET_MORE_NEWS_SUCCESS,

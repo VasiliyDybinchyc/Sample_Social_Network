@@ -2,7 +2,8 @@ import * as types from '../actions/action-types';
 import _ from 'lodash';
 
 const initialState = {
-  news: [null]
+  news: [null],
+  newsFriend: []
 };
 
 const newsReducer = function(state = initialState, action) {
@@ -14,6 +15,9 @@ const newsReducer = function(state = initialState, action) {
 
     case types.GET_NEWS_SUCCESS:
       return Object.assign({}, state, { news: action.news });
+
+    case types.GET_NEWS_FRIENDS:
+      return Object.assign({}, state, { newsFriend: state.newsFriend.concat(action.newsFriend) });
 
     case types.RESET_NEWS_SUCCESS:
       return Object.assign({}, state, { news: action.reset });

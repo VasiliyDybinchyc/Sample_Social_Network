@@ -1,12 +1,14 @@
-import React              from 'react';
-import  { connect }       from 'react-redux';
-import ErrorViews         from '../views/error';
-import CreateUser         from '../views/create_user';
-import NProgress          from 'react-nprogress';
+import React           from 'react';
+import NProgress       from 'react-nprogress';
 
-import { createUser }      from '../../auth/authRequest';
+import ErrorViews      from '../views/error';
+import CreateUser      from '../views/create_user';
 
-import { resetError } from '../../helper/helperFrontend';
+import { connect }     from 'react-redux';
+
+import { createUser }  from '../../auth/authRequest';
+
+import { resetError }  from '../../helper/helperFrontend';
 
 const SignUp = React.createClass({
 
@@ -39,7 +41,7 @@ const SignUp = React.createClass({
   render: function() {
     return (
       <div>
-        {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
+        {this.props.error && <ErrorViews error={this.props.error} /> }
         <CreateUser onSubmit={this.onSubmit} ref="child" />
       </div>
     );

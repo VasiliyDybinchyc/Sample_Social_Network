@@ -1,11 +1,11 @@
-import React from 'react';
-import Cropper from 'react-cropper'
-import {  Button,
-          Form,
-          FormGroup,
-          Label,
-          Input,
-          Col}         from 'reactstrap';
+import React          from 'react';
+
+import { Col,
+         Form,
+         Label,
+         Input,
+         Button,
+         FormGroup }  from 'reactstrap';
 
 export default React.createClass({
 
@@ -31,18 +31,6 @@ export default React.createClass({
 
   getPasswordConf: function() {
     return this.password_confirmation.value;
-  },
-
-  changeCropp: function() {
-    var file = this.avatar.files[0];
-    var reader = new FileReader();
-    var url = reader.readAsDataURL(file)
-
-    reader.onloadend = function (e) {
-      this.setState({
-        test: reader.result,
-      })
-    }.bind(this);
   },
 
   render: function() {

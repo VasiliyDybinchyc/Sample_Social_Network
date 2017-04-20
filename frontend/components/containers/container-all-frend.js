@@ -1,17 +1,19 @@
-import   React                  from 'react';
-import { connect }              from 'react-redux';
-import { Link }                 from 'react-router';
-import    * as axiosFriend      from '../../axios/axios-friend';
-import   AllFriendUserViews     from '../views/all_user';
-import   NProgress              from 'react-nprogress';
-import { checkReadyToRender }   from '../../helper/helperFrontend';
+import   React                 from 'react';
+import   NProgress             from 'react-nprogress';
+
+import   AllFriendUserViews    from '../views/all_user';
+
+import { connect }             from 'react-redux';
+
+import { getAllFriends }       from '../../axios/axios-friend';
+
+import { checkReadyToRender }  from '../../helper/helperFrontend';
 
 const AllFrendUser = React.createClass({
 
   componentWillMount: function() {
-    var Id = this.props.params.userId
     NProgress.start();
-    axiosFriend.getAllFriends(Id)
+    getAllFriends(this.props.params.userId)
   },
 
   componentDidMount: function() {
@@ -20,7 +22,7 @@ const AllFrendUser = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (this.props.params.userId !== nextProps.params.userId) {
-      axiosFriend.getAllFriends(nextProps.params.userId);
+      getAllFriends(nextProps.params.userId);
     }
   },
 
@@ -36,12 +38,12 @@ const AllFrendUser = React.createClass({
       </div>
     );
   }
-
 });
 
 const mapStateToProps = function(store) {
   return {
     allUserFriends: store.friendsState.allUserFriends,
+
     render: store.globalState.render = checkReadyToRender(store.friendsState.allUserFriends)
   };
 };

@@ -1,12 +1,17 @@
-import store from '../store';
-import * as userActions from '../actions/user-actions';
-import * as globalActions from '../actions/global-action';
-import * as friendActions from '../actions/friends-action';
-import * as actionSession from '../actions/sessions-actions';
-import * as newsActions from '../actions/news-actions';
-import * as gallereyActions from '../actions/actions-gallerey';
-import { getGallereySuccess, getAllGallereyAmount } from '../actions/actions-gallerey';
-import { changeOpenModal } from '../actions/sessions-actions';
+import store                    from '../store';
+
+import * as userActions         from '../actions/user-actions';
+import * as globalActions       from '../actions/global-action';
+import * as friendActions       from '../actions/friends-action';
+import * as actionSession       from '../actions/sessions-actions';
+import * as newsActions         from '../actions/news-actions';
+import * as gallereyActions     from '../actions/actions-gallerey';
+
+import { changeOpenModal }      from '../actions/sessions-actions';
+
+import { getGallereySuccess,
+         getAllGallereyAmount } from '../actions/actions-gallerey';
+
 
 // react filtered empty line like this "  " but not filtered "\u200b" <-- this is empty symbol i put instead of spaces
 export var fourSpaces = '\u200b \u200b \u200b \u200b';

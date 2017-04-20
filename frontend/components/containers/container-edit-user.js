@@ -1,12 +1,16 @@
-import    React              from 'react';
-import  { connect }          from 'react-redux';
-import  { browserHistory }   from 'react-router';
-import    CreateUserViews    from '../views/edit_user';
-import    ErrorViews         from '../views/error';
-import    * as axiosUser     from '../../axios/axios-user';
-import   NProgress           from 'react-nprogress';
+import   React                 from 'react';
+import   NProgress             from 'react-nprogress';
 
-import { checkReadyToRender, resetError } from '../../helper/helperFrontend';
+import    CreateUserViews      from '../views/edit_user';
+
+import  { connect }            from 'react-redux';
+
+import  { editUser,
+          getCurrentUser }     from '../../axios/axios-user';
+
+import { resetError,
+         checkReadyToRender }  from '../../helper/helperFrontend';
+
 
 const EditUser = React.createClass({
 
@@ -33,15 +37,14 @@ const EditUser = React.createClass({
     dataUser.append('user[avatar]',                 this.refs.child.getAvatar())
     dataUser.append('user[croppersAvatar]',         this.refs.child.getCroppersAvatar())
 
-    axiosUser.editUser(dataUser, userId).then(function () {
-      axiosUser.getCurrentUser();
+    editUser(dataUser, userId).then(function () {
+      getCurrentUser();
     });
   },
 
   render: function() {
     return (
       <div>
-        {this.props.error == undefined ? null : <ErrorViews error={this.props.error} /> }
         {this.props.render &&
           <CreateUserViews onSubmit={this.onSubmit} ref="child" user={this.props.user} />
         }
@@ -52,8 +55,10 @@ const EditUser = React.createClass({
 
 const mapStateToProps = function(store) {
   return {
-    user: store.sessionState.sessions,
     error: store.globalState.error,
+    user: store.sessionState.sessions,
+
+
     render: store.globalState.render = checkReadyToRender(store.sessionState.sessions)
   };
 };

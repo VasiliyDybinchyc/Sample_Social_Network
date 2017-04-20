@@ -1,14 +1,18 @@
-import    React                   from 'react';
-import  { connect }               from 'react-redux';
-import  { Link, browserHistory }  from 'react-router';
-import    * as axiosUser          from '../../axios/axios-user';
-import    * as actionSession      from '../../actions/sessions-actions';
-import    NotLoginNav             from '../views/not_login_nav';
-import    LoginNav                from '../views/login_nav';
-import    NProgress               from 'react-nprogress';
-import {  Container }             from 'reactstrap';
+import    React                 from 'react';
+import    NProgress             from 'react-nprogress';
 
-import {  checkReadyToRender, ifAuthenticationTrueRedirect, resetCurrentUser }    from '../../helper/helperFrontend';
+import    LoginNav              from '../views/login_nav';
+import    NotLoginNav           from '../views/not_login_nav';
+
+import  { connect }             from 'react-redux';
+import  { browserHistory }      from 'react-router';
+
+import  { Container }           from 'reactstrap';
+
+import  { getCurrentUser }      from '../../axios/axios-user';
+
+import  { resetCurrentUser,
+          checkReadyToRender }  from '../../helper/helperFrontend';
 
 import AuthN from 'j-toker';
 
@@ -19,7 +23,7 @@ const RootPath = React.createClass({
   },
 
   updateProps: function() {
-    axiosUser.getCurrentUser()
+    getCurrentUser()
   },
 
   onSubmit: function(event) {
@@ -30,31 +34,30 @@ const RootPath = React.createClass({
   },
 
   render: function() {
-
-      return (
-        <div className="app">
-          {this.props.render &&
-            <Container>
-              <div className="navbar">
-                {this.props.currentUser == false ? <NotLoginNav /> :
-                <LoginNav onSubmit={this.onSubmit} userId={this.props.currentUser.id} /> }
+    return (
+      <div className="app">
+        {this.props.render &&
+          <Container>
+            <div className="navbar">
+              {this.props.currentUser == false ? <NotLoginNav /> :
+              <LoginNav onSubmit={this.onSubmit} userId={this.props.currentUser.id} /> }
+            </div>
+            <div>
+            </div>
+              <div className="yield">
+                 {this.props.children}
               </div>
-              <div>
-              </div>
-                <div className="yield">
-                   {this.props.children}
-                </div>
-            </Container>
-          }
-        </div>
-      );
+          </Container>
+        }
+      </div>
+    );
   }
-
 });
 
 const mapStateToProps = function(store) {
   return {
     currentUser: store.sessionState.sessions,
+    
     render: store.globalState.render = checkReadyToRender(store.sessionState.sessions)
   };
 };

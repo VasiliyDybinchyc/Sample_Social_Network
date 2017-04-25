@@ -32,7 +32,7 @@ export default class PostNews extends React.Component {
         data.get('message[content]') !== '')
     {
       postNews(userId, data)
-      
+      this.newsText.value = ''
       this.newsFile.value = ''
       this.resetError()
     }

@@ -23,9 +23,6 @@ class MessagesController < ApplicationController
     @user.feed[@@start..@@stop].each do |message|
       feed_friends.add(User.find(message.user_id))
     end
-    p '_________________________________________________________________________'
-    p feed_friends.length
-    p '_________________________________________________________________________'
     render json: feed_friends
   end
 

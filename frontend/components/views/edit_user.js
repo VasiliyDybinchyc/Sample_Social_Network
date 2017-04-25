@@ -69,8 +69,8 @@ export default React.createClass({
 
           <FormGroup>
 
-            <div className="box" style={{position: 'fixed', width: 400, height: 400, paddingLeft: '40%', paddingTop: '5%'}}>
-              <div className="img-preview" style={{ width: 400, height: 400, overflow: 'hidden'}} />
+            <div className="box" style={{position: 'fixed', width: 450, height: 450, paddingLeft: '40%', paddingTop: '5%'}}>
+              <div className="img-preview" style={{ width: 400, height: 400, overflow: 'hidden', border: "4px double black"}} />
             </div>
 
             <Col xs='4'>

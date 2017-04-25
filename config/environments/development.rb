@@ -52,5 +52,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # when using pow
+  OmniAuth.config.full_host = "http://localhost:3000"
+
+  # when using xip.io
+  # OmniAuth.config.full_host = "https://social-network-react-redux.herokuapp.com"
 end

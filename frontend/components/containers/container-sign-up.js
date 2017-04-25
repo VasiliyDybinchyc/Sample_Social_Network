@@ -29,8 +29,7 @@ const SignUp = React.createClass({
 
     let dataUser = {}
 
-    dataUser.first_name =             this.refs.child.getFirstName()
-    dataUser.last_name =              this.refs.child.getLastName()
+    dataUser.nickname =               this.refs.child.getNickname()
     dataUser.email =                  this.refs.child.getEmail()
     dataUser.password =               this.refs.child.getPassword()
     dataUser.password_confirmation =  this.refs.child.getPasswordConf()

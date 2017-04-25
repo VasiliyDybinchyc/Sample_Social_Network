@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks, :password], controllers: {
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:password], controllers: {
     registrations: 'custom/registrations'
   }
 
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get    '/allFrend/:userId',   to: 'application#checkLogined'
 
   get   '/giveUser/:id', to: 'users#giveUser'
+
 
   resources :relationships,       only: [:create, :destroy] do
     member do

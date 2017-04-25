@@ -44,7 +44,7 @@ export default class AllUsers extends React.Component {
             <div key={index}>
               <Link to={"/users/" + user.id} activeClassName="active">
                 <img src={user.avatar.url} id="mini-avatar" width="35" height="35" />
-                {user.first_name + " " + user.last_name}
+                {user.nickname}
               </Link>
             </div>
           );

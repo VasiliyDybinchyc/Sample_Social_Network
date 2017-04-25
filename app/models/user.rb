@@ -1,8 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # :confirmable, :lockable, :timeoutable and
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :omniauthable
 
   include DeviseTokenAuth::Concerns::User
 
@@ -16,19 +21,13 @@ class User < ApplicationRecord
     self[:uid] = self[:email] if self[:uid].blank? && self[:email].present?
   end
 
-  before_save { self.email = email.downcase }
-
-  validates_presence_of :first_name, :last_name, :email
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
   validates :first_name, :length => { maximum: 30 }
 
   validates :last_name, :length => { maximum: 30 }
 
-  validates :email, format: { with: VALID_EMAIL_REGEX }
+  validates_uniqueness_of :nickname
 
-  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :nickname , presence: true, length: { in: 1..39 }
 
   mount_uploader :avatar, AvatarUploader
 

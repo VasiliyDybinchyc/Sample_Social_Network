@@ -13,6 +13,8 @@ export default class PersonalInfo extends React.Component{
   }
 
   componentWillMount(){
+    this.printInfo()
+
     this.images = []
 
     const { photoIndex,
@@ -24,11 +26,20 @@ export default class PersonalInfo extends React.Component{
     return this.props.user.avatar.url;
   }
 
+  printInfo() {
+    this.nameUser = <h2>{this.props.user.nickname} </h2>
+    if (this.props.user.provider == 'github') {
+      this.avatarUser = <img src={this.props.user.image} style={{maxWidth: 300, maxHeight: 400, minWidth: 200, minHeight: 200, cursor: 'pointer' }} onClick={() => {this.images.push(this.props.user.avatar.url, null), this.setState({ isOpen: true }) } } />
+    } else {
+      this.avatarUser = <img src={this.props.user.croppersAvatar.url} style={{maxWidth: 300, maxHeight: 400, minWidth: 200, minHeight: 200, cursor: 'pointer' }} onClick={() => {this.images.push(this.props.user.avatar.url, null), this.setState({ isOpen: true }) } } />
+    }
+  }
+
   render() {
     return (
       <div className='PersonalInfo'>
-        <h2>{this.props.user.first_name} {this.props.user.last_name}</h2>
-        <img src={this.props.user.croppersAvatar.url} style={{maxWidth: 300, maxHeight: 400, minWidth: 200, minHeight: 200, cursor: 'pointer' }} onClick={() => {this.images.push(this.props.user.avatar.url, null), this.setState({ isOpen: true }) } } />
+        {this.nameUser}
+        {this.avatarUser}
       </div>
     );
   }

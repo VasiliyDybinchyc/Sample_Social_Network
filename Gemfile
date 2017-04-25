@@ -54,8 +54,17 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bcrypt'
+
 gem 'carrierwave'
 gem 'carrierwave-base64'
+
 gem 'devise'
 gem 'devise_token_auth'
+
+gem "figaro"
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'

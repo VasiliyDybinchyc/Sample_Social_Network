@@ -24,6 +24,21 @@ export function createSession(user) {
     )
 }
 
+export function createSessionWithGitHub(user) {
+  Auth.oAuthSignIn({
+    provider: 'github',
+    params: {
+     resource_class: 'User'
+    }
+  }).then(
+     response => {
+       store.dispatch(createSessionSuccess(response))
+       store.dispatch(resetError())
+       browserHistory.push('/profile')
+     }
+   )
+}
+
 export function createUser(createdUser) {
   return Auth.emailSignUp({user: createdUser})
     .then(
@@ -91,7 +106,7 @@ Auth.configure({
 
   authProviderPaths: {
     github:    '/auth/github',
-    facebook:  '/auth/facebook',
-    google:    '/auth/google_oauth2'
+    facebook:  '/omniauth/facebook',
+    google:    '/omniauth/google_oauth2'
   }
 });

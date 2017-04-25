@@ -70,11 +70,13 @@ export default class Messages extends React.Component {
     window.removeEventListener("scroll", this.Scroll);
   }
 
-  getRightUser(array, id) {
-    if(array[0] == undefined) return false;
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].id == id){
-        return array[i]
+  getRightUser(id) {
+    let friends = this.props.user_friends
+
+    if(friends[0] == undefined) return false;
+    for (var i = 0; i < friends.length; i++) {
+      if (friends[i].id == id){
+        return friends[i]
       }
     }
     return false
@@ -90,14 +92,13 @@ export default class Messages extends React.Component {
               <ListGroupItemHeading>
 
                 <Link to={"/users/" + feed_item.user_id} key={index} className="avatar-frend" >
-                  <img src={that.getRightUser(that.props.user_friends, feed_item.user_id).croppersAvatar == undefined ?
-                            that.props.user.croppersAvatar.url :
-                            that.getRightUser(that.props.user_friends, feed_item.user_id).croppersAvatar.url }
+                  <img src={that.getRightUser(feed_item.user_id).provider == 'github' ?
+                            that.getRightUser(feed_item.user_id).image :
+                            that.getRightUser(feed_item.user_id).croppersAvatar.url}
                             width="35" height="35" />
                 </Link>
 
-                <p>{that.getRightUser(that.props.user_friends, feed_item.user_id).first_name || that.props.user.first_name} {" "}
-                   {that.getRightUser(that.props.user_friends, feed_item.user_id).last_name || that.props.user.last_name} say :</p>
+                <p>{that.getRightUser(that.props.user_friends, feed_item.user_id).nickname || that.props.user.nickname} say :</p>
               </ListGroupItemHeading>
 
                 <p style={{width: 690}} dangerouslySetInnerHTML={{__html: feed_item.content}} />

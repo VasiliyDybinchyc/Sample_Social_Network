@@ -13,12 +13,8 @@ export default React.createClass({
     return({test: ''})
   },
 
-  getFirstName: function() {
+  getNickname: function() {
     return this.name.value;
-  },
-
-  getLastName: function() {
-    return this.surname.value;
   },
 
   getEmail: function() {
@@ -40,15 +36,8 @@ export default React.createClass({
         <Form>
           <FormGroup>
             <Col xs='4'>
-              <Label for="SignUpName">Name</Label>
+              <Label for="SignUpName">Nickname</Label>
               <Input type="text" name="SignUpName" getRef={(ref) => (this.name = ref)} id="SignUpName" placeholder="Name" />
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col xs='4'>
-              <Label for="SignUpSurname">Surname</Label>
-              <Input type="text" name="SignUpSurname" getRef={(ref) => (this.surname = ref)} id="SignUpSurname" placeholder="Surname" />
             </Col>
           </FormGroup>
 

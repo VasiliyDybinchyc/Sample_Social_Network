@@ -2,6 +2,8 @@ import React              from 'react';
 
 import { browserHistory } from 'react-router';
 
+import { createSessionWithGitHub }  from '../../auth/authRequest';
+
 import { fourSpaces }     from '../../helper/helperFrontend';
 
 import { Nav,
@@ -31,6 +33,12 @@ export default class NotLoginNav extends React.Component{
             <NavItem>
               <Button color="success" className={'loginButton'} onClick={() => browserHistory.push('/login')}>
                 Log in
+              </Button>
+            </NavItem>{fourSpaces}
+
+            <NavItem>
+              <Button color="#000000" className={'loginButton'} onClick={() => createSessionWithGitHub()}>
+                Log in with GitHub
               </Button>
             </NavItem>
           </Nav>
